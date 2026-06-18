@@ -80,7 +80,7 @@ export default function Footer() {
               <li className="flex items-center gap-3 text-default-600">
                 <Envelope className="h-4 w-4" />
                 <a href="mailto:support@ticketbari.com">
-                  support@ticketbari.com
+                  support@travelo.com
                 </a>
               </li>
 
@@ -129,7 +129,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-default-200">
         <div className="mx-auto max-w-7xl px-4 py-5 text-center text-sm text-default-500 lg:px-8">
-          © 2026 TicketBari. All rights reserved.
+          © 2026 Travelo. All rights reserved.
         </div>
       </div>
     </footer>

@@ -4,13 +4,22 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
+import {useSession, signOut} from '@/lib/auth-client'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { data: session, isPending } = useSession();
+  
+  const user = session?.user
+
+  const handleSignOut = async() => {
+      await signOut()
+    }
+  
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Bus", href: "/bus" },
+    { label: "All Tickets", href: "/all-tickets" },
     { label: "Train", href: "/train" },
     { label: "Launch", href: "/launch" },
     { label: "Flight", href: "/flight" },
@@ -44,23 +53,34 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button
-            as={Link}
-            href="/login"
-            variant="light"
-          >
-            Login
-          </Button>
+        {user ? (
+           <div className="hidden md:flex gap-2">
+             Hi, {user?.name}!
+             <Button onClick={handleSignOut}>
+                Sign Out
+             </Button>
+           </div>
+          ): (
+        <div className="hidden md:mt-6 flex gap-3">
+            <Link
+              
+              href="/auth/signin"
+              variant="flat"
+              className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
+            >
+              Sign In
+            </Link>
 
-          <Button
-            as={Link}
-            href="/signup"
-            color="primary"
-          >
-            Sign Up
-          </Button>
-        </div>
+            <Link
+              
+              href="/auth/signup"
+              variant="primary"
+              className="w-full bg-blue-800 text-white font-bold text-center p-2 rounded-full"
+            >
+              Sign Up
+            </Link>
+          </div>
+          )}
 
         {/* Mobile Toggle */}
         <button
@@ -99,7 +119,15 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="mt-6 flex flex-col gap-3">
+          {user ? (
+           <>
+             Hi, {user?.name}!
+             <Button onClick={handleSignOut}>
+                Sign Out
+             </Button>
+           </>
+          ): (
+        <div className="mt-6 flex gap-3">
             <Link
               
               href="/auth/signin"
@@ -118,6 +146,8 @@ export default function Navbar() {
               Sign Up
             </Link>
           </div>
+          )}
+          
         </div>
       </div>
     </nav>
