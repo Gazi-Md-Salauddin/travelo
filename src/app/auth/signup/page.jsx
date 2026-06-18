@@ -24,6 +24,7 @@ import {
   Label,
   Checkbox,
 } from "@heroui/react";
+import { Description, Radio, RadioGroup } from "@heroui/react";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -32,7 +33,8 @@ export default function SignupPage() {
 
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [role, setRole] = useState("user");
+  
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -56,6 +58,7 @@ export default function SignupPage() {
         name,
         email,
         password,
+        role,
       });
 
       if (result?.error) {
@@ -227,6 +230,29 @@ export default function SignupPage() {
                     </InputGroup.Suffix>
                   </InputGroup>
                 </TextField>
+                
+                {/* Role Selection */}
+                    <div className="flex flex-col gap-4">
+                        <Label>Subscription plan</Label>
+                        <RadioGroup defaultValue="user" name="role" onChange = {value => setRole(value)} orientation="horizontal">
+                            <Radio value="user">
+                                <Radio.Control>
+                                    <Radio.Indicator />
+                                </Radio.Control>
+                                <Radio.Content>
+                                    <Label>User</Label>
+                                </Radio.Content>
+                            </Radio>
+                            <Radio value="vendor">
+                                <Radio.Control>
+                                    <Radio.Indicator />
+                                </Radio.Control>
+                                <Radio.Content>
+                                    <Label>Vendor</Label>
+                                </Radio.Content>
+                            </Radio>
+                        </RadioGroup>
+                    </div>
 
                 <Checkbox required>
                   I agree to the{" "}

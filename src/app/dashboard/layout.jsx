@@ -1,11 +1,11 @@
 import React from 'react'
 import DashboardSideBar from '@/components/DashboardSideBar'
 
-const DashboardLayout = () => {
+const DashboardLayout = ({children}) => {
   return (
-    <div>
-      <h2>Welcome back</h2>
+    <div className="flex gap-2 min-h-screen">
       <DashboardSideBar/>
+      <div className="flex-1">{children}</div>
     </div>
   )
 }
