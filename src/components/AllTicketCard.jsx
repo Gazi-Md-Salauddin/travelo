@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import {
   Card,
@@ -9,6 +10,7 @@ import {
   MapPin,
   Calendar,
   ArrowRight,
+  CircleDollar
 } from "@gravity-ui/icons";
 import Link from 'next/link'
 
@@ -47,7 +49,7 @@ const AllTicketCard = ({ticket}) => {
                 {/* Status */}
                 <Chip
                   color="success"
-                  variant="flat"
+                  variant="soft"
                 >
                   Approved
                 </Chip>
@@ -69,8 +71,8 @@ const AllTicketCard = ({ticket}) => {
                       Price
                     </p>
 
-                    <p className="font-medium">
-                      ৳{ticket.price}
+                    <p className="font-medium flex items-center gap-1">
+                      <CircleDollar/>{ticket.price}
                     </p>
                   </div>
 
@@ -126,10 +128,6 @@ const AllTicketCard = ({ticket}) => {
                 </Button>
               </div>
             </Card>
-          
-        </div>
-      )}
-    </section>
   )
 }
 

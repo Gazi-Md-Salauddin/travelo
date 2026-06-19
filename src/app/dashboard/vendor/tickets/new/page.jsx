@@ -326,54 +326,61 @@ export default function AddTicketPage() {
           </Label>
 
           <div className="flex flex-wrap gap-4">
-            <Checkbox
-              onValueChange={(checked) =>
-                handlePerkChange("AC", checked)
-              }
-            >
-              AC
-            </Checkbox>
+            <Checkbox name="basic-terms" onValueChange={(checked) =>
+                handlePerkChange("Ac", checked)
+              }>
+      <Checkbox.Content>
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        Ac
+      </Checkbox.Content>
+    </Checkbox>
+            
 
-            <Checkbox
-              onValueChange={(checked) =>
-                handlePerkChange(
-                  "Breakfast",
-                  checked
-                )
-              }
-            >
-              Breakfast
-            </Checkbox>
+            <Checkbox name="basic-terms" onValueChange={(checked) =>
+                handlePerkChange("Breakfast", checked)
+              }>
+      <Checkbox.Content>
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        Breakfast
+      </Checkbox.Content>
+    </Checkbox>
 
-            <Checkbox
-              onValueChange={(checked) =>
+            <Checkbox name="basic-terms" onValueChange={(checked) =>
                 handlePerkChange("WiFi", checked)
-              }
-            >
-              WiFi
-            </Checkbox>
+              }>
+      <Checkbox.Content>
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        WiFi
+      </Checkbox.Content>
+    </Checkbox>
 
-            <Checkbox
-              onValueChange={(checked) =>
-                handlePerkChange(
-                  "Charging Port",
-                  checked
-                )
-              }
-            >
-              Charging Port
-            </Checkbox>
+            <Checkbox name="basic-terms" onValueChange={(checked) =>
+                handlePerkChange("Charging Port", checked)
+              }>
+      <Checkbox.Content>
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        Charging Port
+      </Checkbox.Content>
+    </Checkbox>
 
-            <Checkbox
-              onValueChange={(checked) =>
-                handlePerkChange(
-                  "Entertainment",
-                  checked
-                )
-              }
-            >
-              Entertainment
-            </Checkbox>
+            <Checkbox name="basic-terms" onValueChange={(checked) =>
+                handlePerkChange("Tv", checked)
+              }>
+      <Checkbox.Content>
+        <Checkbox.Control>
+          <Checkbox.Indicator />
+        </Checkbox.Control>
+        Tv
+      </Checkbox.Content>
+    </Checkbox>
           </div>
         </div>
 

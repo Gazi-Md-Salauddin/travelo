@@ -1,5 +1,6 @@
-import { Button, Chip } from "@heroui/react";
-import { getAdminTickets } from "@/lib/actions/tickets";
+
+import {getAdminTickets} from '@/lib/actions/tickets'
+import AdminManageTicket from '@/components/AdminManageTicket'
 
 const ManageTicketsPage = async () => {
   const tickets = await getAdminTickets();
@@ -18,7 +19,8 @@ const ManageTicketsPage = async () => {
   };
 
   return (
-    <section className="space-y-6">
+
+<section className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">
           Manage Tickets
@@ -44,79 +46,13 @@ const ManageTicketsPage = async () => {
           </thead>
 
           <tbody>
-            {tickets.map((ticket) => (
-              <tr
-                key={ticket._id}
-                className="border-t"
-              >
-                <td className="p-4">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={ticket.image}
-                      alt={ticket.title}
-                      className="h-12 w-12 rounded-lg object-cover"
-                    />
-
-                    <span className="font-medium">
-                      {ticket.title}
-                    </span>
-                  </div>
-                </td>
-
-                <td className="p-4">
-                  {ticket.from} → {ticket.to}
-                </td>
-
-                <td className="p-4">
-                  {ticket.transportType}
-                </td>
-
-                <td className="p-4">
-                  ৳{ticket.price}
-                </td>
-
-                <td className="p-4">
-                  {ticket.vendorName}
-                </td>
-
-                <td className="p-4">
-                  <Chip
-                    color={getStatusColor(
-                      ticket.status
-                    )}
-                    variant="flat"
-                  >
-                    {ticket.status}
-                  </Chip>
-                </td>
-
-                <td className="p-4">
-                  <div className="flex justify-center gap-2">
-                    <Button
-                      size="sm"
-                      color="success"
-                      isDisabled={
-                        ticket.status ===
-                        "approved"
-                      }
-                    >
-                      Approve
-                    </Button>
-
-                    <Button
-                      size="sm"
-                      color="danger"
-                      isDisabled={
-                        ticket.status ===
-                        "rejected"
-                      }
-                    >
-                      Reject
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            {tickets.map((ticket) => {
+  const color = getStatusColor(ticket.status)
+  return (
+              <AdminManageTicket key={ticket._id} ticket={ticket} color={color}/>
+   ) 
+})}
+            
           </tbody>
         </table>
       </div>

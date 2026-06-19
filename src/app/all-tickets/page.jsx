@@ -1,7 +1,8 @@
 import React from 'react'
-import getApprovedTickets from '@/lib/actions/tickets'
+import {getApprovedTickets} from '@/lib/actions/tickets'
+import AllTicketCard from '@/components/AllTicketCard'
 
-const allTicketsPage = async() => {
+const AllTicketsPage = async() => {
   const tickets = await getApprovedTickets();
 
 
@@ -32,6 +33,9 @@ const allTicketsPage = async() => {
           {tickets.map((ticket) => (
           <AllTicketCard key={ticket._id} ticket={ticket}/>
           ))}
+        </div>
+      )}
+    </section>
   )
 }
 
