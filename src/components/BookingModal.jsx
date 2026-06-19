@@ -1,19 +1,12 @@
 "use client";
-import { useState } from "react";
 
 import {Rocket} from "@gravity-ui/icons";
 import {Button, Modal} from "@heroui/react";
 
-const BookingModal = ({ticket, handleBooking}) => {
-
-  const [isOpen, setIsOpen] = useState(false);
-
-const onOpen = () => setIsOpen(true);
-const onClose = () => setIsOpen(false);
-  
+const BookingModal = ({ticket}) => {
   return (
     <Modal>
-      <Button variant="secondary" >Booking Now</Button>
+      <Button variant="primary">Book Now</Button>
       <Modal.Backdrop>
         <Modal.Container>
           <Modal.Dialog className="sm:max-w-[360px]">
@@ -31,14 +24,10 @@ const onClose = () => setIsOpen(false);
               </p>
             </Modal.Body>
             <Modal.Footer>
-              <Button
-        variant="light"
-        onPress={onClose}
-      >
-        Cancel
-      </Button>
-              <Button className="w-full" color="primary"
-        onPress={handleBooking}>
+              <Button className="w-full" slot="close">
+                Cancel
+              </Button>
+              <Button className="w-full" slot="close">
                 Confirm Booking
               </Button>
             </Modal.Footer>
@@ -48,5 +37,4 @@ const onClose = () => setIsOpen(false);
     </Modal>
   );
 }
-
 export default BookingModal

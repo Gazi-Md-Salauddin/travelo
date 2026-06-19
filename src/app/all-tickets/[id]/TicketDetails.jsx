@@ -132,7 +132,7 @@ const onClose = () => setIsOpen(false);
   //const handleBtn = handleBooking()
 
   return (
-    <section className="mx-auto max-w-6xl p-4">
+    <section className="mx-auto max-w-6xl min-h-screen p-4">
       <div className="grid gap-8 md:grid-cols-2">
         {/* Image */}
         <div>
