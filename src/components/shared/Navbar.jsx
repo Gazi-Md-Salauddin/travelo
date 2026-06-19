@@ -56,7 +56,7 @@ export default function Navbar() {
         {user ? (
            <div className="hidden md:flex gap-2">
              Hi, {user?.name}!
-             <Button onClick={handleSignOut}>
+             <Button color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
              </Button>
            </div>
@@ -65,7 +65,7 @@ export default function Navbar() {
             <Link
               
               href="/auth/signin"
-              variant="flat"
+              variant="outline"
               className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
             >
               Sign In
@@ -122,7 +122,7 @@ export default function Navbar() {
           {user ? (
            <>
              Hi, {user?.name}!
-             <Button onClick={handleSignOut}>
+             <Button color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
              </Button>
            </>

@@ -16,8 +16,7 @@ import Link from 'next/link'
 
 const AllTicketCard = ({ticket}) => {
   return (
-    <Card
-              
+    <Card      
               className="overflow-hidden"
             >
               {/* Image */}
@@ -117,15 +116,13 @@ const AllTicketCard = ({ticket}) => {
                 </div>
 
                 {/* Details Button */}
-                <Button
-                  as={Link}
-                  href={`/tickets/${ticket._id}`}
-                  color="primary"
-                  endContent={<ArrowRight />}
-                  className="w-full"
+                <Link              
+                  href={`/all-tickets/${ticket._id}`}
+                  
+                  className="w-full bg-blue-500 "
                 >
-                  See Details
-                </Button>
+                  See Details<ArrowRight />
+                </Link>
               </div>
             </Card>
   )

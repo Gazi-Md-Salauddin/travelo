@@ -73,3 +73,15 @@ export const updateTicketStatus = async (
 
   return res.json();
 };
+
+
+export async function getTicketById(id) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+}

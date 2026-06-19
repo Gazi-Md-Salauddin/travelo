@@ -20,6 +20,7 @@ import {
   Clock,
   Person,
   Envelope,
+  ArrowUpToLine
 } from "@gravity-ui/icons";
 
 //import { toast } from "sonner";
@@ -110,6 +111,48 @@ export default function AddTicketPage() {
       alert("Failed to add ticket");
     }
   };
+
+  // Auxiliary Upload States
+    const [logoUrl, setLogoUrl] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
+
+
+  // Client side Imgbb Upload Handler
+    const handleLogoUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Simple Validation
+        if (file.size > 5 * 1024 * 1024) {
+            setErrors(prev => ({ ...prev, logo: "File size exceeds 5MB limit" }));
+            return;
+        }
+
+        setIsUploading(true);
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            // Replace with your real IMGBB API key environmental variable injection
+            const IMGBB_API_KEY = process.env.NEXT_PUBLIC_IMAGE_UPLOAD_API; 
+            const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            
+            if (data.success) {
+                setLogoUrl(data.data.url);
+                setErrors(prev => ({ ...prev, logo: null }));
+            } else {
+                setErrors(prev => ({ ...prev, logo: "Upload failed. Try again." }));
+            }
+        } catch (err) {
+            setErrors(prev => ({ ...prev, logo: "Network error during logo upload" }));
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
   return (
     <section className="mx-auto max-w-5xl">
@@ -388,12 +431,17 @@ export default function AddTicketPage() {
         <div className="md:col-span-2">
           <Label>Ticket Image</Label>
 
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            className="mt-2 block w-full rounded-xl border border-default-200 p-3"
-          />
+          <input 
+                  type="file" 
+                  accept="image/png, image/jpeg" 
+                  onChange={handleLogoUpload} 
+                   
+                  />
+                                    {logoUrl ? (
+                                        <img src={logoUrl} alt="Logo Preview" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <ArrowUpToLine size={18} className="text-zinc-400 group-hover:text-zinc-200 transition-colors" />
+                                    )}
         </div>
 
         {/* Submit */}
