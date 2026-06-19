@@ -34,6 +34,17 @@ export const getVendorBookings = async (
 };
 
 
+export const getUserBookings = async (email) => {
+  const res = await fetch(
+    `${baseUrl}/api/bookings/user/user@gmail.com`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+};
+
 export const updateBookingStatus = async (
   id,
   status
