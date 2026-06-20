@@ -3,12 +3,16 @@ import {
 } from "@/lib/actions/booking";
 
 import RequestedBookingRow from "@/components/RequestedBookingRow";
+import {useSession} from '@/lib/auth-client'
+
 
 const RequestedBookingsPage =
   async () => {
+    const { data: session, isPending } = useSession();
 
+    const user = session?.user
     const vendorEmail =
-      "john@example.com";
+    {user?.email};
 
     const bookings =
       await getVendorBookings(

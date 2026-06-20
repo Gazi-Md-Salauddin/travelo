@@ -6,6 +6,7 @@ const AllTicketsPage = async() => {
   const tickets = await getApprovedTickets();
 
 
+  
   return (
         <section className="space-y-8">
       <div>
@@ -31,8 +32,10 @@ const AllTicketsPage = async() => {
       ) : (
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {tickets.map((ticket) => (
+            
           <AllTicketCard key={ticket._id} ticket={ticket}/>
-          ))}
+           
+             ))}
         </div>
       )}
     </section>

@@ -33,7 +33,7 @@ export async function getTickets() {
 
 export const getApprovedTickets = async () => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?status=approved`,
     {
       cache: "no-store",
     }

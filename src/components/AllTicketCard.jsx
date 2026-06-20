@@ -45,13 +45,6 @@ const AllTicketCard = ({ticket}) => {
                   </div>
                 </div>
 
-                {/* Status */}
-                <Chip
-                  color="success"
-                  variant="soft"
-                >
-                  Approved
-                </Chip>
 
                 {/* Info */}
                 <div className="grid grid-cols-2 gap-4">
@@ -119,7 +112,7 @@ const AllTicketCard = ({ticket}) => {
                 <Link              
                   href={`/all-tickets/${ticket._id}`}
                   
-                  className="w-full bg-blue-500 "
+                  className="w-full bg-blue-500 text-white p-2 flex items-center justify-center text-center gap-1 rounded-full"
                 >
                   See Details<ArrowRight />
                 </Link>

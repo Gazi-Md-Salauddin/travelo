@@ -9,12 +9,12 @@ const AdminManageTicket = ({ticket, color}) => {
   const router = useRouter()
   
   const handleApprove = async (id) => {
-  await updateTicketStatus(id, "Approved");
+  await updateTicketStatus(id, "approved");
   router.refresh();
 };
 
 const handleReject = async (id) => {
-  await updateTicketStatus(id, "Rejected");
+  await updateTicketStatus(id, "rejected");
   router.refresh();
 };
   return (

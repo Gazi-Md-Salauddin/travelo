@@ -95,6 +95,7 @@ const onClose = () => setIsOpen(false);
     const bookingData = {
       ticketId: ticket._id,
       ticketTitle: ticket.title,
+      ticketImage: ticket.image,
 
       userName: "Current User",
       userEmail: "user@gmail.com",
@@ -119,7 +120,7 @@ const onClose = () => setIsOpen(false);
     );
 
     if (result.insertedId) {
-      alert("Booking Successful");
+      alert("Booking Ticket Successful");
 
       onClose();
 
@@ -157,7 +158,7 @@ const onClose = () => setIsOpen(false);
             </span>
           </div>
 
-          <Chip color="primary">
+          <Chip color="primary" variant="primary">
             {ticket.transportType}
           </Chip>
 

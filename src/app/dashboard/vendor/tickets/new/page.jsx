@@ -25,6 +25,7 @@ import {
 
 //import { toast } from "sonner";
 import {createTicket} from "@/lib/actions/tickets";
+import {useSession} from '@/lib/auth-client'
 
 export default function AddTicketPage() {
   const router = useRouter();
@@ -32,11 +33,14 @@ export default function AddTicketPage() {
   const [errors, setErrors] = useState({});
   const [selectedPerks, setSelectedPerks] = useState([]);
 
+  const {data: session, isPending } = useSession();
+  const user = session?.user
+  
   // Replace with your authenticated user data
-  const vendor = {
-    name: "John Doe",
-    email: "john@example.com",
-  };
+  // const vendor = {
+  //   name: {user?.name},
+  //   email: {user?.email},
+  // };
 
   const handlePerkChange = (perk, checked) => {
     if (checked) {
@@ -86,14 +90,15 @@ export default function AddTicketPage() {
       departureTime: data.departureTime,
       perks: selectedPerks,
 
-      image: "",
+      image: imageUrl,
 
-      vendorName: vendor.name,
-      vendorEmail: vendor.email,
+      vendorName: user?.name,
+      vendorEmail: user?.email,
 
-      status: "pending",
+      status: "Pending",
       createdAt: new Date(),
     };
+    console.log(payload)
 
     try {
       const result = await createTicket(payload);
@@ -113,18 +118,18 @@ export default function AddTicketPage() {
   };
 
   // Auxiliary Upload States
-    const [logoUrl, setLogoUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
     const [isUploading, setIsUploading] = useState(false);
 
 
   // Client side Imgbb Upload Handler
-    const handleLogoUpload = async (e) => {
+    const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         // Simple Validation
         if (file.size > 5 * 1024 * 1024) {
-            setErrors(prev => ({ ...prev, logo: "File size exceeds 5MB limit" }));
+            setErrors(prev => ({ ...prev, image: "File size exceeds 5MB limit" }));
             return;
         }
 
@@ -142,13 +147,13 @@ export default function AddTicketPage() {
             const data = await response.json();
             
             if (data.success) {
-                setLogoUrl(data.data.url);
-                setErrors(prev => ({ ...prev, logo: null }));
+                setImageUrl(data.data.url);
+                setErrors(prev => ({ ...prev, image: null }));
             } else {
-                setErrors(prev => ({ ...prev, logo: "Upload failed. Try again." }));
+                setErrors(prev => ({ ...prev, image: "Upload failed. Try again." }));
             }
         } catch (err) {
-            setErrors(prev => ({ ...prev, logo: "Network error during logo upload" }));
+            setErrors(prev => ({ ...prev, image: "Network error during logo upload" }));
         } finally {
             setIsUploading(false);
         }
@@ -339,7 +344,7 @@ export default function AddTicketPage() {
 
             <InputGroup.Input
               name="vendorName"
-              value={vendor.name}
+              value={user?.name}
               readOnly
             />
           </InputGroup>
@@ -356,7 +361,7 @@ export default function AddTicketPage() {
 
             <InputGroup.Input
               name="vendorEmail"
-              value={vendor.email}
+              value={user?.email}
               readOnly
             />
           </InputGroup>
@@ -428,21 +433,33 @@ export default function AddTicketPage() {
         </div>
 
         {/* Image Upload */}
-        <div className="md:col-span-2">
-          <Label>Ticket Image</Label>
+        <div className="flex flex-col gap-1 w-full">
+          <span className="text-zinc-600 font-medium text-sm">Ticket Image</span>
+          <div className="flex items-center gap-4 mt-1">
+          
+          <Label className="w-14 h-14 border border-dashed border-zinc-500 hover:border-zinc-500 bg-zinc-900/40 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors group relative overflow-hidden">
 
           <input 
                   type="file" 
                   accept="image/png, image/jpeg" 
-                  onChange={handleLogoUpload} 
-                   
+                  onChange={handleImageUpload} 
+                   className="hidden" 
                   />
-                                    {logoUrl ? (
-                                        <img src={logoUrl} alt="Logo Preview" className="w-full h-full object-cover" />
+                                    {imageUrl ? (
+                                        <img src={imageUrl} alt="Image Preview" className="w-full h-full object-cover" />
                                     ) : (
                                         <ArrowUpToLine size={18} className="text-zinc-400 group-hover:text-zinc-200 transition-colors" />
                                     )}
-        </div>
+                    </Label>
+            <div className="flex flex-col">
+                                    <span className="text-sm font-medium text-zinc-500">
+                                        {isUploading ? 'Uploading file...' : 'Upload image'}
+                                    </span>
+                                    <span className="text-xs text-zinc-600 mt-0.5">PNG, JPG up to 5MB</span>
+                                    {errors.image && <span className="text-xs text-danger mt-1">{errors.image}</span>}
+                                </div>
+            </div>
+          </div>
 
         {/* Submit */}
         <div className="md:col-span-2">

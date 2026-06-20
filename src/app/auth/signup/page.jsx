@@ -58,7 +58,7 @@ export default function SignupPage() {
         name,
         email,
         password,
-        role,
+        role
       });
 
       if (result?.error) {
@@ -233,8 +233,8 @@ export default function SignupPage() {
                 
                 {/* Role Selection */}
                     <div className="flex flex-col gap-4">
-                        <Label>Subscription plan</Label>
-                        <RadioGroup defaultValue="user" name="role" onChange = {value => setRole(value)} orientation="horizontal">
+                        <Label>Role</Label>
+                        <RadioGroup defaultValue="user" name="role" onChange ={setRole} orientation="horizontal">
                             <Radio value="user">
                                 <Radio.Control>
                                     <Radio.Indicator />
