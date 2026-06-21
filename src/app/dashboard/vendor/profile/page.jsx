@@ -2,12 +2,14 @@
 import React from 'react'
 import {useSession} from '@/lib/auth-client'
 import {Avatar, Card, Button} from "@heroui/react";
+import UpdateProfileModal from '@/components/UpdateProfileModal'
 
 const VendorProfilePage = () => {
 
   const { data: session, isPending } = useSession();
+  console.log("Session:", session);
   const user = session?.user
-  
+  console.log("User:", session?.user)
   return (
     <div className="flex justify-center gap-4 py-20">
       <Card className="w-[300px] text-center items-center">
@@ -26,7 +28,7 @@ const VendorProfilePage = () => {
         </Card.Header>
         <Card.Footer>
           
-          <Button className="w-full" color="primary">Edit</Button>
+          {user && <UpdateProfileModal user={user}/>}
         </Card.Footer>
       </Card>
     </div>

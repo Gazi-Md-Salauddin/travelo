@@ -2,6 +2,7 @@
 import React from 'react'
 import {useSession} from '@/lib/auth-client'
 import {Avatar, Card, Button} from "@heroui/react";
+import UpdateProfileModal from '@/components/UpdateProfileModal'
 
 const UserProfilePage = () => {
 
@@ -26,7 +27,7 @@ const UserProfilePage = () => {
         </Card.Header>
         <Card.Footer>
           
-          <Button className="w-full" color="primary">Edit</Button>
+        <UpdateProfileModal user={user}/>
         </Card.Footer>
       </Card>
     </div>
