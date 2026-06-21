@@ -53,7 +53,7 @@ const UserBookedTicketCard = ({ booking }) => {
   };
 
   const totalPrice =
-    booking.ticketPrice * booking.bookingQuantity;
+    booking.pricePerTicket * booking.bookingQuantity;
 
   return (
     <Card className="p-4 space-y-4 h-full">
@@ -64,7 +64,7 @@ const UserBookedTicketCard = ({ booking }) => {
       </h2>
 
       <p>
-        <strong>Route:</strong> {booking.from} → {booking.to}
+        <strong>Route:</strong> {booking.ticketFrom} → {booking.ticketTo}
       </p>
 
       <p>
@@ -77,13 +77,13 @@ const UserBookedTicketCard = ({ booking }) => {
 
       <p>
         <strong>Departure:</strong>{" "}
-        {booking.departureDate} | {booking.departureTime}
+        {booking.createdAt} | {booking.createdAt}
       </p>
 
       <div className="flex items-center justify-between">
         <Chip
           color={getStatusColor(booking.status)}
-          variant="flat"
+          variant="soft"
         >
           {booking.status}
         </Chip>

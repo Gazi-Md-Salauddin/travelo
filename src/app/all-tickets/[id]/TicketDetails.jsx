@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createBooking } from "@/lib/actions/booking";
 import BookingModal from '@/components/BookingModal'
 
+
 import {
   Button,
   Chip,
@@ -24,7 +25,9 @@ import {
 
 import { useRouter } from "next/navigation";
 
-const TicketDetails = ({ ticket }) => {
+const TicketDetails = ({ ticket, user }) => {
+
+  
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -97,12 +100,14 @@ const onClose = () => setIsOpen(false);
       ticketTitle: ticket.title,
       ticketImage: ticket.image,
 
-      userName: "Current User",
-      userEmail: "user@gmail.com",
+      userName: user.name,
+      userEmail: user.email,
 
       vendorName: ticket.vendorName,
       vendorEmail: ticket.vendorEmail,
 
+      ticketFrom: ticket.from,
+      ticketTo: ticket.to,
       bookingQuantity: quantity,
 
       pricePerTicket: ticket.price,

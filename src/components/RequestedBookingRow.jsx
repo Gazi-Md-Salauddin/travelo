@@ -7,7 +7,7 @@ import {
 } from "@heroui/react";
 
 import {
-  updateBookingStatus,
+  updateBookingStatus
 } from "@/lib/actions/booking";
 import {useSession} from '@/lib/auth-client'
 

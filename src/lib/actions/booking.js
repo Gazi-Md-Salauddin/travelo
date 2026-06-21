@@ -24,7 +24,7 @@ export const getVendorBookings = async (
   email
 ) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/bookings/vendor/${email}`,
+    `${baseUrl}/api/bookings/vendor/${email}`,
     {
       cache: "no-store",
     }
