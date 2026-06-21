@@ -57,13 +57,7 @@ const UserBookedTicketCard = ({ booking }) => {
 
   return (
     <Card className="p-4 space-y-4 h-full">
-      <Image
-        src={booking.ticketImage}
-        alt={booking.ticketTitle}
-        width={500}
-        height={300}
-        className="rounded-lg w-full h-48 object-cover"
-      />
+      
 
       <h2 className="text-xl font-semibold">
         {booking.ticketTitle}

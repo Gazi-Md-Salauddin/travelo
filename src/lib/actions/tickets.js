@@ -85,3 +85,34 @@ export async function getTicketById(id) {
 
   return res.json();
 }
+
+//update and delete ticket
+
+export const updateTicket = async (
+  id,
+  updatedData
+) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    }
+  );
+
+  return res.json();
+};
+
+export const deleteTicket = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  return res.json();
+};

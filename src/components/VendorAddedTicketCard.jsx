@@ -1,6 +1,9 @@
 "use client"
 import React from 'react'
 import Link from "next/link";
+import { deleteTicket } from "@/lib/actions/tickets";
+import { useRouter } from "next/navigation"
+import UpdateTicketModal from '@/components/UpdateTicketModal'
 
 import {
   Button,
@@ -17,6 +20,16 @@ import {
 } from "@gravity-ui/icons";
 
 const VendorAddedTicketCard = ({ticket, color}) => {
+
+  const router = useRouter()
+  
+  const handleDelete = async() => {
+    const confirmDelete = confirm("Are you sure!")
+    if(!confirmDelete) return;
+    await deleteTicket(ticket._id)
+    router.refresh()
+  }
+  
   const isRejected =
               ticket.status === "rejected";
   return (
@@ -102,24 +115,14 @@ const VendorAddedTicketCard = ({ticket, color}) => {
 
                   {/* Actions */}
                   <div className="flex gap-3">
-                    <Button
-                      as={Link}
-                      href={`/dashboard/vendor/tickets/update/${ticket._id}`}
-                      color="primary"
-                      variant="primary"
-                      
-                      isDisabled={isRejected}
-                      className="flex-1"
-                    ><Pencil />
-                      Update
-                    </Button>
+                    <UpdateTicketModal ticket={ticket}/>
 
                     <Button
                       color="danger"
                       variant="danger"
-                      
+                      onPress={handleDelete}
                       isDisabled={isRejected}
-                      className="flex-1"
+                      className="w-full flex-1"
                     ><TrashBin />
                       Delete
                     </Button>

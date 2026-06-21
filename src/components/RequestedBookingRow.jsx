@@ -9,10 +9,14 @@ import {
 import {
   updateBookingStatus,
 } from "@/lib/actions/booking";
+import {useSession} from '@/lib/auth-client'
 
 const RequestedBookingRow = ({
-  booking,
+  booking
 }) => {
+  const { data: session, isPending } = useSession();
+
+    const user = session?.user
   const router = useRouter();
 
   const handleAccept = async () => {
@@ -57,7 +61,7 @@ const RequestedBookingRow = ({
           </p>
 
           <p className="text-sm text-default-500">
-            {booking.userEmail}
+            {user?.email}
           </p>
         </div>
       </td>

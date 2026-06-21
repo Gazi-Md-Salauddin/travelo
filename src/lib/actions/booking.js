@@ -36,7 +36,7 @@ export const getVendorBookings = async (
 
 export const getUserBookings = async (email) => {
   const res = await fetch(
-    `${baseUrl}/api/bookings/user/user@gmail.com`,
+    `${baseUrl}/api/bookings/user/${email}`,
     {
       cache: "no-store",
     }

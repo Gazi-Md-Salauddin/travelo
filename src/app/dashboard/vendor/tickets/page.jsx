@@ -17,6 +17,7 @@ const TicketsPage = async () => {
     }
   };
 
+
   
   return (
     <section className="space-y-6">

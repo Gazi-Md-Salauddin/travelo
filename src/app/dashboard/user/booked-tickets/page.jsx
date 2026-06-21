@@ -1,8 +1,13 @@
 import { getUserBookings } from "@/lib/actions/booking";
 import UserBookedTicketCard from "@/components/UserBookedTicketCard";
+import {useSession} from '@/lib/auth-client'
 
 const MyBookingsPage = async () => {
-  const bookings = await getUserBookings();
+  const { data: session, isPending } = await useSession()
+  
+  const bookings = await getUserBookings(
+    session?.user?.email
+  );
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
