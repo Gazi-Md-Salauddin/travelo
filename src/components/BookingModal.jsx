@@ -4,21 +4,11 @@ import {Rocket} from "@gravity-ui/icons";
 import {Button, Modal} from "@heroui/react";
 import { useEffect, useState } from "react";
 
-const BookingModal = ({ticket, handleBooking}) => {
+const BookingModal = ({ticket, handleBooking, increase, decrease, quantity}) => {
 
-  const [quantity, setQuantity] = useState(1)
   const totalPrice = quantity * ticket.price
 
-  const increase = () => {
-    if(quantity < ticket.quantity){
-      setQuantity(quantity + 1)
-    }
-  }
-  const decrease = () => {
-    if(quantity > 1){
-      setQuantity(quantity - 1)
-    }
-  }
+  
   
   return (
     <Modal>

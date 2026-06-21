@@ -39,6 +39,18 @@ const onClose = () => setIsOpen(false);
   const [countdown, setCountdown] =
     useState("");
 
+
+  const increase = () => {
+    if(quantity < ticket.quantity){
+      setQuantity(quantity + 1)
+    }
+  }
+  const decrease = () => {
+    if(quantity > 1){
+      setQuantity(quantity - 1)
+    }
+  }
+  
   const departureDateTime = new Date(
     `${ticket.departureDate}T${ticket.departureTime}`
   );
@@ -88,6 +100,7 @@ const onClose = () => setIsOpen(false);
   }, []);
 
   const handleBooking = async () => {
+    
     if (quantity > ticket.quantity) {
       alert(
         "Booking quantity can't be greater than available ticket quantity."
@@ -116,6 +129,9 @@ const onClose = () => setIsOpen(false);
         quantity * ticket.price,
 
       status: "pending",
+      
+      departureDate: ticket.departureDate, 
+      departureTime: ticket.departureTime, 
 
       createdAt: new Date(),
     };
@@ -234,7 +250,7 @@ const onClose = () => setIsOpen(false);
           </div>
 
           
-      <BookingModal ticket={ticket} handleBooking={handleBooking}/>
+      <BookingModal ticket={ticket} handleBooking={handleBooking} increase={increase} decrease={decrease} quantity={quantity}/>
           
         </div>
       </div>

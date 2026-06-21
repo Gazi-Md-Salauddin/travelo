@@ -14,7 +14,7 @@ const MyBookingsPage = async () => {
   const bookings = await getUserBookings(
     user.email
   );
-  console.log(bookings)
+  
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">

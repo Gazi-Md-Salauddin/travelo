@@ -7,37 +7,57 @@ import Image from "next/image";
 const UserBookedTicketCard = ({ booking }) => {
   const [countdown, setCountdown] = useState("");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const departure = new Date(
-        `${booking.departureDate} ${booking.departureTime}`
-      );
+  const departureField = booking.departureDate || booking.departureTime; 
 
+  useEffect(() => {
+    if (!departureField) {
+      setCountdown("No Date");
+      return;
+    }
+
+    const interval = setInterval(() => {
+      const departure = new Date(departureField);
       const now = new Date();
       const difference = departure - now;
 
-      if (difference <= 0) {
-        setCountdown("Departed");
+      
+      if (isNaN(difference)) {
+        setCountdown("Invalid Date");
+        clearInterval(interval);
         return;
       }
 
-      const days = Math.floor(
-        difference / (1000 * 60 * 60 * 24)
-      );
+      if (difference <= 0) {
+        setCountdown("Departed");
+        clearInterval(interval);
+        return;
+      }
 
-      const hours = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
-      );
-
-      const minutes = Math.floor(
-        (difference / (1000 * 60)) % 60
-      );
-
-      setCountdown(`${days}d ${hours}h ${minutes}m`);
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [booking]);
+  }, [departureField]);
+
+  const formatDepartureDate = (dateString) => {
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    if (isNaN(date)) return "Invalid Date";
+    
+    return date.toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
@@ -77,7 +97,7 @@ const UserBookedTicketCard = ({ booking }) => {
 
       <p>
         <strong>Departure:</strong>{" "}
-        {booking.createdAt} | {booking.createdAt}
+        {formatDepartureDate(departureField)}
       </p>
 
       <div className="flex items-center justify-between">
@@ -93,7 +113,7 @@ const UserBookedTicketCard = ({ booking }) => {
         </Chip>
       </div>
 
-      {booking.status?.toLowerCase() === "accepted" && (
+      {booking.status?.toLowerCase() === "accepted" && countdown !== "Departed" && (
         <Button
           color="success"
           className="w-full"
