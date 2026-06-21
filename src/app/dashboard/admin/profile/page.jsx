@@ -3,7 +3,7 @@ import React from 'react'
 import {useSession} from '@/lib/auth-client'
 import {Avatar, Card, Button} from "@heroui/react";
 
-const VendorProfilePage = () => {
+const AdminProfilePage = () => {
 
   const { data: session, isPending } = useSession();
   const user = session?.user
@@ -33,4 +33,4 @@ const VendorProfilePage = () => {
   )
 }
 
-export default VendorProfilePage
+export default AdminProfilePage
