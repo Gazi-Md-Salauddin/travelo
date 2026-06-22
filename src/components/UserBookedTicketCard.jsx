@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { Card, Button, Chip } from "@heroui/react";
 import Image from "next/image";
+import {
+  CircleDollar
+} from "@gravity-ui/icons";
 
 const UserBookedTicketCard = ({ booking }) => {
   const [countdown, setCountdown] = useState("");
@@ -66,7 +69,7 @@ const UserBookedTicketCard = ({ booking }) => {
       case "rejected":
         return "danger";
       case "paid":
-        return "primary";
+        return "accent";
       default:
         return "warning";
     }
@@ -114,8 +117,8 @@ const UserBookedTicketCard = ({ booking }) => {
         <strong>Quantity:</strong> {booking.bookingQuantity}
       </p>
 
-      <p>
-        <strong>Total Price:</strong> ৳{totalPrice}
+      <p className="flex items-center gap-1">
+        <strong>Total Price:</strong> <CircleDollar/>{totalPrice}
       </p>
 
       <p>

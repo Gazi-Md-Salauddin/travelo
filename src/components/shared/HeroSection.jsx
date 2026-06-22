@@ -87,37 +87,40 @@ export default function HeroSection() {
             </Card.Header>
 
             <Card.Content className="space-y-4">
+              <Route />
               <Input
                 label="From"
                 placeholder="Dhaka"
-                startContent={<Route />}
+                
               />
 
+              <Route />
               <Input
                 label="To"
                 placeholder="Chattogram"
-                startContent={<Route />}
+              
               />
 
               <div className="grid grid-cols-2 gap-4">
+                <Calendar />
                 <Input
                   label="Date"
                   type="date"
-                  startContent={<Calendar />}
+                  
                 />
 
+                <Person />
                 <Input
                   label="Passengers"
                   placeholder="1"
-                  startContent={<Person />}
                 />
               </div>
 
+              <Magnifier />
               <Button
                 color="primary"
                 fullWidth
                 size="lg"
-                startContent={<Magnifier />}
               >
                 Search Tickets
               </Button>

@@ -46,6 +46,8 @@ const RequestedBookingRow = ({
 
       case "rejected":
         return "danger";
+      case "paid":
+        return "accent";
 
       default:
         return "warning";
@@ -94,12 +96,14 @@ const RequestedBookingRow = ({
           <Button
             size="sm"
             color="success"
+            variant="success"
             onPress={
               handleAccept
             }
             isDisabled={
               booking.status ===
-              "Accepted"
+              "Accepted" || booking.status === "paid"
+              
             }
           >
             Accept
@@ -108,12 +112,14 @@ const RequestedBookingRow = ({
           <Button
             size="sm"
             color="danger"
+            variant="danger"
             onPress={
               handleReject
             }
             isDisabled={
               booking.status ===
-              "Rejected"
+              "Rejected" || booking.status === "paid"
+              
             }
           >
             Reject

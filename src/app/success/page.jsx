@@ -13,10 +13,15 @@ export default async function Success({ searchParams }) {
 
   if (booking_id && session_id) {
     try {
-      // সার্ভার সাইড থেকে সরাসরি আপনার এক্সপ্রেস ব্যাকএন্ড এপিআই হিট হচ্ছে
-      const res = await fetch(`http://localhost:5000/api/bookings/${booking_id}/pay`, {
+    
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/bookings/${booking_id}/pay`, {
         method: "PATCH",
-        cache: "no-store" // ক্যাশ প্রতিরোধ করার জন্য
+        headers: {
+          "Content-Type": "application/json",
+        },
+        
+        body: JSON.stringify({ transactionId: session_id }),
+        cache: "no-store"
       });
       const data = await res.json();
       

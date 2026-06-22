@@ -20,11 +20,24 @@ export default function Navbar() {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "All Tickets", href: "/all-tickets" },
-    { label: "Train", href: "/train" },
-    { label: "Launch", href: "/launch" },
-    { label: "Flight", href: "/flight" },
-    { label: "Offers", href: "/offers" },
+  
   ];
+
+
+  const dashboardLinks = {
+    user: '/dashboard/user',
+    vendor: '/dashboard/vendor',
+    admin: '/dashboard/admin'
+  }
+
+  if (user?.email) {
+    navItems.push(
+      {
+        label: 'Dashboard',
+        href: dashboardLinks[user?.role || 'user']
+      }
+    )
+  }
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-default-200 bg-background/80 backdrop-blur-lg">

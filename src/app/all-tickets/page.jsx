@@ -1,8 +1,18 @@
 import React from 'react'
 import {getApprovedTickets} from '@/lib/actions/tickets'
 import AllTicketCard from '@/components/AllTicketCard'
+import Link from 'next/link'
 
-const AllTicketsPage = async() => {
+const AllTicketsPage = async({searchParams}) => {
+  const page = Number(searchParams.page) || 1;
+
+  const res = await fetch(
+    `http://localhost:5000/api/tickets?page=${page}&limit=6`,
+    { cache: "no-store" }
+  );
+
+  const data = await res.json();
+  
   const tickets = await getApprovedTickets();
 
 
@@ -31,13 +41,23 @@ const AllTicketsPage = async() => {
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {tickets.map((ticket) => (
+          {tickets?.map((ticket) => (
             
           <AllTicketCard key={ticket._id} ticket={ticket}/>
            
              ))}
         </div>
+          
       )}
+          <div className="flex justify-center text-center gap-3 mt-5">
+  <Link href={`?page=${page - 1}`}>
+  Previous
+</Link>
+
+<Link href={`?page=${page + 1}`}>
+  Next
+</Link>
+</div>
     </section>
   )
 }
