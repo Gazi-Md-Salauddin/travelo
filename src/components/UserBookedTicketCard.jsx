@@ -75,9 +75,32 @@ const UserBookedTicketCard = ({ booking }) => {
   const totalPrice =
     booking.pricePerTicket * booking.bookingQuantity;
 
+
+  const handlePayment = async () => {
+    const res = await fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        bookingId: booking._id,
+      }),
+    });
+
+    const data = await res.json();
+    window.location.href = data.url;
+  };
+  
   return (
     <Card className="p-4 space-y-4 h-full">
-      
+
+      <div>
+          <img
+            src={booking.ticketImage}
+            alt={booking.ticketTitle}
+            className="h-[300px] w-full rounded-2xl object-cover"
+          />
+        </div>
 
       <h2 className="text-xl font-semibold">
         {booking.ticketTitle}
@@ -113,14 +136,12 @@ const UserBookedTicketCard = ({ booking }) => {
         </Chip>
       </div>
 
-      {booking.status?.toLowerCase() === "accepted" && countdown !== "Departed" && (
-        <Button
-          color="success"
-          className="w-full"
-        >
+      
+        {booking.status?.toLowerCase() === "accepted" && countdown !== "Departed" && (      
+        <Button onPress={handlePayment} role="link" color="success" className="w-full">
           Pay Now
         </Button>
-      )}
+    )}
     </Card>
   );
 };

@@ -62,3 +62,4 @@ export const updateBookingStatus = async (
 
   return res.json();
 };
+

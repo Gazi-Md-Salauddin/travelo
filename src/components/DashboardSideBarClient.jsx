@@ -28,25 +28,25 @@ const DashboardSideBarClient = ({user}) => {
         { icon: FileText, href: "/dashboard/vendor/tickets/new", label: "Add Ticket" },
         { icon: Briefcase, href: "/dashboard/vendor/tickets", label: "My Added Tickets" },
         { icon: Factory, href: "/dashboard/vendor/requested-bookings", label: "Requested Bookings" },
-        { icon: Gear, href: "/dashboard/vendor/settings", label: "Settings" }
+        
     ];
 
   const userNavLinks = [
-        { icon: House, href: "/dashboard/user", label: "Dashboard" },
-        { icon: Person, href: "/dashboard/user/profile", label: "User Profile" },
+        
+        { icon: Person, href: "/dashboard/user/profile", label: "Profile" },
         { icon: Bookmark, href: "/dashboard/user/booked-tickets", label: "My Booked Tickets" },
-        { icon: FileText, href: "/dashboard/seeker/applications", label: "Applications" },
-        { icon: CreditCard, href: "/dashboard/seeker/billing", label: "Billing" },
-        { icon: Gear, href: "/settings", label: "Settings" },
+        { icon: FileText, href: "/dashboard/user/transaction-history", label: "Transaction History" },
+        
+        
     ];
 
   const adminNavLinks = [
-        { icon: House, href: "/dashboard/admin", label: "Dashboard" },
+        { icon: House, href: "/dashboard/admin/profile", label: "Profile" },
         { icon: Persons, href: "/dashboard/admin/manage-tickets", label: "Manage Tickets" },
-        { icon: Factory, href: "/dashboard/admin/companies", label: "Companies" },
+        { icon: Factory, href: "/dashboard/admin/manage-users", label: "Manage Users" },
         { icon: Briefcase, href: "/dashboard/admin/jobs", label: "Jobs" },
         { icon: CreditCard, href: "/dashboard/admin/payments", label: "Payments" },
-        { icon: Gear, href: "/dashboard/admin/settings", label: "Settings" },
+        
     ];
 
   const navLinksMap = {
