@@ -106,7 +106,7 @@ const UserRow = ({ user }) => {
               }
             >
               {user.isFraud
-                ? "Fraud"
+               ?  "Fraud"
                 : "Mark as Fraud"}
             </Button>
           )}

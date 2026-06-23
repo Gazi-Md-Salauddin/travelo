@@ -1,20 +1,17 @@
-export const getUsers = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
-    {
-      cache: "no-store",
-    }
-  );
+import { protectedFetch, serverFetch } from "../core/server";
+import { getUserSession } from "../core/session";
 
-  return res.json();
+
+export const getUsers = async () => {
+  return protectedFetch("/api/users");
 };
 
 export const updateUserRole = async (
   id,
   role
 ) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${id}/role`,
+  return protectedFetch(
+    `/api/users/${id}/role`
     {
       method: "PATCH",
       headers: {
@@ -32,8 +29,8 @@ export const updateUserRole = async (
 
 export const markVendorAsFraud =
   async (id) => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${id}/fraud`,
+    return protectedFetch(
+      `/api/users/${id}/fraud`,
       {
         method: "PATCH",
       }
@@ -48,8 +45,8 @@ export const updateUser = async (
   id,
   data
 ) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${id}`,
+  return protectedFetch(
+    `/api/users/${id}`,
     {
       method: "PATCH",
       headers: {

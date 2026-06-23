@@ -19,11 +19,10 @@ import {
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import Link from 'next/link'
-import {useSession} from '@/lib/auth-client'
 
-const DashboardSideBarClient = () => {
+const DashboardSideBarClient = ({user}) => {
 
-  const user = useSession()
+
     const vendorNavLinks = [
         { icon: Person, href: "/dashboard/vendor/profile", label: "Profile" },
         { icon: FileText, href: "/dashboard/vendor/tickets/new", label: "Add Ticket" },
@@ -43,9 +42,8 @@ const DashboardSideBarClient = () => {
         { icon: House, href: "/dashboard/admin/profile", label: "Profile" },
         { icon: Persons, href: "/dashboard/admin/manage-tickets", label: "Manage Tickets" },
         { icon: Factory, href: "/dashboard/admin/manage-users", label: "Manage Users" },
-        { icon: Briefcase, href: "/dashboard/admin/jobs", label: "Jobs" },
-        { icon: CreditCard, href: "/dashboard/admin/payments", label: "Payments" },
-        
+        { icon: Briefcase, href: "/dashboard/admin/advertise-ticket", label: "Advertise Ticket" },
+         
     ];
 
   const navLinksMap = {

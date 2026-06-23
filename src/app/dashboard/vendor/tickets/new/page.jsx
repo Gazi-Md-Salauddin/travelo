@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { toast } from "react-hot-toast"
 import {
   Button,
   Checkbox,
@@ -23,7 +23,7 @@ import {
   ArrowUpToLine
 } from "@gravity-ui/icons";
 
-//import { toast } from "sonner";
+
 import {createTicket} from "@/lib/actions/tickets";
 import {useSession} from '@/lib/auth-client'
 
@@ -88,7 +88,7 @@ export default function AddTicketPage() {
       quantity: Number(data.quantity),
       departureDate: data.departureDate,
       departureTime: data.departureTime,
-      perks: selectedPerks,
+      perks: [...selectedPerks],
 
       image: imageUrl,
 
@@ -104,7 +104,7 @@ export default function AddTicketPage() {
       const result = await createTicket(payload);
 
       if (result?.insertedId) {
-        alert("Ticket added successfully");
+        toast.success("Ticket added successfully");
 
         e.target.reset();
         setSelectedPerks([]);
@@ -113,7 +113,7 @@ export default function AddTicketPage() {
       }
     } catch (error) {
       console.error(error);
-      alert("Failed to add ticket");
+      toast.error("Failed to add ticket");
     }
   };
 

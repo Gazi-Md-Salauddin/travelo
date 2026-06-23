@@ -19,6 +19,7 @@ import {
   Airplane,
 } from "@gravity-ui/icons";
 import { authClient } from "@/lib/auth-client";
+import { toast } from 'react-hot-toast'
 
 export default function SignInPage() {
   
@@ -51,6 +52,7 @@ export default function SignInPage() {
       if (result?.error) {
         setError(result.error.message || "Login failed");
       } else {
+        toast.success("SignIn Successful")
         router.push("/");
         router.refresh();
       }

@@ -1,21 +1,23 @@
 "use client"
 import React from 'react'
-import {useSession} from '@/lib/auth-client'
+import { useSession } from '@/lib/auth-client'
 import {Avatar, Card, Button} from "@heroui/react";
 import UpdateProfileModal from '@/components/UpdateProfileModal'
 
 const UserProfilePage = () => {
 
   const { data: session, isPending } = useSession();
+  console.log("Session:", session)
   const user = session?.user
-  
+
+  console.log("User Image:", user?.image)
   return (
     <div className="flex justify-center gap-4 py-20">
       <Card className="w-[300px] text-center items-center">
         <Avatar aria-label="User profile picture" className="size-20 rounded-full">
             <Avatar.Image
-              alt={user?.name}
               src={user?.image}
+              alt={user?.name}
             />
             <Avatar.Fallback className="text-md">{user?.name.charAt(0)}</Avatar.Fallback>
           </Avatar>

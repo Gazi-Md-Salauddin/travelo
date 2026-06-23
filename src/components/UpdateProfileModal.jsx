@@ -1,10 +1,11 @@
 "use client";
 
-import {Envelope, Pencil} from "@gravity-ui/icons";
+import {Envelope, Pencil, Person} from "@gravity-ui/icons";
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {updateUser} from '@/lib/actions/users'
+import { toast } from "react-hot-toast"
 
 const UpdateProfileModal = ({user}) => {
   const router = useRouter()
@@ -36,7 +37,8 @@ useEffect(() => {
 
     if (result.modifiedCount > 0) {
       router.refresh();
-      alert("Profile Updated Successfully");
+      window.location.reload()
+      toast.success("Profile Updated Successfully");
     }
   };
   
@@ -49,7 +51,7 @@ useEffect(() => {
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
-                <Envelope className="size-5" />
+                <Person className="size-5" />
               </Modal.Icon>
               <Modal.Heading>Edit Profile</Modal.Heading>
               
