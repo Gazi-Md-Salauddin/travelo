@@ -1,23 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getUserSession } from '@/lib/core/session'
 
-// ধরি, আপনার প্রজেক্টে সেশন বা ইউজার কনটেক্সট আছে যেখান থেকে ইমেইল পাওয়া যাবে
-// উদাহরণ হিসেবে এখানে একটি prop বা সেশন মেকানিজম চিন্তা করতে পারেন।
-const TransactionHistoryTable = ({ userEmail = "user@example.com" }) => { 
+const TransactionHistoryTable = () => { 
+
+  const user = getUserSession()
+  
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      if (!userEmail) return;
+      if (!user?.email) return;
       
       try {
-        // আপনার এক্সপ্রেস ব্যাকএন্ড এপিআই হিট করা হচ্ছে
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/transactions/user/${userEmail}`);
+        
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/transactions/user/${user?.email}`);
         const data = await res.json();
         
-        // যদি ব্যাকএন্ড অ্যারে রিটার্ন করে, তবে স্টেটে সেট হবে
+        
         if (Array.isArray(data)) {
           setTransactions(data);
         }
@@ -59,7 +61,7 @@ const TransactionHistoryTable = ({ userEmail = "user@example.com" }) => {
             </tr>
           ) : (
             transactions.map((tx) => {
-              // টোটাল প্রাইস ক্যালকুলেশন
+              
               const totalAmount = Number(tx.pricePerTicket || 0) * Number(tx.bookingQuantity || 0);
               
               return (

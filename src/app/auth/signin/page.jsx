@@ -50,7 +50,7 @@ export default function SignInPage() {
       });
       console.log(result)
       if (result?.error) {
-        setError(result.error.message || "Login failed");
+        toast.error(result.error.message || "Login failed");
       } else {
         toast.success("SignIn Successful")
         router.push("/");
@@ -75,12 +75,12 @@ export default function SignInPage() {
         <div className="grid md:grid-cols-2">
           
           {/* Left Side */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-700 p-10 lg:p-14">
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-700 p-4 md:p-10 lg:p-14">
             <div className="flex h-full flex-col justify-center">
               
               <div className="mb-8">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
-                  ✈️
+                  🚌
                 </div>
               </div>
 

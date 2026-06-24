@@ -12,7 +12,7 @@ const AdminProfilePage = () => {
   return (
     <div className="flex justify-center gap-4 py-20">
       <Card className="w-[300px] text-center items-center">
-        <Avatar aria-label="User profile picture" className="size-20 rounded-full">
+        <Avatar aria-label="User profile picture" className="size-22 rounded-full">
             <Avatar.Image
               alt={user?.name}
               src={user?.image}

@@ -1,5 +1,5 @@
 import { protectedFetch, serverFetch } from "../core/server";
-import { getUserSession } from "../core/session";
+//import { getUserSession } from "../core/session";
 
 
 export const getUsers = async () => {
@@ -11,7 +11,7 @@ export const updateUserRole = async (
   role
 ) => {
   return protectedFetch(
-    `/api/users/${id}/role`
+    `/api/users/${id}/role`,
     {
       method: "PATCH",
       headers: {

@@ -8,7 +8,7 @@ import { getUserSession } from '@/lib/core/session'
 
 export async function POST(req) {
   try {
-    const { bookingId } = await req.json();
+    const { bookingId, ticketTitle, totalPrice } = await req.json();
     const headersList = await headers()
     const origin = headersList.get('origin')
 
@@ -23,9 +23,9 @@ export async function POST(req) {
           price_data: {
             currency: "usd",
             product_data: {
-              name: booking.ticketTitle,
+              name: ticketTitle,
             },
-            unit_amount: booking.totalPrice * 100,
+            unit_amount: totalPrice * 100,
           },
           // Provide the exact Price ID (for example, price_1234) of the product you want to sell
           

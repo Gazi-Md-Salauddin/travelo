@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldAlert, ArrowLeft, LogIn } from "gravity-ui-icons";
+import { ShieldExclamation, ArrowLeft, ArrowRightToSquare } from "@gravity-ui/icons";
 
 export default function UnauthorizedPage() {
   return (
@@ -10,7 +10,7 @@ export default function UnauthorizedPage() {
         {/* Icon & Error Code */}
         <div className="flex flex-col items-center justify-center space-y-2">
           <div className="rounded-full bg-red-100 p-4 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-            <ShieldAlert className="h-12 w-12" />
+            <ShieldExclamation className="h-12 w-12" />
           </div>
           <h1 className="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
             401
@@ -31,7 +31,7 @@ export default function UnauthorizedPage() {
             href="/auth/signin"
             className="flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors"
           >
-            <LogIn className="h-4 w-4" />
+            <ArrowRightToSquare className="h-4 w-4" />
             Sign In
           </Link>
           

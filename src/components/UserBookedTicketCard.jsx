@@ -87,6 +87,9 @@ const UserBookedTicketCard = ({ booking }) => {
       },
       body: JSON.stringify({
         bookingId: booking._id,
+        ticketTitle: booking.ticketTitle,
+      
+        totalPrice: booking.pricePerTicket * booking.bookingQuantity
       }),
     });
 
@@ -140,8 +143,8 @@ const UserBookedTicketCard = ({ booking }) => {
       </div>
 
       
-        {booking.status?.toLowerCase() === "accepted" && countdown !== "Departed" && (      
-        <Button onPress={handlePayment} role="link" color="success" className="w-full">
+        {booking.status?.toLowerCase() === "approved" && countdown !== "Departed" && (      
+        <Button onPress={handlePayment} role="link" color="success" variant="success" className="w-full">
           Pay Now
         </Button>
     )}

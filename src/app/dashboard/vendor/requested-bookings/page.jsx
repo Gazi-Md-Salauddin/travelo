@@ -10,7 +10,7 @@ const RequestedBookingsPage = async () => {
     // {user?.email};
 
   const user = await getUserSession()
-  
+  console.log(user)
     const bookings =
       await getVendorBookings(
         user.email
