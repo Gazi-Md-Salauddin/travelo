@@ -2,7 +2,7 @@ import { getRevenueOverview } from "@/lib/actions/booking";
 import { getUserSession } from "@/lib/core/session";
 import RevenueOverview from './RevenueOverview'
 
-const DashboardPage = async () => {
+const RevenueOverviewDashboardPage = async () => {
   const user = await getUserSession();
 
   const revenueData =
@@ -14,4 +14,4 @@ const DashboardPage = async () => {
   );
 };
 
-export default DashboardPage;
+export default RevenueOverviewDashboardPage;

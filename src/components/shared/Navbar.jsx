@@ -18,7 +18,7 @@ export default function Navbar() {
   
   const handleSignOut = async() => {
       await signOut()
-      router.reload()
+      router.refresh()
     }
   
   const navItems = [

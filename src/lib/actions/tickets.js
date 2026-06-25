@@ -120,3 +120,45 @@ export const deleteTicket = async (id) => {
 
   return res.json();
 };
+
+
+
+//Admin advertise tickets
+export const getAdvertiseTickets =
+  async () => {
+    const headers =
+      await authHeader();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/advertise-tickets`,
+      {
+        cache: "no-store",
+        headers,
+      }
+    );
+
+    return res.json();
+  };
+
+export const toggleAdvertise =
+  async (id, advertise) => {
+    const headers =
+      await authHeader();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/advertise-tickets/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type":
+            "application/json",
+          ...headers,
+        },
+        body: JSON.stringify({
+          advertise,
+        }),
+      }
+    );
+
+    return res.json();
+  };
