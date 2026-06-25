@@ -26,6 +26,8 @@ export const getVendorBookings = async (
   email
 ) => {
   const headers = await authHeader();
+  console.log("headers:", headers)
+  
   const res = await fetch(
     `${baseUrl}/api/bookings/vendor/${email}`,
     {
@@ -33,8 +35,11 @@ export const getVendorBookings = async (
       headers,
     }
   );
+  console.log("Status:", res.status)
 
-  return res.json();
+  const data = await res.json();
+  console.log("Data:", data)
+  return data;
 };
 
 

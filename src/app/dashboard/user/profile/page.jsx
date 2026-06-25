@@ -8,6 +8,17 @@ const UserProfilePage = () => {
 
   const { data: session, isPending } = useSession();
   console.log("Session:", session)
+
+
+  if (isPending) {
+    return <div className="text-center py-20">Loading profile...</div>;
+  }
+
+  
+  if (!session || !session.user) {
+    return <div className="text-center py-20">Please log in to view your profile.</div>;
+  }
+  
   const user = session?.user
 
   console.log("User Image:", user?.image)

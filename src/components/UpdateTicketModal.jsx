@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { toast } from "react-hot-toast"
 import {
   Button,
   Input,
@@ -30,6 +30,9 @@ const UpdateTicketModal = ({ ticket }) => {
   const [price, setPrice] = useState(ticket.price);
   const [quantity, setQuantity] = useState(ticket.quantity);
 
+
+  const [isOpen, setIsOpen] = useState(false);
+  
   const handleUpdate = async () => {
     const updatedData = {
       title,
@@ -39,14 +42,23 @@ const UpdateTicketModal = ({ ticket }) => {
       quantity: Number(quantity),
     };
 
-    const result = await updateTicket(
-      ticket._id,
-      updatedData
-    );
-
-    if (result.modifiedCount > 0) {
-      router.refresh();
-      alert("Ticket Updated Successfully");
+    try {
+      const result = await updateTicket(ticket._id, updatedData);
+      
+      // ডাটাবেজে মডিফাই হলে বা রেসপন্স পজিটিভ আসলে
+      if (result.modifiedCount > 0 || result.acknowledged) {
+        toast.success("Ticket Updated Successfully");
+        setIsOpen(false);
+        router.refresh(); 
+      }else if (result.matchedCount > 0) {
+      // ডাটা খুঁজে পাওয়া গেছে কিন্তু ইউজার কোনো নতুন তথ্য পরিবর্তন করেনি
+      toast.success("Ticket is up to date (No changes made)");
+      setIsOpen(false);
+    } else {
+        toast.error("No changes made or failed to update");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
     }
   };
 
@@ -134,7 +146,7 @@ const UpdateTicketModal = ({ ticket }) => {
               </Button>
 
               <Button
-                slot="close"
+                
                 onPress={handleUpdate}
               >
                 Save Update

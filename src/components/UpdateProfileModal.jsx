@@ -79,7 +79,7 @@ useEffect(() => {
               <Button slot="close" variant="secondary">
                 Cancel
               </Button>
-              <Button slot="close" onPress={() => {
+              <Button onPress={() => {
     console.log("Clicked");
     handleUpdate();
   }}>Save</Button>

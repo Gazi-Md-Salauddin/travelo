@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
 import {useSession, signOut} from '@/lib/auth-client'
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +14,11 @@ export default function Navbar() {
   
   const user = session?.user
 
+  const router = useRouter()
+  
   const handleSignOut = async() => {
       await signOut()
+      router.reload()
     }
   
   const navItems = [

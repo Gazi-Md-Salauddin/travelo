@@ -1,4 +1,4 @@
-import { serverMutation } from "../core/server";
+import { serverMutation, authHeader } from "../core/server";
 
 
 export const createTicket = async (newTicketData) => {
@@ -98,6 +98,7 @@ export const updateTicket = async (
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+      ...authHeader(),
       },
       body: JSON.stringify(updatedData),
     }
@@ -111,6 +112,7 @@ export const deleteTicket = async (id) => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
     {
       method: "DELETE",
+      headers: authHeader()
     }
   );
 
