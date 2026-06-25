@@ -90,7 +90,8 @@ const AllTicketCard = ({ticket}) => {
                       <Chip
                         key={perk}
                         size="sm"
-                        variant="bordered"
+                        color="accent"
+                        variant="soft"
                       >
                         {perk}
                       </Chip>

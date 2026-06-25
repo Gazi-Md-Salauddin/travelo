@@ -28,6 +28,7 @@ const DashboardSideBarClient = ({user}) => {
         { icon: FileText, href: "/dashboard/vendor/tickets/new", label: "Add Ticket" },
         { icon: Briefcase, href: "/dashboard/vendor/tickets", label: "My Added Tickets" },
         { icon: Factory, href: "/dashboard/vendor/requested-bookings", label: "Requested Bookings" },
+        { icon: Factory, href: "/dashboard/vendor/revenue-overview", label: "Revenue Overview" },
         
     ];
 

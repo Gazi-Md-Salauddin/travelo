@@ -58,12 +58,14 @@ export const updateBookingStatus = async (
   id,
   status
 ) => {
+  const headers = await authHeader();
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/bookings/${id}`,
     {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+       ...headers,
       },
       body: JSON.stringify({ status }),
     }
@@ -72,3 +74,24 @@ export const updateBookingStatus = async (
   return res.json();
 };
 
+
+
+
+//vendor revenue overview
+
+
+export const getRevenueOverview = async (
+  email
+) => {
+  const headers = await authHeader();
+
+  const res = await fetch(
+    `${baseUrl}/api/revenue-overview/${email}`,
+    {
+      cache: "no-store",
+      headers,
+    }
+  );
+
+  return res.json();
+};

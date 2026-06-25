@@ -92,13 +92,14 @@ export const updateTicket = async (
   id,
   updatedData
 ) => {
+  const headers = await authHeader();
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-      ...authHeader(),
+      ...headers,
       },
       body: JSON.stringify(updatedData),
     }
@@ -108,11 +109,12 @@ export const updateTicket = async (
 };
 
 export const deleteTicket = async (id) => {
+  const headers = await authHeader();
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets/${id}`,
     {
       method: "DELETE",
-      headers: authHeader()
+     headers,
     }
   );
 

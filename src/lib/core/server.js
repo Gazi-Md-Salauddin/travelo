@@ -1,4 +1,5 @@
 import { getUserToken } from "./session";
+import {redirect} from 'next/navigation'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -31,10 +32,12 @@ export const protectedFetch = async (path) => {
 
 
 export const serverMutation = async (path, data) => {
-    const res = await fetch(`${baseUrl}${path}`, {
+    const headers = await authHeader()
+  const res = await fetch(`${baseUrl}${path}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+          ...headers,
         },
         body: JSON.stringify(data),
     });
