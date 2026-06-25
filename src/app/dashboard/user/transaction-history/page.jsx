@@ -1,40 +1,67 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getUserSession } from '@/lib/core/session'
+import { getUserSession } from '@/lib/core/session';
 
 const TransactionHistoryTable = () => { 
-
-  const user = getUserSession()
-  
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [errorLog, setErrorLog] = useState("");
 
   useEffect(() => {
-    const fetchTransactions = async () => {
-      if (!user?.email) return;
-      
+    const initFetch = async () => {
       try {
+        setLoading(true);
+        setErrorLog("Checking session...");
         
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/transactions/user/${user?.email}`);
+        // 1. Fetching session
+        const session = await getUserSession();
+        
+        if (!session || !session.email) {
+          setErrorLog("Not found any valid session. Please sign in");
+          setLoading(false);
+          return;
+        }
+
+        setErrorLog(`(${session.email}) loading data...`);
+
+        // 2. Fetching data
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+        const res = await fetch(`${baseUrl}/api/transactions/user/${session.email}`);
+        
+        if (!res.ok) {
+          throw new Error(`${res.status}`);
+        }
+
         const data = await res.json();
-        
         
         if (Array.isArray(data)) {
           setTransactions(data);
+          setErrorLog("");
+        } else {
+          setTransactions([]);
+          setErrorLog();
         }
+
       } catch (err) {
-        console.error("Failed to load transactions:", err);
+        console.error("Error in component:", err);
+        setErrorLog(`${err.message}`);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTransactions();
-  }, [userEmail]);
+    initFetch();
+  }, []);
 
-  if (loading) {
-    return <p className="text-center p-5">Loading transactions...</p>;
+  // show error message in screen
+  if (loading || errorLog) {
+    return (
+      <div className="text-center p-10 bg-gray-50 rounded-lg m-4 border border-dashed">
+        <p className="text-lg font-medium text-gray-700">{loading ? "please wait..." : "status"}</p>
+        <p className="text-sm text-amber-600 mt-2 font-mono">{errorLog}</p>
+      </div>
+    );
   }
 
   return (
@@ -61,7 +88,6 @@ const TransactionHistoryTable = () => {
             </tr>
           ) : (
             transactions.map((tx) => {
-              
               const totalAmount = Number(tx.pricePerTicket || 0) * Number(tx.bookingQuantity || 0);
               
               return (

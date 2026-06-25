@@ -6,7 +6,7 @@ import { getUserSession } from '@/lib/core/session';
 const MyBookingsPage = async () => {
   const user = await getUserSession()
 
-  console.log("Frontend User email:", user?.email)
+
   if (!user || !user.email) {
     return <div className="text-center py-12">Please log in to view bookings.</div>;
   }

@@ -37,7 +37,7 @@ const TicketDetails = ({ ticket, user }) => {
                     </div>
                     <h3 className="text-xl font-bold text-zinc-100 mb-2">Access Restricted</h3>
                     <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                        Only job seekers can apply for positions. Please sign in with a seeker account to proceed.
+                        Only users can booking for tickets. Please sign in with a user account to proceed.
                     </p>
                     <Link 
                         href="/auth/signin" 
@@ -125,7 +125,7 @@ const onClose = () => setIsOpen(false);
   const handleBooking = async () => {
     
     if (quantity > ticket.quantity) {
-      alert(
+      toast.error(
         "Booking quantity can't be greater than available ticket quantity."
       );
       return;
@@ -164,7 +164,7 @@ const onClose = () => setIsOpen(false);
     );
 
     if (result.insertedId) {
-      alert("Booking Ticket Successful");
+      toast.success("Booking Ticket Successful");
 
       onClose();
 

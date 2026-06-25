@@ -45,7 +45,7 @@ export default function Footer() {
 
               <li>
                 <Link
-                  href="/tickets"
+                  href="/all-tickets"
                   className="text-default-600 transition hover:text-primary"
                 >
                   All Tickets
@@ -79,7 +79,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-default-600">
                 <Envelope className="h-4 w-4" />
-                <a href="mailto:support@ticketbari.com">
+                <a href="mailto:support@travelo.com">
                   support@travelo.com
                 </a>
               </li>
@@ -112,15 +112,7 @@ export default function Footer() {
                 <span className="text-sm font-medium">Stripe</span>
               </div>
 
-              <div className="flex items-center gap-2 rounded-xl border border-default-200 px-4 py-3">
-                <CreditCard className="h-5 w-5" />
-                <span className="text-sm font-medium">Visa</span>
-              </div>
-
-              <div className="flex items-center gap-2 rounded-xl border border-default-200 px-4 py-3">
-                <CreditCard className="h-5 w-5" />
-                <span className="text-sm font-medium">Mastercard</span>
-              </div>
+              
             </div>
           </div>
         </div>
