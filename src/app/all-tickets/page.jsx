@@ -24,7 +24,7 @@ const AllTicketsPage = async ({ searchParams }) => {
   return (
     <section className="space-y-8">
 
-      <div>
+      <div className="px-4">
         <h1 className="text-3xl font-bold">
           All Tickets
         </h1>
@@ -108,7 +108,7 @@ const AllTicketsPage = async ({ searchParams }) => {
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-        {data.tickets.map((ticket) => (
+        {data?.tickets?.map((ticket) => (
           <AllTicketCard
             key={ticket._id}
             ticket={ticket}
