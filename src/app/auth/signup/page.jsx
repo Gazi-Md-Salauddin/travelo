@@ -88,14 +88,14 @@ export default function SignupPage() {
    };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-6 sm:py-10">
-      <Card className="w-full max-w-7xl overflow-hidden rounded-2xl lg:rounded-3xl border border-default-200 shadow-xl">
+    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10">
+      <Card className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-default-200 shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* LEFT SIDE */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-sky-700">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-sky-700 px-6 py-10 md:px-10 py-14 lg:p-14">
+            <div className="bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
 
-            <div className="relative flex h-full flex-col justify-center p-4 lg:p-14">
+            <div className="flex h-full flex-col justify-center">
               <div className="mb-8">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
                   <Rocket className="h-8 w-8 text-white" />
