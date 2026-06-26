@@ -53,7 +53,7 @@ const AdvertisementSection = ({ tickets }) => {
                 </div>
 
                 <Link
-                  href={`/tickets/${ticket._id}`}
+                  href={`/all-tickets/${ticket._id}`}
                   className="mt-5 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg"
                 >
                   See Details

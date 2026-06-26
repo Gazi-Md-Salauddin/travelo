@@ -173,7 +173,7 @@ export const toggleAdvertise =
 
 export const getAdvertisements = async () => {
   const res = await fetch(
-    `${baseUrl}/api/advertisements`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/advertisements`,
     {
       cache: "no-store",
     }

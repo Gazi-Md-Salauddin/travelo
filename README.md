@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎫 Travelo - Online Ticket Booking Platform
 
-## Getting Started
+Travelo is a modern online ticket booking platform where users can browse available tickets, book seats securely, and manage their bookings. Vendors can create, update, and manage tickets through a dedicated dashboard.
 
-First, run the development server:
+## 🌐 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ https://travelo-dun-two.vercel.app
+
+
+---
+
+# ✨ Features
+
+## 👤 User Features
+
+- User Authentication (Sign Up & Login)
+- Browse Available Tickets
+- Search & Filter Tickets
+- View Ticket Details
+- Book Tickets
+- Secure Payment Integration
+- Booking History
+- Responsive Design
+- Dark & Light Theme
+
+## 🏢 Vendor Features
+
+- Vendor Dashboard
+- Add New Tickets
+- Update Ticket Information
+- Delete Tickets
+- View Customer Bookings
+- Manage Available Seats
+
+## 🔐 Security
+
+- JWT Authentication
+- Protected Routes
+- Role-Based Authorization
+- Secure API Endpoints
+- Environment Variable Support
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+- Next.js
+- React.js
+- JavaScript
+- HeroUI
+- Tailwind CSS
+- Better Auth
+- React Icons
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- CORS
+- Dotenv
+
+---
+
+# 📂 Project Structure
+
+```text
+Travelo
+│
+├── client/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── public
+│   └── styles/
+│
+├── server/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   └── index.js
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# ⚙️ Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Clone Repository
 
-## Learn More
+```bash
+git clone https://github.com/your-username/travelo.git
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Frontend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cd client
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm install
 
-## Deploy on Vercel
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+cd server
+
+npm install
+
+npm start
+```
+
+---
+
+# 🔑 Environment Variables
+
+## Frontend (.env.local)
+
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:5000
+```
+
+## Backend (.env)
+
+```env
+PORT=5000
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secret_key
+```
+
+---
+
+# 📌 API Endpoints
+
+## Authentication
+
+```http
+POST /api/auth/login
+POST /api/auth/register
+```
+
+## Tickets
+
+```http
+GET    /api/tickets
+GET    /api/tickets/:id
+POST   /api/tickets
+PATCH  /api/tickets/:id
+DELETE /api/tickets/:id
+```
+
+## Bookings
+
+```http
+POST /api/bookings
+GET  /api/bookings
+GET  /api/bookings/vendor/:email
+```
+
+---
+
+# 📱 Responsive
+
+- ✅ Mobile
+- ✅ Tablet
+- ✅ Laptop
+- ✅ Desktop
+
+---
+
+# 🔮 Future Improvements
+
+- QR Code Tickets
+- Email Notifications
+- Seat Selection
+- Admin Dashboard
+- Refund System
+- Ticket Reviews
+- Analytics Dashboard
+- Real-time Seat Availability
+
+---
+
+
+
+# 👨‍💻 Developer
+
+Developed with Gazi Md Salauddin using **Next.js**, **Express.js**, and **MongoDB**.

@@ -7,7 +7,7 @@ const AllTicketsPage = async({searchParams}) => {
   const page = Number(searchParams.page) || 1;
 
   const res = await fetch(
-    `http://localhost:5000/api/tickets?page=${page}&limit=6`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?page=${page}&limit=6`,
     { cache: "no-store" }
   );
 
