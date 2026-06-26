@@ -3,14 +3,16 @@ import AllTicketCard from "@/components/AllTicketCard";
 
 const AllTicketsPage = async ({ searchParams }) => {
 
-  const page = Number(searchParams.page) || 1;
+  const params = await searchParams;
+  
+  const page = Number(params.page) || 1;
 
-  const from = searchParams.from || "";
-  const to = searchParams.to || "";
+  const from = params.from || "";
+  const to = params.to || "";
   const transportType =
-    searchParams.transportType || "";
+    params.transportType || "";
 
-  const sort = searchParams.sort || "";
+  const sort = params.sort || "";
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?status=approved&page=${page}&limit=6&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`,

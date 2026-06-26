@@ -70,33 +70,33 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg">
-        <div className="grid md:grid-cols-2">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-6 sm:py-10">
+      <div className="w-full max-w-7xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 bg-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Left Side */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-700 p-4 md:p-10 lg:p-14">
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-700 px-6 py-10 md:px-10 py-14 lg:p-14">
             <div className="flex h-full flex-col justify-center">
               
               <div className="mb-8">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur text-2xl">
                   🚌
                 </div>
               </div>
 
-              <h1 className="mb-4 text-4xl font-bold text-white leading-tight">
+              <h1 className="mb-4 text-3xl md:4xl lg:5xl font-bold text-white leading-tight">
                 Welcome back
                 <br />
                 to Travelo
               </h1>
 
-              <p className="max-w-md text-lg text-slate-300">
+              <p className="max-w-md sm:text-lg text-slate-300">
                 Your journey continues here. Book tickets for bus,
                 train, flight and launch all in one place.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
-                <span className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-white backdrop-blur">
+              <div className="mt-8 flex flex-wrap gap-3">
+                <span className="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-white backdrop-blur">
                   🚌 Bus
                 </span>
 
@@ -112,10 +112,10 @@ export default function SignInPage() {
           </div>
 
           {/* Right Side */}
-          <div className="flex items-center justify-center p-8 lg:p-14">
-            <div className="w-full max-w-md">
+          <div className="flex items-center justify-center px-6 py-10 lg:p-14">
+            <div className="w-full max-w-md mx-auto">
               
-              <h2 className="text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
                 Sign In
               </h2>
 
@@ -125,7 +125,7 @@ export default function SignInPage() {
 
               <form
           onSubmit={handleSignIn}
-          className="flex flex-col space-y-5"
+          className="mt-8 flex flex-col gap-5"
         >
           {/* Email */}
           <TextField className="w-full">
@@ -191,14 +191,14 @@ export default function SignInPage() {
           <Button
             type="submit"
             color="primary"
-            className="w-full font-semibold"
+            className="w-full h-12 font-semibold"
             radius="lg"
             isLoading={loading}
           >
             {loading ? "Signing In..." : "Sign In"}
           </Button>
         </form>
-              <p className="mt-8 text-center text-slate-600">
+              <p className="mt-8 text-centertext-center text-sm text-slate-600">
                 No account?{" "}
                 <Link
                   href="/auth/signup"
