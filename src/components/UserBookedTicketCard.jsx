@@ -143,7 +143,7 @@ const UserBookedTicketCard = ({ booking }) => {
       </div>
 
       
-        {booking.status?.toLowerCase() === "approved" && countdown !== "Departed" && (      
+        {booking.status?.toLowerCase() === "accepted" && countdown !== "Departed" && (      
         <Button onPress={handlePayment} role="link" color="success" className="w-full">
           Pay Now
         </Button>

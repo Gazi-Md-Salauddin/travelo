@@ -1,65 +1,150 @@
-import React from 'react'
-import {getApprovedTickets} from '@/lib/actions/tickets'
-import AllTicketCard from '@/components/AllTicketCard'
-import Link from 'next/link'
+import Link from "next/link";
+import AllTicketCard from "@/components/AllTicketCard";
 
-const AllTicketsPage = async({searchParams}) => {
+const AllTicketsPage = async ({ searchParams }) => {
+
   const page = Number(searchParams.page) || 1;
 
+  const from = searchParams.from || "";
+  const to = searchParams.to || "";
+  const transportType =
+    searchParams.transportType || "";
+
+  const sort = searchParams.sort || "";
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?page=${page}&limit=6`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?status=approved&page=${page}&limit=6&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`,
+    {
+      cache: "no-store",
+    }
   );
 
   const data = await res.json();
-  
-  const tickets = await getApprovedTickets();
 
-
-  
   return (
-        <section className="space-y-8">
+    <section className="space-y-8">
+
       <div>
         <h1 className="text-3xl font-bold">
           All Tickets
         </h1>
 
         <p className="text-default-500">
-          Browse all available approved tickets.
+          Browse all approved tickets.
         </p>
       </div>
 
-      {tickets.length === 0 ? (
-        <div className="rounded-xl border border-dashed p-10 text-center">
-          <h3 className="text-xl font-semibold">
-            No Tickets Available
-          </h3>
+      {/* Search */}
 
-          <p className="mt-2 text-default-500">
-            No approved tickets found.
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {tickets?.map((ticket) => (
-            
-          <AllTicketCard key={ticket._id} ticket={ticket}/>
-           
-             ))}
-        </div>
-          
-      )}
-          <div className="flex justify-center text-center gap-3 mt-5">
-  <Link href={`?page=${page - 1}`}>
-  Previous
-</Link>
+      <form className="grid md:grid-cols-5 gap-4">
 
-<Link href={`?page=${page + 1}`}>
-  Next
-</Link>
-</div>
+        <input
+          name="from"
+          defaultValue={from}
+          placeholder="From"
+          className="border p-2 rounded"
+        />
+
+        <input
+          name="to"
+          defaultValue={to}
+          placeholder="To"
+          className="border p-2 rounded"
+        />
+
+        <select
+          name="transportType"
+          defaultValue={transportType}
+          className="border p-2 rounded"
+        >
+          <option value="">
+            All Transport
+          </option>
+
+          <option value="Bus">
+            Bus
+          </option>
+
+          <option value="Train">
+            Train
+          </option>
+
+          <option value="Flight">
+            Flight
+          </option>
+
+          <option value="Launch">
+            Launch
+          </option>
+        </select>
+
+        <select
+          name="sort"
+          defaultValue={sort}
+          className="border p-2 rounded"
+        >
+          <option value="">
+            Sort Price
+          </option>
+
+          <option value="low">
+            Low → High
+          </option>
+
+          <option value="high">
+            High → Low
+          </option>
+        </select>
+
+        <button
+          className="bg-blue-600 text-white rounded"
+        >
+          Search
+        </button>
+
+      </form>
+
+      {/* Tickets */}
+
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+        {data.tickets.map((ticket) => (
+          <AllTicketCard
+            key={ticket._id}
+            ticket={ticket}
+          />
+        ))}
+
+      </div>
+
+      {/* Pagination */}
+
+      <div className="flex justify-center gap-5">
+
+        {page > 1 && (
+          <Link
+            href={`?page=${page - 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
+          >
+            Previous
+          </Link>
+        )}
+
+        <span>
+          {page} / {data.totalPages}
+        </span>
+
+        {page < data.totalPages && (
+          <Link
+            href={`?page=${page + 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
+          >
+            Next
+          </Link>
+        )}
+
+      </div>
+
     </section>
-  )
-}
+  );
+};
 
-export default AllTicketsPage
+export default AllTicketsPage;
