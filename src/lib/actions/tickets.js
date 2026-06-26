@@ -166,3 +166,18 @@ export const toggleAdvertise =
 
     return res.json();
   };
+
+
+
+
+
+export const getAdvertisements = async () => {
+  const res = await fetch(
+    `${baseUrl}/api/advertisements`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+};
