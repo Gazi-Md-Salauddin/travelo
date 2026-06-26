@@ -88,9 +88,9 @@ export default function SignupPage() {
    };
 
   return (
-    <main className="min-h-screen bg-slate-50 p-2 flex items-center justify-center">
-      <Card className="w-full max-w-6xl mx-auto overflow-hidden rounded-3xl border border-default-200 shadow-xl">
-        <div className="grid md:grid-cols-2">
+    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-6 sm:py-10">
+      <Card className="w-full max-w-7xl overflow-hidden rounded-2xl lg:rounded-3xl border border-default-200 shadow-xl">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           {/* LEFT SIDE */}
           <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-sky-700">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
@@ -134,7 +134,7 @@ export default function SignupPage() {
 
           {/* RIGHT SIDE */}
           <div className="flex items-center justify-center p-4 lg:p-14">
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md mx-auto">
               <Link
                 href="/"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-default-500 hover:text-primary"
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 Back to Home
               </Link>
 
-              <h2 className="text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
                 Create Account
               </h2>
 
@@ -165,7 +165,7 @@ export default function SignupPage() {
 
               <form
                 onSubmit={handleSignup}
-                className="mt-8 space-y-5"
+                className="mt-8 flex flex-col gap-5"
               >
                 <TextField>
                   <Label>Full Name</Label>

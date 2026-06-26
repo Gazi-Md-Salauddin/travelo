@@ -30,7 +30,7 @@ export default function SignInPage() {
 
   const router = useRouter();
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleVisibility = () => setShowPassword(!showPassword);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -70,8 +70,8 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-6 sm:py-10">
-      <div className="w-full max-w-7xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 bg-white shadow-lg">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10">
+      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 bg-white shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Left Side */}
