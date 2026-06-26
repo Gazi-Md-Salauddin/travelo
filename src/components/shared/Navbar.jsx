@@ -6,6 +6,7 @@ import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
 import {useSession, signOut} from '@/lib/auth-client'
 import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/shared/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
       <header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-800 text-white font-bold">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold">
             🚍
           </div>
 
@@ -100,6 +101,7 @@ export default function Navbar() {
           )}
 
         {/* Mobile Toggle */}
+      <ThemeToggle/>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden"

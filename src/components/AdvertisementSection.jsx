@@ -30,7 +30,7 @@ const AdvertisementSection = ({ tickets }) => {
                 </h3>
 
                 <p className="mt-2">
-                  <strong>Price:</strong> ৳{ticket.price}
+                  <strong>Price:</strong> {ticket.price}
                 </p>
 
                 <p>
@@ -46,7 +46,7 @@ const AdvertisementSection = ({ tickets }) => {
                   {ticket.perks?.map((perk) => (
                     <span
                       key={perk}
-                      className="px-2 py-1 text-xs rounded-full bg-gray-100"
+                      className="px-2 py-1 text-xs rounded-full bg-green-100/30 text-green-500"
                     >
                       {perk}
                     </span>
