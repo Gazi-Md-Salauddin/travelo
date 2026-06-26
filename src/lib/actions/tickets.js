@@ -53,7 +53,8 @@ export const getAdminTickets = async () => {
     }
   );
 
-  return res.json();
+  const data = await res.json();
+  return data.tickets;
 };
 
 export const updateTicketStatus = async (

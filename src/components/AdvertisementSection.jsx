@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 
 const AdvertisementSection = ({ tickets }) => {
@@ -18,7 +17,7 @@ const AdvertisementSection = ({ tickets }) => {
               key={ticket._id}
               className="border rounded-xl overflow-hidden shadow-sm"
             >
-              <Image
+              <img
                 src={ticket.image}
                 alt={ticket.title}
                 className="h-52 w-full object-cover"
@@ -44,7 +43,7 @@ const AdvertisementSection = ({ tickets }) => {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-3">
-                  {ticket?.perks?.map((perk) => (
+                  {ticket.perks?.map((perk) => (
                     <span
                       key={perk}
                       className="px-2 py-1 text-xs rounded-full bg-gray-100"
