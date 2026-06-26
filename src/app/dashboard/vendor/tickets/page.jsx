@@ -31,7 +31,7 @@ const TicketsPage = async () => {
         </p>
       </div>
 
-      {tickets.length === 0 ? (
+      {data?.tickets?.length === 0 ? (
         <div className="rounded-xl border border-dashed p-10 text-center">
           <h3 className="text-lg font-semibold">
             No Tickets Found
@@ -50,8 +50,7 @@ const TicketsPage = async () => {
               ticket.status === "rejected";
 
             return (
-              
-                
+               
     <VendorAddedTicketCard key={ticket._id} ticket={ticket} color={color}/>
               
             );
