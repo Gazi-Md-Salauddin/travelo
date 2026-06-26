@@ -18,17 +18,25 @@ export const serverFetch = async (path) => {
 }
 
 
-export const protectedFetch = async (path) => {
-    const res = await fetch(`${baseUrl}${path}`,
-        {
-            headers: await authHeader()
-        }
-    );
+export const protectedFetch = async (
+  path,
+  options = {}
+) => {
+  const authHeaders = await authHeader();
 
-    // handle 401, 403
+  const res = await fetch(
+    `${baseUrl}${path}`,
+    {
+      ...options,
+      headers: {
+        ...authHeaders,
+        ...(options.headers || {}),
+      },
+    }
+  );
 
-    return handleStatusCode(res);
-}
+  return handleStatusCode(res);
+};
 
 
 export const serverMutation = async (path, data) => {
