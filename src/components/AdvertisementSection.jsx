@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+
 
 const AdvertisementSection = ({ tickets }) => {
   return (
@@ -11,12 +13,12 @@ const AdvertisementSection = ({ tickets }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {tickets.map((ticket) => (
+          {tickets?.map((ticket) => (
             <div
               key={ticket._id}
               className="border rounded-xl overflow-hidden shadow-sm"
             >
-              <img
+              <Image
                 src={ticket.image}
                 alt={ticket.title}
                 className="h-52 w-full object-cover"
@@ -42,7 +44,7 @@ const AdvertisementSection = ({ tickets }) => {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-3">
-                  {ticket.perks?.map((perk) => (
+                  {ticket?.perks?.map((perk) => (
                     <span
                       key={perk}
                       className="px-2 py-1 text-xs rounded-full bg-gray-100"
