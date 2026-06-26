@@ -3,7 +3,7 @@ import {getAdminTickets} from '@/lib/actions/tickets'
 import AdminManageTicket from '@/components/AdminManageTicket'
 
 const ManageTicketsPage = async () => {
-  const tickets = await getAdminTickets();
+  const data = await getAdminTickets();
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
@@ -46,7 +46,7 @@ const ManageTicketsPage = async () => {
           </thead>
 
           <tbody>
-            {tickets.map((ticket) => {
+            {data?.tickets?.map((ticket) => {
   const color = getStatusColor(ticket.status)
   return (
               <AdminManageTicket key={ticket._id} ticket={ticket} color={color}/>

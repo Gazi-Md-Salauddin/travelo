@@ -2,7 +2,7 @@ import { getTickets } from "@/lib/actions/tickets";
 import VendorAddedTicketCard from '@/components/VendorAddedTicketCard'
 
 const TicketsPage = async () => {
-  const tickets = await getTickets();
+  const data = await getTickets();
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
@@ -43,7 +43,7 @@ const TicketsPage = async () => {
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {tickets.map((ticket) => {
+          {data?.tickets?.map((ticket) => {
           const color = getStatusColor(ticket.status)
 
             const isRejected =

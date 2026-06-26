@@ -64,5 +64,11 @@ const handleStatusCode = res => {
         redirect('/forbidden');
     }
 
-    return res.json()
+  console.log("URL:", res.url);
+
+  const text = await res.text();
+  console.log(text);
+
+  return JSON.parse(text);
+   // return res.json()
 }
