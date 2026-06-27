@@ -66,12 +66,12 @@ export default function SignInPage() {
   const handleGoogleLogin = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: "/",
     });
   };
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10">
-      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 bg-white shadow-lg">
+      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Left Side */}

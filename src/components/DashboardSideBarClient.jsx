@@ -3,17 +3,16 @@
 
 import {
     Bars,
-    Briefcase,
-    FileText,
-    Gear,
+    Megaphone,
     Circles4Square,
-    Factory,
+    BookmarkFill,
     Person,
-    Magnifier,
-    House,
     Bookmark,
-    CreditCard,
     Persons,
+  ClockArrowRotateLeft,
+  ChartLine,
+  SquarePlus,
+  Ticket,
     
     
 } from "@gravity-ui/icons";
@@ -25,25 +24,25 @@ const DashboardSideBarClient = ({user}) => {
 
     const vendorNavLinks = [
         { icon: Person, href: "/dashboard/vendor/profile", label: "Profile" },
-        { icon: FileText, href: "/dashboard/vendor/tickets/new", label: "Add Ticket" },
-        { icon: Briefcase, href: "/dashboard/vendor/tickets", label: "My Added Tickets" },
-        { icon: Factory, href: "/dashboard/vendor/requested-bookings", label: "Requested Bookings" },
-        { icon: Factory, href: "/dashboard/vendor/revenue-overview", label: "Revenue Overview" },
+        { icon: SquarePlus, href: "/dashboard/vendor/tickets/new", label: "Add Ticket" },
+        { icon: Ticket, href: "/dashboard/vendor/tickets", label: "My Added Tickets" },
+        { icon: BookmarkFill, href: "/dashboard/vendor/requested-bookings", label: "Requested Bookings" },
+        { icon: ChartLine, href: "/dashboard/vendor/revenue-overview", label: "Revenue Overview" },
         
     ];
 
   const userNavLinks = [
         { icon: Person, href: "/dashboard/user/profile", label: "Profile" },
         { icon: Bookmark, href: "/dashboard/user/booked-tickets", label: "My Booked Tickets" },
-        { icon: FileText, href: "/dashboard/user/transaction-history", label: "Transaction History" },   
+        { icon: ClockArrowRotateLeft, href: "/dashboard/user/transaction-history", label: "Transaction History" },   
         
     ];
 
   const adminNavLinks = [
-        { icon: House, href: "/dashboard/admin/profile", label: "Profile" },
-        { icon: Persons, href: "/dashboard/admin/manage-tickets", label: "Manage Tickets" },
-        { icon: Factory, href: "/dashboard/admin/manage-users", label: "Manage Users" },
-        { icon: Briefcase, href: "/dashboard/admin/advertise-ticket", label: "Advertise Ticket" },
+        { icon: Person, href: "/dashboard/admin/profile", label: "Profile" },
+        { icon: Ticket, href: "/dashboard/admin/manage-tickets", label: "Manage Tickets" },
+        { icon: Persons, href: "/dashboard/admin/manage-users", label: "Manage Users" },
+        { icon: Megaphone, href: "/dashboard/admin/advertise-ticket", label: "Advertise Ticket" },
          
     ];
 
