@@ -5,13 +5,16 @@ export const createTicket = async (newTicketData) => {
     return serverMutation('/api/tickets', newTicketData);
 }
 
-export async function getTickets() {
+export async function getTickets(page = 1, limit = 6) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/tickets?page=${page}&limit=${limit}`,
     {
       cache: "no-store",
     }
   );
+  if (!res.ok) {
+    throw new Error(`Failed to fetch tickets: ${res.status}`);
+  }
 
   return res.json();
 }
