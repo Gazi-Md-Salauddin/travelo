@@ -56,7 +56,7 @@ export const serverMutation = async (path, data) => {
 }
 
 
-const handleStatusCode = res => {
+const handleStatusCode = async (res) => {
     if (res.status === 401) {
         redirect('/unauthorized')
     }
