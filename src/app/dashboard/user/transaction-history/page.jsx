@@ -68,7 +68,7 @@ const TransactionHistoryTable = () => {
     <div className="overflow-x-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Transaction History</h2>
       <table className="w-full border border-gray-200 text-left border-collapse">
-        <thead className="bg-gray-100">
+        <thead className="bg-gray-100 dark:bg-black text-white">
           <tr>
             <th className="p-3 border">Booking/Tx ID</th>
             <th className="p-3 border">Ticket Title</th>
@@ -96,7 +96,7 @@ const TransactionHistoryTable = () => {
                   <td className="p-3 font-medium">{tx.ticketTitle}</td>
                   <td className="p-3 text-sm">{tx.ticketFrom} → {tx.ticketTo}</td>
                   <td className="p-3 text-center">{tx.bookingQuantity}</td>
-                  <td className="p-3 font-semibold text-green-600">৳{totalAmount}</td>
+                  <td className="p-3 font-semibold text-green-600">{totalAmount}</td>
                   <td className="p-3 text-sm text-gray-600">
                     {tx.paymentDate ? new Date(tx.paymentDate).toLocaleString() : "N/A"}
                   </td>

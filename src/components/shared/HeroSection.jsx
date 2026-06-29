@@ -101,7 +101,7 @@ export default function HeroSection() {
               
               />
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 <Calendar />
                 <Input
                   label="Date"
@@ -116,45 +116,14 @@ export default function HeroSection() {
                 />
               </div>
 
-              <Magnifier />
               <Button
                 color="primary"
                 fullWidth
                 size="lg"
               >
+              <Magnifier />
                 Search Tickets
               </Button>
-            </Card.Content>
-          </Card>
-
-          {/* Floating Service Cards */}
-          <Card
-            variant="default"
-            className="absolute -left-8 top-10 hidden lg:block"
-          >
-            <Card.Content className="flex items-center gap-2 px-4 py-3">
-            
-              <span>Bus Tickets</span>
-            </Card.Content>
-          </Card>
-
-          <Card
-            variant="default"
-            className="absolute -right-8 top-32 hidden lg:block"
-          >
-            <Card.Content className="flex items-center gap-2 px-4 py-3">
-              
-              <span>Flights</span>
-            </Card.Content>
-          </Card>
-
-          <Card
-            variant="default"
-            className="absolute bottom-8 -left-4 hidden lg:block"
-          >
-            <Card.Content className="flex items-center gap-2 px-4 py-3">
-            
-              <span>Train Tickets</span>
             </Card.Content>
           </Card>
         </div>

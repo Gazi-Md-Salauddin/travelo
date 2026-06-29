@@ -71,15 +71,16 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Buttons */}
+        <ThemeToggle/>
         {user ? (
-           <div className="hidden md:flex gap-2">
+           <div className="hidden md:block flex gap-2">
              Hi, {user?.name}!
              <Button color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
              </Button>
            </div>
           ): (
-        <div className="hidden md:mt-6 flex gap-3">
+        <div className="hidden md:block mt-6 flex gap-2">
             <Link
               
               href="/auth/signin"
@@ -101,7 +102,7 @@ export default function Navbar() {
           )}
 
         {/* Mobile Toggle */}
-      <ThemeToggle/>
+      
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden"
