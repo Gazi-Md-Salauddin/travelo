@@ -68,7 +68,7 @@ const TransactionHistoryTable = () => {
     <div className="overflow-x-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Transaction History</h2>
       <table className="w-full border border-gray-200 text-left border-collapse">
-        <thead className="bg-gray-100 dark:bg-black text-white">
+        <thead className="bg-gray-100 dark:bg-black dark:text-white">
           <tr>
             <th className="p-3 border">Booking/Tx ID</th>
             <th className="p-3 border">Ticket Title</th>

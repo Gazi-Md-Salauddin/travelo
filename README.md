@@ -52,7 +52,7 @@ Travelo is a modern online ticket booking platform where users can browse availa
 - HeroUI
 - Tailwind CSS
 - Better Auth
-- React Icons
+- Gravity UI Icons
 
 ## Backend
 
@@ -70,20 +70,12 @@ Travelo is a modern online ticket booking platform where users can browse availa
 ```text
 Travelo
 │
-├── client/
-│   ├── app/
-│   ├── components/
-│   ├── lib/
-│   ├── public
-│   └── styles/
-│
-├── server/
-│   ├── routes/
-│   ├── middleware/
-│   ├── utils/
-│   └── index.js
-│
-└── README.md
+├── app/
+├── components/
+├── lib/
+├── public/
+├── styles/
+└── package.json
 ```
 
 ---
@@ -99,7 +91,7 @@ git clone https://github.com/your-username/travelo.git
 ## Frontend
 
 ```bash
-cd client
+cd travelo
 
 npm install
 
@@ -109,31 +101,11 @@ npm run dev
 ## Backend
 
 ```bash
-cd server
+cd travelo-server
 
 npm install
 
 npm start
-```
-
----
-
-# 🔑 Environment Variables
-
-## Frontend (.env.local)
-
-```env
-NEXT_PUBLIC_BASE_URL=http://localhost:5000
-```
-
-## Backend (.env)
-
-```env
-PORT=5000
-
-MONGODB_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
 ```
 
 ---
@@ -178,10 +150,8 @@ GET  /api/bookings/vendor/:email
 
 # 🔮 Future Improvements
 
-- QR Code Tickets
 - Email Notifications
 - Seat Selection
-- Admin Dashboard
 - Refund System
 - Ticket Reviews
 - Analytics Dashboard
