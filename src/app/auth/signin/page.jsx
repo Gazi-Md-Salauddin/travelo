@@ -70,8 +70,8 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10">
-      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10 dark:bg-black">
+      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-blue-500">
         <div className="grid grid-cols-1 md:grid-cols-2">
           
           {/* Left Side */}
@@ -115,7 +115,7 @@ export default function SignInPage() {
           <div className="flex items-center justify-center px-6 py-10 lg:p-14">
             <div className="w-full max-w-md mx-auto">
               
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                 Sign In
               </h2>
 
@@ -198,8 +198,8 @@ export default function SignInPage() {
             {loading ? "Signing In..." : "Sign In"}
           </Button>
         </form>
-              <p className="mt-8 text-centertext-center text-sm text-slate-600">
-                No account?{" "}
+              <p className="mt-8 text-center text-sm text-slate-600 dark:text-gray-500">
+                Create new account?{" "}
                 <Link
                   href="/auth/signup"
                   className="font-semibold text-sky-500 hover:text-sky-600"

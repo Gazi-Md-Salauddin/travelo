@@ -1,3 +1,4 @@
+"use client"
 import {
   ShieldCheck,
   Clock,
@@ -6,6 +7,7 @@ import {
   Headphones,
   Plane,
 } from "@gravity-ui/icons";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -46,10 +48,38 @@ const features = [
   },
 ];
 
+// scroll animation
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    x: -80,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
 const WhyChooseUs = () => {
   return (
     <section className="py-20 bg-default-50">
-      <div className="max-w-7xl mx-auto px-4">
+      <motion.div initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true, amount: 0.3 }} className="max-w-7xl mx-auto px-4">
 
         <div className="text-center mb-14">
           <h2 className="text-4xl font-bold">
@@ -63,10 +93,14 @@ const WhyChooseUs = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div variants={containerVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.2 }} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={cardVariants}
               className="rounded-2xl border bg-background p-8 shadow-sm hover:shadow-lg transition-all duration-300"
             >
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
@@ -80,10 +114,10 @@ const WhyChooseUs = () => {
               <p className="text-default-500">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

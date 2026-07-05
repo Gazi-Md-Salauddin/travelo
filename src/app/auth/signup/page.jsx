@@ -88,7 +88,7 @@ export default function SignupPage() {
    };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10">
+    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10 dark:bg-black">
       <Card className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-default-200 shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* LEFT SIDE */}
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 Back to Home
               </Link>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                 Create Account
               </h2>
 
@@ -292,7 +292,7 @@ export default function SignupPage() {
 
                 <Button
                   type="button"
-                  variant="bordered"
+                  variant="outline"
                   radius="lg"
                   className="w-full"
                   onPress={handleGoogleSignup}
