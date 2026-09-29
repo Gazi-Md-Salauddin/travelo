@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
-import {useSession, signOut} from '@/lib/auth-client'
+import { useSession, signOut } from '@/lib/auth-client'
 import { useRouter } from "next/navigation";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 
@@ -12,20 +12,20 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: session, isPending } = useSession();
-  
+
   const user = session?.user
 
   const router = useRouter()
-  
-  const handleSignOut = async() => {
-      await signOut()
-      router.refresh()
-    }
-  
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.refresh()
+  }
+
   const navItems = [
     { label: "Home", href: "/" },
     { label: "All Tickets", href: "/all-tickets" },
-  
+
   ];
 
 
@@ -45,15 +45,15 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-default-200 bg-background/80 backdrop-blur-lg">
-      <header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
+    <nav className="w-full border-b border-default-200 bg-background/80 backdrop-blur-lg">
+      <header className="max-w-7xl mx-auto h-20 flex items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold">
-            🚍
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold border border-gray-400">
+            <span className="h-16 w-16 flex items-center justify-center">🚍</span>
           </div>
 
-          <h1 className="text-lg font-bold">Travelo</h1>
+          <h1 className="text-2xl font-bold">Travelo</h1>
         </Link>
 
         {/* Desktop Menu */}
@@ -71,38 +71,41 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Buttons */}
-        <ThemeToggle/>
-        {user ? (
-           <div className="hidden md:block flex gap-2">
-             Hi, {user?.name}!
-             <Button color="danger" variant="danger" onClick={handleSignOut}>
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
+          {user ? (
+            <div className="md:block flex gap-2">
+              Hi, {user?.name}!
+              <Button color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
-             </Button>
-           </div>
-          ): (
-        <div className="hidden md:block mt-6 flex gap-2">
-            <Link
-              
-              href="/auth/signin"
-              variant="outline"
-              className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
-            >
-              Sign In
-            </Link>
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Link
 
-            <Link
-              
-              href="/auth/signup"
-              variant="primary"
-              className="w-full bg-blue-800 text-white font-bold text-center p-2 rounded-full"
-            >
-              Sign Up
-            </Link>
-          </div>
+                href="/auth/signin"
+
+                className="px-4 py-2 text-sm font-bold text-blue-800 border border-blue-800 rounded-xl hover:bg-blue-50 transition-colors"
+              >
+                Sign In
+              </Link>
+
+              <Link
+
+                href="/auth/signup"
+                variant="primary"
+                className="px-4 py-2 text-sm font-bold text-white bg-blue-800 rounded-xl hover:bg-blue-900 transition-colors"
+              >
+                Sign Up
+              </Link>
+            </div>
           )}
 
+        </div>
+
         {/* Mobile Toggle */}
-      
+
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden"
@@ -118,11 +121,10 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen
-            ? "max-h-[500px] border-t border-default-200"
+        className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen
+            ? "max-h-125 border-t border-default-200"
             : "max-h-0"
-        }`}
+          }`}
       >
         <div className="bg-background px-4 py-4">
           <ul className="flex flex-col gap-4">
@@ -139,36 +141,42 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {user ? (
-           <>
-             Hi, {user?.name}!
-             <Button color="danger" variant="danger" onClick={handleSignOut}>
-                Sign Out
-             </Button>
-           </>
-          ): (
-        <div className="mt-6 flex gap-3">
-            <Link
-              
-              href="/auth/signin"
-              variant="flat"
-              className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
-            >
-              Sign In
-            </Link>
-
-            <Link
-              
-              href="/auth/signup"
-              variant="primary"
-              className="w-full bg-blue-800 text-white font-bold text-center p-2 rounded-full"
-            >
-              Sign Up
-            </Link>
+          {/* Mobile Theme */}
+          <div className="mt-5 flex justify-start">
+            <ThemeToggle />
           </div>
+
+          {user ? (
+            <>
+              Hi, {user?.name}!
+              <Button color="danger" variant="danger" onClick={handleSignOut}>
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <div className="mt-6 flex gap-3">
+              <Link
+
+                href="/auth/signin"
+                variant="flat"
+                className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
+              >
+                Sign In
+              </Link>
+
+              <Link
+
+                href="/auth/signup"
+                variant="primary"
+                className="w-full bg-blue-800 text-white font-bold text-center p-2 rounded-full"
+              >
+                Sign Up
+              </Link>
+            </div>
           )}
-          
+
         </div>
+        
       </div>
     </nav>
   );
