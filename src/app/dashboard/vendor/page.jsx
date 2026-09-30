@@ -2,7 +2,7 @@ import React from "react";
 
 const VendorPage = () => {
   return (
-    <div className="flex items-center justify-center min-h-[80vh]">
+    <div className="flex items-center justify-center h-screen">
       <div className="text-center">
         <h1 className="text-4xl font-bold">
           Welcome to Vendor Dashboard 👋

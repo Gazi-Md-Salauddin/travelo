@@ -26,7 +26,7 @@ const AllTicketsPage = async ({ searchParams }) => {
   return (
     <section className="space-y-8">
 
-      <div className="px-4">
+      <div className="px-4 text-center py-4">
         <h1 className="text-3xl font-bold">
           All Tickets
         </h1>

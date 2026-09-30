@@ -5,10 +5,12 @@ import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
 import { useSession, signOut } from '@/lib/auth-client'
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 
 export default function Navbar() {
+
+  const pathName = usePathname()
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: session, isPending } = useSession();
@@ -62,7 +64,11 @@ export default function Navbar() {
             <li key={item.label}>
               <Link
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  pathName === item.href ?
+                  "text-blue-600 border-b-2 border-blue-600" :
+                  "text-black"
+                }`}
               >
                 {item.label}
               </Link>
@@ -71,11 +77,11 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center">
           <ThemeToggle />
           {user ? (
-            <div className="md:block flex gap-2">
-              Hi, {user?.name}!
+            <div className="flex items-center gap-2">
+              <span>Hi, {user?.name}!</span>
               <Button color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
               </Button>

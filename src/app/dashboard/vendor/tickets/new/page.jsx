@@ -23,8 +23,8 @@ import {
 } from "@gravity-ui/icons";
 
 
-import {createTicket} from "@/lib/actions/tickets";
-import {useSession} from '@/lib/auth-client'
+import { createTicket } from "@/lib/actions/tickets";
+import { useSession } from '@/lib/auth-client'
 
 export default function AddTicketPage() {
   const router = useRouter();
@@ -32,9 +32,9 @@ export default function AddTicketPage() {
   const [errors, setErrors] = useState({});
   const [selectedPerks, setSelectedPerks] = useState([]);
 
-  const {data: session, isPending } = useSession();
+  const { data: session, isPending } = useSession();
   const user = session?.user
-  
+
   // Replace with your authenticated user data
   // const vendor = {
   //   name: {user?.name},
@@ -117,50 +117,50 @@ export default function AddTicketPage() {
   };
 
   // Auxiliary Upload States
-    const [imageUrl, setImageUrl] = useState('');
-    const [isUploading, setIsUploading] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
 
 
   // Client side Imgbb Upload Handler
-    const handleImageUpload = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
 
-        // Simple Validation
-        if (file.size > 5 * 1024 * 1024) {
-            setErrors(prev => ({ ...prev, image: "File size exceeds 5MB limit" }));
-            return;
-        }
+    // Simple Validation
+    if (file.size > 5 * 1024 * 1024) {
+      setErrors(prev => ({ ...prev, image: "File size exceeds 5MB limit" }));
+      return;
+    }
 
-        setIsUploading(true);
-        const formData = new FormData();
-        formData.append('image', file);
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append('image', file);
 
-        try {
-            // Replace with your real IMGBB API key environmental variable injection
-            const IMGBB_API_KEY = process.env.NEXT_PUBLIC_IMAGE_UPLOAD_API; 
-            const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                method: 'POST',
-                body: formData
-            });
-            const data = await response.json();
-            
-            if (data.success) {
-                setImageUrl(data.data.url);
-                setErrors(prev => ({ ...prev, image: null }));
-            } else {
-                setErrors(prev => ({ ...prev, image: "Upload failed. Try again." }));
-            }
-        } catch (err) {
-            setErrors(prev => ({ ...prev, image: "Network error during logo upload" }));
-        } finally {
-            setIsUploading(false);
-        }
-    };
+    try {
+      // Replace with your real IMGBB API key environmental variable injection
+      const IMGBB_API_KEY = process.env.NEXT_PUBLIC_IMAGE_UPLOAD_API;
+      const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        setImageUrl(data.data.url);
+        setErrors(prev => ({ ...prev, image: null }));
+      } else {
+        setErrors(prev => ({ ...prev, image: "Upload failed. Try again." }));
+      }
+    } catch (err) {
+      setErrors(prev => ({ ...prev, image: "Network error during logo upload" }));
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   return (
-    <section className="mx-auto max-w-5xl">
-      <div className="mb-8">
+    <section className="mx-auto max-w-6xl">
+      <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">
           Add Ticket
         </h1>
@@ -374,50 +374,50 @@ export default function AddTicketPage() {
 
           <div className="flex flex-wrap gap-4">
             <input
-  type="checkbox"
-  onChange={(e) => {
-    
-    handlePerkChange("Ac", e.target.checked);
-  }}
-/>
-<label>Ac</label>
-            
+              type="checkbox"
+              onChange={(e) => {
+
+                handlePerkChange("Ac", e.target.checked);
+              }}
+            />
+            <label>Ac</label>
+
 
             <input
-  type="checkbox"
-  onChange={(e) => {
-    
-    handlePerkChange("BreakFast", e.target.checked);
-  }}
-/>
-<label>BreakFast</label>
+              type="checkbox"
+              onChange={(e) => {
+
+                handlePerkChange("BreakFast", e.target.checked);
+              }}
+            />
+            <label>BreakFast</label>
 
             <input
-  type="checkbox"
-  onChange={(e) => {
-    
-    handlePerkChange("WiFi", e.target.checked);
-  }}
-/>
-<label>WiFi</label>
+              type="checkbox"
+              onChange={(e) => {
+
+                handlePerkChange("WiFi", e.target.checked);
+              }}
+            />
+            <label>WiFi</label>
 
             <input
-  type="checkbox"
-  onChange={(e) => {
-    
-    handlePerkChange("Charging Port", e.target.checked);
-  }}
-/>
-<label>Charging Port</label>
+              type="checkbox"
+              onChange={(e) => {
+
+                handlePerkChange("Charging Port", e.target.checked);
+              }}
+            />
+            <label>Charging Port</label>
 
             <input
-  type="checkbox"
-  onChange={(e) => {
-    
-    handlePerkChange("TV", e.target.checked);
-  }}
-/>
-<label>TV</label>
+              type="checkbox"
+              onChange={(e) => {
+
+                handlePerkChange("TV", e.target.checked);
+              }}
+            />
+            <label>TV</label>
           </div>
         </div>
 
@@ -425,30 +425,30 @@ export default function AddTicketPage() {
         <div className="flex flex-col gap-1 w-full">
           <span className="text-zinc-600 font-medium text-sm">Ticket Image</span>
           <div className="flex items-center gap-4 mt-1">
-          
-          <Label className="w-14 h-14 border border-dashed border-zinc-500 hover:border-zinc-500 bg-zinc-900/40 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors group relative overflow-hidden">
 
-          <input 
-                  type="file" 
-                  accept="image/png, image/jpeg" 
-                  onChange={handleImageUpload} 
-                   className="hidden" 
-                  />
-                                    {imageUrl ? (
-                                        <img src={imageUrl} alt="Image Preview" className="w-full h-full object-cover" />
-                                    ) : (
-                                        <ArrowUpToLine size={18} className="text-zinc-400 group-hover:text-zinc-200 transition-colors" />
-                                    )}
-                    </Label>
+            <Label className="w-14 h-14 border border-dashed border-zinc-500 hover:border-zinc-500 bg-zinc-900/40 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors group relative overflow-hidden">
+
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+              {imageUrl ? (
+                <img src={imageUrl} alt="Image Preview" className="w-full h-full object-cover" />
+              ) : (
+                <ArrowUpToLine size={18} className="text-zinc-400 group-hover:text-zinc-200 transition-colors" />
+              )}
+            </Label>
             <div className="flex flex-col">
-                                    <span className="text-sm font-medium text-zinc-500">
-                                        {isUploading ? 'Uploading file...' : 'Upload image'}
-                                    </span>
-                                    <span className="text-xs text-zinc-600 mt-0.5">PNG, JPG up to 5MB</span>
-                                    {errors.image && <span className="text-xs text-danger mt-1">{errors.image}</span>}
-                                </div>
+              <span className="text-sm font-medium text-zinc-500">
+                {isUploading ? 'Uploading file...' : 'Upload image'}
+              </span>
+              <span className="text-xs text-zinc-600 mt-0.5">PNG, JPG up to 5MB</span>
+              {errors.image && <span className="text-xs text-danger mt-1">{errors.image}</span>}
             </div>
           </div>
+        </div>
 
         {/* Submit */}
         <div className="md:col-span-2">
@@ -456,7 +456,7 @@ export default function AddTicketPage() {
             type="submit"
             color="primary"
             size="lg"
-            className="w-full"
+            className="w-full bg-blue-600 text-white hover:bg-blue-700"
           >
             Add Ticket
           </Button>

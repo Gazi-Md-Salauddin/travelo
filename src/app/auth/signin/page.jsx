@@ -22,7 +22,7 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from 'react-hot-toast'
 
 export default function SignInPage() {
-  
+
 
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -48,13 +48,13 @@ export default function SignInPage() {
         email,
         password,
       });
-      console.log(result)
+
       if (result?.error) {
         toast.error(result.error.message || "Login failed");
       } else {
         toast.success("SignIn Successful")
         router.push("/");
-        router.refresh();
+        router.reload();
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
@@ -70,14 +70,14 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-2 py-6 sm:py-10 dark:bg-black">
-      <div className="w-full max-w-8xl overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-blue-500">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-8 py-6 sm:py-10 dark:bg-black">
+      <div className="w-full max-w-7xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-blue-300">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          
+
           {/* Left Side */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-700 px-6 py-10 md:px-10 py-14 lg:p-14">
+          <div className="relative overflow-hidden bg-linear-to-br from-slate-950 via-blue-950 to-indigo-700 px-6 py-10 md:px-10 md:py-14 lg:p-14">
             <div className="flex h-full flex-col justify-center">
-              
+
               <div className="mb-8">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur text-2xl">
                   🚌
@@ -114,7 +114,7 @@ export default function SignInPage() {
           {/* Right Side */}
           <div className="flex items-center justify-center px-6 py-10 lg:p-14">
             <div className="w-full max-w-md mx-auto">
-              
+
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                 Sign In
               </h2>
@@ -124,80 +124,80 @@ export default function SignInPage() {
               </p>
 
               <form
-          onSubmit={handleSignIn}
-          className="mt-8 flex flex-col gap-5"
-        >
-          {/* Email */}
-          <TextField className="w-full">
-            <Label>Email</Label>
+                onSubmit={handleSignIn}
+                className="mt-8 flex flex-col gap-5"
+              >
+                {/* Email */}
+                <TextField className="w-full">
+                  <Label>Email</Label>
 
-            <InputGroup>
-              <InputGroup.Suffix>
-                <Envelope className="text-default-400 text-lg" />
-              </InputGroup.Suffix>
+                  <InputGroup>
+                    <InputGroup.Suffix>
+                      <Envelope className="text-default-400 text-lg" />
+                    </InputGroup.Suffix>
 
-              <Input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-              />
-            </InputGroup>
-          </TextField>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </InputGroup>
+                </TextField>
 
-          {/* Password */}
-          <TextField className="w-full">
-            <Label>Password</Label>
+                {/* Password */}
+                <TextField className="w-full">
+                  <Label>Password</Label>
 
-            <InputGroup>
-              <InputGroup.Suffix>
-                <Lock className="text-default-400 text-lg" />
-              </InputGroup.Suffix>
+                  <InputGroup>
+                    <InputGroup.Suffix>
+                      <Lock className="text-default-400 text-lg" />
+                    </InputGroup.Suffix>
 
-              <Input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Enter your password"
-                required
-              />
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Enter your password"
+                      required
+                    />
 
-              <InputGroup.Suffix>
-                <button
-                  type="button"
-                  onClick={toggleVisibility}
-                  className="focus:outline-none flex items-center justify-center text-default-400 hover:text-default-600 transition"
+                    <InputGroup.Suffix>
+                      <button
+                        type="button"
+                        onClick={toggleVisibility}
+                        className="focus:outline-none flex items-center justify-center text-default-400 hover:text-default-600 transition"
+                      >
+                        {showPassword ? (
+                          <EyeSlash className="text-lg" />
+                        ) : (
+                          <Eye className="text-lg" />
+                        )}
+                      </button>
+                    </InputGroup.Suffix>
+                  </InputGroup>
+                </TextField>
+
+                {/* Forgot Password */}
+                <div className="flex justify-end">
+                  <Link
+                    href="/forgot-password"
+                    className="text-sm text-primary hover:underline"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
+
+                {/* Submit */}
+                <Button
+                  type="submit"
+                  color="primary"
+                  className="w-full h-12 font-semibold"
+                  radius="lg"
+                  isLoading={loading}
                 >
-                  {showPassword ? (
-                    <EyeSlash className="text-lg" />
-                  ) : (
-                    <Eye className="text-lg" />
-                  )}
-                </button>
-              </InputGroup.Suffix>
-            </InputGroup>
-          </TextField>
-
-          {/* Forgot Password */}
-          <div className="flex justify-end">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-primary hover:underline"
-            >
-              Forgot Password?
-            </Link>
-          </div>
-
-          {/* Submit */}
-          <Button
-            type="submit"
-            color="primary"
-            className="w-full h-12 font-semibold"
-            radius="lg"
-            isLoading={loading}
-          >
-            {loading ? "Signing In..." : "Sign In"}
-          </Button>
-        </form>
+                  {loading ? "Signing In..." : "Sign In"}
+                </Button>
+              </form>
               <p className="mt-8 text-center text-sm text-slate-600 dark:text-gray-500">
                 Create new account?{" "}
                 <Link
