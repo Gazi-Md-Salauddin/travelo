@@ -30,7 +30,7 @@ const AllTicketCard = ({ ticket }) => {
         width={600}
         height={400}
         loading="eager"
-        className=" h-62 object-cover"
+        className=" h-76 w-full object-cover"
       />
 
       <div className="space-y-4 p-5">

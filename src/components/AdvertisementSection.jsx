@@ -1,3 +1,5 @@
+import { MapPin } from "@gravity-ui/icons";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -17,17 +19,34 @@ const AdvertisementSection = ({ tickets }) => {
               key={ticket._id}
               className="border rounded-xl overflow-hidden shadow-sm"
             >
-              <img
+              <Image
                 src={ticket.image}
                 alt={ticket.title}
-                className="h-52 w-full object-cover"
+                width={600}
+                height={400}
+                className="h-64 object-cover"
               />
 
               <div className="p-5">
 
-                <h3 className="text-xl font-bold">
+                <h3 className="text-2xl font-bold">
                   {ticket.title}
                 </h3>
+                <div className="mt-4 flex items-center gap-2 text-gray-500">
+                  <MapPin className="size-4 text-blue-600" />
+
+                  <span className="text-sm font-medium">
+                    {ticket.from}
+                    <span className="mx-2 text-gray-300">→</span>
+                    {ticket.to}
+                  </span>
+                </div>
+
+                <div className="bg-gray-200 dark:bg-black/10 dark:text-white">
+                  <p className="text-md font-medium">Leaves</p>
+                  <h2 className="text-xl font-bold">{ticket.departureTime}</h2>
+                  <p>From {ticket.from}</p>
+                </div>
 
                 <p className="mt-2">
                   <strong>Price:</strong> {ticket.price}
@@ -46,7 +65,7 @@ const AdvertisementSection = ({ tickets }) => {
                   {ticket.perks?.map((perk) => (
                     <span
                       key={perk}
-                      className="px-2 py-1 text-xs rounded-full bg-green-100/30 text-green-500"
+                      className="px-2 py-1 text-xs rounded-full bg-green-300/20 text-green-500"
                     >
                       {perk}
                     </span>
