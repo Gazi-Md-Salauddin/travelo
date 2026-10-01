@@ -11,8 +11,8 @@ const AdvertiseTicketsPage =
       await getAdvertiseTickets();
 
     return (
-      <section>
-        <h1 className="text-3xl font-bold mb-6">
+      <section className="px-8">
+        <h1 className="text-3xl text-center font-bold my-6">
           Advertise Tickets
         </h1>
 
@@ -20,23 +20,23 @@ const AdvertiseTicketsPage =
           <table className="w-full">
             <thead>
               <tr className="bg-default-100">
-                <th className="p-4">
+                <th className="p-4 text-left">
                   Ticket
                 </th>
 
-                <th className="p-4">
+                <th className="p-4 text-left">
                   Route
                 </th>
 
-                <th className="p-4">
+                <th className="p-4 text-left">
                   Price
                 </th>
 
-                <th className="p-4">
+                <th className="p-4 text-left">
                   Advertised
                 </th>
 
-                <th className="p-4">
+                <th className="p-4 text-left">
                   Action
                 </th>
               </tr>

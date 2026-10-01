@@ -1,5 +1,5 @@
 
-import {getAdminTickets} from '@/lib/actions/tickets'
+import { getAdminTickets } from '@/lib/actions/tickets'
 import AdminManageTicket from '@/components/AdminManageTicket'
 
 const ManageTicketsPage = async () => {
@@ -19,9 +19,8 @@ const ManageTicketsPage = async () => {
   };
 
   return (
-
-<section className="space-y-6">
-      <div>
+    <section className="space-y-6 px-8">
+      <div className="text-center my-6">
         <h1 className="text-3xl font-bold">
           Manage Tickets
         </h1>
@@ -47,12 +46,12 @@ const ManageTicketsPage = async () => {
 
           <tbody>
             {data?.tickets?.map((ticket) => {
-  const color = getStatusColor(ticket.status)
-  return (
-              <AdminManageTicket key={ticket._id} ticket={ticket} color={color}/>
-   ) 
-})}
-            
+              const color = getStatusColor(ticket.status)
+              return (
+                <AdminManageTicket key={ticket._id} ticket={ticket} color={color} />
+              )
+            })}
+
           </tbody>
         </table>
       </div>

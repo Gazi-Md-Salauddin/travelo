@@ -55,10 +55,10 @@ const UserRow = ({ user }) => {
         <Chip
           color={
             user.role === "admin"
-              ? "danger"
+              ? "accent"
               : user.role === "vendor"
               ? "success"
-              : "primary"
+              : "default"
           }
         >
           {user.role}
@@ -68,8 +68,9 @@ const UserRow = ({ user }) => {
       <td className="p-4">
         <div className="flex flex-wrap gap-2">
           <Button
+          className="rounded-lg"
             size="sm"
-            color="danger"
+            color="primary"
             onPress={
               handleAdmin
             }
@@ -81,8 +82,10 @@ const UserRow = ({ user }) => {
           </Button>
 
           <Button
+          className="rounded-lg"
             size="sm"
-            color="success"
+            color="outline"
+            variant="outline"
             onPress={
               handleVendor
             }
@@ -96,8 +99,10 @@ const UserRow = ({ user }) => {
           {user.role ===
             "vendor" && (
             <Button
+            className="rounded-lg"
               size="sm"
-              color="warning"
+              color="danger"
+              variant="danger"
               onPress={
                 handleFraud
               }

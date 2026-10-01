@@ -64,11 +64,10 @@ export default function Navbar() {
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathName === item.href ?
+                className={`text-sm font-medium transition-colors hover:text-primary ${pathName === item.href ?
                   "text-blue-600 border-b-2 border-blue-600" :
-                  "text-black"
-                }`}
+                  "text-black dark:text-white"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -82,7 +81,7 @@ export default function Navbar() {
           {user ? (
             <div className="flex items-center gap-2">
               <span>Hi, {user?.name}!</span>
-              <Button color="danger" variant="danger" onClick={handleSignOut}>
+              <Button className="rounded-lg" color="danger" variant="danger" onClick={handleSignOut}>
                 Sign Out
               </Button>
             </div>
@@ -128,8 +127,8 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen
-            ? "max-h-125 border-t border-default-200"
-            : "max-h-0"
+          ? "max-h-125 border-t border-default-200"
+          : "max-h-0"
           }`}
       >
         <div className="bg-background px-4 py-4">
@@ -182,7 +181,7 @@ export default function Navbar() {
           )}
 
         </div>
-        
+
       </div>
     </nav>
   );

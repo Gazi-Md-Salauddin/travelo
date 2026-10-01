@@ -8,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 
 import {
@@ -37,24 +38,68 @@ const RevenueOverview = ({ data }) => {
         <div className="p-4 border rounded-xl text-center">
           <h2 className="text-3xl font-bold">{data.ticketsSold}</h2>
           <p className="text-xl font-medium">Tickets Sold</p>
-          </div>
+        </div>
         <div className="p-4 border text-center rounded-xl">
           <h2 className="text-3xl font-bold flex items-center justify-center"><CircleDollar />{data.totalRevenue}</h2>
           <p className="text-xl font-medium">Revenue</p>
-          </div>
+        </div>
       </div>
 
       {/* Chart */}
       <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="metric" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="value" />
-          </BarChart>
-        </ResponsiveContainer>
+
+        <BarChart
+          style={{
+            width: "100%",
+            maxWidth: "700px",
+            aspectRatio: 1.618,
+          }}
+          responsive
+          data={chartData}
+          margin={{
+            top: 20,
+            right: 20,
+            left: 0,
+            bottom: 10,
+          }}
+        >
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+            stroke="#E5E7EB"
+          />
+
+          <XAxis
+            dataKey="metric"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#6B7280", fontSize: 13 }}
+          />
+
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "#6B7280", fontSize: 13 }}
+          />
+
+          <Tooltip
+            cursor={{ fill: "#F3F4F6" }}
+            contentStyle={{
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #E5E7EB",
+              borderRadius: "10px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+            }}
+          />
+
+          <Bar
+            dataKey="value"
+            fill="#2563EB"
+            radius={[8, 8, 0, 0]}
+            barSize={70}
+          />
+        </BarChart>
+
       </div>
     </div>
   );

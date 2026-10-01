@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Travelo",
+  title: "Travelo | Online Ticket booking plarform",
   description: "Online Ticket booking platform",
 };
 

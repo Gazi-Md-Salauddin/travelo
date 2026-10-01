@@ -17,8 +17,8 @@ const RequestedBookingsPage = async () => {
       );
 
     return (
-      <section>
-        <h1 className="mb-6 text-3xl font-bold">
+      <section className="px-8">
+        <h1 className="my-6 text-3xl font-bold text-center">
           Requested Bookings
         </h1>
 

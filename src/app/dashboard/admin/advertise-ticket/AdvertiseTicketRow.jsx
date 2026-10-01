@@ -53,12 +53,17 @@ const AdvertiseTicketRow = ({
         {ticket.from} → {ticket.to}
       </td>
 
-      <td className="p-4">
+      <td className="p-4 flex gap-1 items-center">
       <CircleDollar/>{ticket.price}
       </td>
 
       <td className="p-4">
         <Chip
+        variant={
+          ticket.isAdvertised
+          ? "soft"
+          : "default"
+        }
           color={
             ticket.isAdvertised
               ? "success"
