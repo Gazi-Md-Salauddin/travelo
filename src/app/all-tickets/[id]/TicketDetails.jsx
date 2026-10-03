@@ -52,9 +52,9 @@ const TicketDetails = ({ ticket, user }) => {
       .map(Number);
 
     return new Date(
-      day,
-      month - 1,
       year,
+      month - 1,
+      day,
       hours,
       minutes,
       0
@@ -73,7 +73,7 @@ const TicketDetails = ({ ticket, user }) => {
     if (!departureDateTime) return "No Date";
 
     const distance = departureDateTime.getTime() - now;
-    if (distance <= 0) return "Departed";
+    if (distance <= 0) return "Started";
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
