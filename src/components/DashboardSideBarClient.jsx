@@ -63,19 +63,17 @@ const DashboardSideBarClient = ({ user }) => {
             {navItems.map(item => (
                 <Link
                     key={item.label}
-                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
-                        pathname === item.href
+                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${pathname === item.href
                             ? "bg-blue-600 text-white"
                             : "text-foreground hover:bg-default"
                         }`}
                     type="button"
                     href={item.href}
                 >
-                    <item.icon className={`size-5 text-muted ${
-                        pathname === item.href
+                    <item.icon className={`size-5 text-muted ${pathname === item.href
                             ? "text-white"
                             : "text-foreground hover:bg-default"
-                    }`} />
+                        }`} />
                     {item.label}
                 </Link>
             ))}
@@ -84,7 +82,7 @@ const DashboardSideBarClient = ({ user }) => {
 
     return (
         <>
-            <aside className="hidden w-64 shrink-0 border-r border-default p-4 lg:block">
+            <aside className="hidden w-64 h-screen shrink-0 border-r border-default p-4 lg:block">
                 {navContent}
             </aside>
             <Drawer>

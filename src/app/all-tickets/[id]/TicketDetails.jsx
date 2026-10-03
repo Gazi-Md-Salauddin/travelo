@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createBooking } from "@/lib/actions/booking";
 import BookingModal from '@/components/BookingModal'
-
 
 import {
   Button,
@@ -35,8 +34,55 @@ const TicketDetails = ({ ticket, user }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [now, setNow] = useState(() => Date.now());
+
   const [quantity, setQuantity] = useState(1);
-  const [countdown, setCountdown] = useState("");
+
+  const departureDateTime = useMemo(() => {
+  if (!ticket.departureDate || !ticket.departureTime) {
+    return null;
+  }
+
+  const [year, month, day] = ticket.departureDate
+    .split("-")
+    .map(Number);
+
+  const [hours, minutes] = ticket.departureTime
+    .split(":")
+    .map(Number);
+
+  return new Date(
+    year,
+    month - 1,
+    day,
+    hours,
+    minutes,
+    0
+  );
+}, [ticket.departureDate, ticket.departureTime]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+
+  const countdown = useMemo(() => {
+    if (!departureDateTime) return "No Date";
+
+    const distance = departureDateTime.getTime() - now;
+    if (distance <= 0) return "Departed";
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }, [departureDateTime, now]);
+
 
   if (user.role !== 'user') {
     return (
@@ -60,6 +106,7 @@ const TicketDetails = ({ ticket, user }) => {
     );
   }
 
+
   const onOpen = () => setIsOpen(true);
   const onClose = () => setIsOpen(false);
 
@@ -75,53 +122,24 @@ const TicketDetails = ({ ticket, user }) => {
     }
   }
 
-  const departureDateTime = new Date(
-    `${ticket.departureDate}T${ticket.departureTime}`
-  );
+  const isExpired = departureDateTime && departureDateTime.getTime() < now;
 
-  const isExpired =
-    departureDateTime.getTime() <
-    Date.now();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
+  const formatTime = (time) => {
+  if (!time) return "N/A";
 
-      const distance =
-        departureDateTime.getTime() - now;
+  const [hours, minutes] = time.split(":");
 
-      if (distance <= 0) {
-        setCountdown("Departed");
-        return;
-      }
+  const date = new Date();
+  date.setHours(Number(hours), Number(minutes), 0, 0);
 
-      // const days = Math.floor(
-      //   distance / (1000 * 60 * 60 * 24)
-      // );
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+};
 
-      const hours = Math.floor(
-        (distance %
-          (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
-
-      const minutes = Math.floor(
-        (distance %
-          (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
-
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-      );
-
-      setCountdown(
-        `${hours}h ${minutes}m ${seconds}s`
-      );
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const handleBooking = async () => {
 
@@ -149,8 +167,7 @@ const TicketDetails = ({ ticket, user }) => {
 
       pricePerTicket: ticket.price,
 
-      totalPrice:
-        quantity * ticket.price,
+      totalPrice: quantity * ticket.price,
 
       status: "pending",
 
@@ -295,7 +312,7 @@ const TicketDetails = ({ ticket, user }) => {
                     <Calendar className="size-4 text-blue-500" />
 
                     <span className="text-xs font-medium">
-                      Departure Date
+                      Travel Date
                     </span>
                   </div>
 
@@ -311,12 +328,12 @@ const TicketDetails = ({ ticket, user }) => {
                     <Clock className="size-4 text-blue-500" />
 
                     <span className="text-xs font-medium">
-                      Departure Time
+                      Start Time
                     </span>
                   </div>
 
                   <p className="mt-2 text-sm font-bold text-gray-900">
-                    {ticket.departureTime}
+                    {formatTime(ticket.departureTime)}
                   </p>
                 </div>
 
@@ -360,11 +377,11 @@ const TicketDetails = ({ ticket, user }) => {
 
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
-                    Departure Countdown
+                    Travel Starts In
                   </p>
 
                   <p className="mt-1 text-xs text-amber-600">
-                    Time remaining before departure
+                    Time remaining before start of the journey.<br/> Please book your tickets before the countdown ends.
                   </p>
                 </div>
 
