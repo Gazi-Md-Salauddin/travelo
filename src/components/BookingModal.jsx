@@ -12,10 +12,10 @@ const BookingModal = ({ticket, handleBooking, increase, decrease, quantity}) => 
   
   return (
     <Modal>
-      <Button variant="primary">Book Now</Button>
+      <Button variant="primary" className="w-full">Book Now</Button>
       <Modal.Backdrop>
         <Modal.Container>
-          <Modal.Dialog className="sm:max-w-[360px]">
+          <Modal.Dialog className="sm:max-w-90">
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Icon className="bg-default text-foreground">

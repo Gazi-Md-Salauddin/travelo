@@ -59,7 +59,6 @@ const TransactionHistoryTable = () => {
     return (
       <div className="text-center p-10 bg-gray-50 rounded-lg m-4 border border-dashed">
         <p className="text-lg font-medium text-gray-700">{loading ? "please wait..." : "status"}</p>
-        <p className="text-sm text-amber-600 mt-2 font-mono">{errorLog}</p>
       </div>
     );
   }

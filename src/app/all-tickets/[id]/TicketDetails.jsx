@@ -39,27 +39,27 @@ const TicketDetails = ({ ticket, user }) => {
   const [quantity, setQuantity] = useState(1);
 
   const departureDateTime = useMemo(() => {
-  if (!ticket.departureDate || !ticket.departureTime) {
-    return null;
-  }
+    if (!ticket.departureDate || !ticket.departureTime) {
+      return null;
+    }
 
-  const [year, month, day] = ticket.departureDate
-    .split("-")
-    .map(Number);
+    const [year, month, day] = ticket.departureDate
+      .split("-")
+      .map(Number);
 
-  const [hours, minutes] = ticket.departureTime
-    .split(":")
-    .map(Number);
+    const [hours, minutes] = ticket.departureTime
+      .split(":")
+      .map(Number);
 
-  return new Date(
-    year,
-    month - 1,
-    day,
-    hours,
-    minutes,
-    0
-  );
-}, [ticket.departureDate, ticket.departureTime]);
+    return new Date(
+      day,
+      month - 1,
+      year,
+      hours,
+      minutes,
+      0
+    );
+  }, [ticket.departureDate, ticket.departureTime]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -124,21 +124,36 @@ const TicketDetails = ({ ticket, user }) => {
 
   const isExpired = departureDateTime && departureDateTime.getTime() < now;
 
-
+  // For Time Formatting
   const formatTime = (time) => {
-  if (!time) return "N/A";
+    if (!time) return "N/A";
 
-  const [hours, minutes] = time.split(":");
+    const [hours, minutes] = time.split(":");
 
-  const date = new Date();
-  date.setHours(Number(hours), Number(minutes), 0, 0);
+    const date = new Date();
+    date.setHours(Number(hours), Number(minutes), 0, 0);
 
-  return date.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-};
+    return date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
+  // For Date Formatting
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+
+    const [year, month, day] = dateString.split("-").map(Number);
+
+    const date = new Date(year, month - 1, day);
+
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
 
   const handleBooking = async () => {
@@ -191,8 +206,6 @@ const TicketDetails = ({ ticket, user }) => {
       );
     }
   };
-
-  //const handleBtn = handleBooking()
 
   return (
     <section className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
@@ -250,11 +263,20 @@ const TicketDetails = ({ ticket, user }) => {
                   Travel Ticket
                 </span>
 
-                <span className="flex items-center gap-2 rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-700">
-                  <span className="h-2 w-2 rounded-full bg-green-500" />
-                  Available
-                </span>
+                {/* status badge */}
+                {ticket.quantity > 0 ? (
+                  <span className="flex items-center gap-2 rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-700">
+                    <span className="h-2 w-2 rounded-full bg-green-500" />
+                    Available
+                  </span>
 
+                ) : (
+                  <span className="flex items-center gap-2 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700">
+                    <span className="h-2 w-2 rounded-full bg-red-500" />
+                    Unavailable
+                  </span>
+                )
+                }
               </div>
 
               <h1 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
@@ -317,7 +339,7 @@ const TicketDetails = ({ ticket, user }) => {
                   </div>
 
                   <p className="mt-2 text-sm font-bold text-gray-900">
-                    {ticket.departureDate}
+                    {formatDate(ticket.departureDate)}
                   </p>
                 </div>
 
@@ -369,7 +391,6 @@ const TicketDetails = ({ ticket, user }) => {
 
             </div>
 
-
             {/* Countdown */}
             <div className="mt-7 rounded-2xl border border-amber-200 bg-amber-50 p-5">
 
@@ -381,7 +402,7 @@ const TicketDetails = ({ ticket, user }) => {
                   </p>
 
                   <p className="mt-1 text-xs text-amber-600">
-                    Time remaining before start of the journey.<br/> Please book your tickets before the countdown ends.
+                    Time remaining before start of the journey.<br /> Please book your tickets before the countdown ends.
                   </p>
                 </div>
 
@@ -439,18 +460,13 @@ const TicketDetails = ({ ticket, user }) => {
               />
 
             </div>
-
+            {/* Bottom Note */}
+            <div className="mt-5 flex items-center justify-center gap-2 text-xs text-gray-400">
+              <span>🔒</span>
+              <span>Secure booking • Instant confirmation</span>
+            </div>
           </div>
-
         </div>
-
-
-        {/* Bottom Note */}
-        <div className="mt-5 flex items-center justify-center gap-2 text-xs text-gray-400">
-          <span>🔒</span>
-          <span>Secure booking • Instant confirmation</span>
-        </div>
-
       </div>
     </section>
   );
