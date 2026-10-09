@@ -59,23 +59,23 @@ const AllTicketsPage = async ({ searchParams }) => {
           defaultValue={transportType}
           className="border dark:border-[#374151] p-2 rounded-xl"
         >
-          <option value="" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             All Transport
           </option>
 
-          <option value="Bus" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="Bus" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Bus
           </option>
 
-          <option value="Train" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="Train" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Train
           </option>
 
-          <option value="Flight" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="Flight" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Flight
           </option>
 
-          <option value="Launch" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="Launch" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Launch
           </option>
         </select>
@@ -85,15 +85,15 @@ const AllTicketsPage = async ({ searchParams }) => {
           defaultValue={sort}
           className="border dark:border-[#374151] p-2 rounded-xl"
         >
-          <option value="" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Sort Price
           </option>
 
-          <option value="low" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="low" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             Low → High
           </option>
 
-          <option value="high" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
+          <option value="high" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
             High → Low
           </option>
         </select>
