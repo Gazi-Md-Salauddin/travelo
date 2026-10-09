@@ -90,6 +90,7 @@ const UpdateTicketModal = ({ ticket }) => {
                   onChange={(e) =>
                     setTitle(e.target.value)
                   }
+                  className="border dark:border-[#374151]"
                 />
               </TextField>
 
@@ -100,6 +101,7 @@ const UpdateTicketModal = ({ ticket }) => {
                   onChange={(e) =>
                     setFrom(e.target.value)
                   }
+                  className="border dark:border-[#374151]"
                 />
               </TextField>
 
@@ -110,6 +112,7 @@ const UpdateTicketModal = ({ ticket }) => {
                   onChange={(e) =>
                     setTo(e.target.value)
                   }
+                  className="border dark:border-[#374151]"
                 />
               </TextField>
 
@@ -121,6 +124,7 @@ const UpdateTicketModal = ({ ticket }) => {
                   onChange={(e) =>
                     setPrice(e.target.value)
                   }
+                  className="border dark:border-[#374151]"
                 />
               </TextField>
 
@@ -132,6 +136,7 @@ const UpdateTicketModal = ({ ticket }) => {
                   onChange={(e) =>
                     setQuantity(e.target.value)
                   }
+                  className="border dark:border-[#374151]"
                 />
               </TextField>
             </Modal.Body>

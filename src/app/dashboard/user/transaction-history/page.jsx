@@ -83,7 +83,7 @@ const TransactionHistoryTable = () => {
             return (
               <div
                 key={tx._id}
-                className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                className="rounded-xl border border-gray-200 p-4 shadow-sm dark:border-[#374151]"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between gap-3 mb-4">
@@ -142,7 +142,7 @@ const TransactionHistoryTable = () => {
 
       {/* Desktop Table View */}
       <div className="hidden sm:block overflow-x-auto">
-      <table className="w-full border border-gray-200 text-left border-collapse">
+      <table className="w-full border border-gray-200 text-left border-collapse dark:border-[#374151]">
         <thead className="bg-gray-100 dark:bg-black dark:text-white">
           <tr>
             <th className="p-3 border">Booking/Tx ID</th>
@@ -166,13 +166,13 @@ const TransactionHistoryTable = () => {
               const totalAmount = Number(tx.pricePerTicket || 0) * Number(tx.bookingQuantity || 0);
               
               return (
-                <tr key={tx._id} className="border-t hover:bg-gray-50 transition-colors">
-                  <td className="p-3 font-mono text-sm text-gray-600">{tx._id}</td>
+                <tr key={tx._id} className="border-t transition-colors">
+                  <td className="p-3 text-sm">{tx._id}</td>
                   <td className="p-3 font-medium">{tx.ticketTitle}</td>
                   <td className="p-3 text-sm">{tx.ticketFrom} → {tx.ticketTo}</td>
                   <td className="p-3 text-center">{tx.bookingQuantity}</td>
-                  <td className="p-3 font-semibold text-green-600">{totalAmount}</td>
-                  <td className="p-3 text-sm text-gray-600">
+                  <td className="p-3 font-semibold text-green-500">{totalAmount}</td>
+                  <td className="p-3 text-sm">
                     {tx.paymentDate ? new Date(tx.paymentDate).toLocaleString() : "N/A"}
                   </td>
                 </tr>

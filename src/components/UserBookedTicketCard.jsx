@@ -33,7 +33,7 @@ const UserBookedTicketCard = ({ booking }) => {
       }
 
       if (difference <= 0) {
-        setCountdown("Departed");
+        setCountdown("Journey Started");
         clearInterval(interval);
         return;
       }
@@ -100,7 +100,7 @@ const UserBookedTicketCard = ({ booking }) => {
   };
 
   return (
-    <Card className="group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <Card className="group overflow-hidden rounded-3xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-xl dark:bg-[#1F2937] dark:border-[#374151]">
 
       <div className="relative overflow-hidden">
         <Image
@@ -119,12 +119,12 @@ const UserBookedTicketCard = ({ booking }) => {
 
         {/* Title */}
         <div className="mb-5">
-          <h2 className="line-clamp-1 text-xl font-bold text-gray-950">
+          <h2 className="line-clamp-1 text-xl font-bold text-gray-950 dark:text-[#F9FAFB]">
             {booking.ticketTitle}
           </h2>
 
           {/* Route */}
-          <div className="mt-2 flex items-center justify-between text-sm text-gray-500">
+          <div className="mt-2 flex items-center justify-between text-sm text-gray-500 dark:text-[#9CA3AF]">
             <div className="flex items-center gap-1.5">
               <MapPin className="size-4 shrink-0 text-blue-600" />
 
@@ -164,7 +164,6 @@ const UserBookedTicketCard = ({ booking }) => {
           {/* Date */}
           <div className="rounded-2xl border border-gray-100 bg-gray-50 p-3.5">
             <div className="flex items-center gap-2 text-gray-400">
-              <Calendar className="size-4 text-blue-500" />
 
               <span className="text-xs font-medium">
                 Journey Date
@@ -198,14 +197,14 @@ const UserBookedTicketCard = ({ booking }) => {
         </div>
 
         {/* ================= PRICE / QUANTITY ================= */}
-        <div className="my-5 flex items-center justify-between border-y border-gray-100 py-4">
+        <div className="my-5 flex items-center justify-between border-y border-gray-100 py-4 dark:border-[#374151]">
 
           <div>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 dark:text-[#9CA3AF]">
               Quantity
             </p>
 
-            <p className="mt-1 text-sm font-semibold text-gray-900">
+            <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-[#F9FAFB]">
               {booking.bookingQuantity}{" "}
               {booking.bookingQuantity > 1 ? "Tickets" : "Ticket"}
             </p>
@@ -219,7 +218,7 @@ const UserBookedTicketCard = ({ booking }) => {
             <div className="mt-1 flex items-center justify-end gap-1">
               <CircleDollar className="size-4 text-green-600" />
 
-              <span className="text-lg font-bold text-gray-950">
+              <span className="text-lg font-bold text-gray-950 dark:text-[#F9FAFB]">
                 {totalPrice}
               </span>
             </div>

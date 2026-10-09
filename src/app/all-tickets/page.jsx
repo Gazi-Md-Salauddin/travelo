@@ -24,58 +24,58 @@ const AllTicketsPage = async ({ searchParams }) => {
   const data = await res.json();
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 dark:bg-[#171717]">
 
-      <div className="px-4 text-center py-4">
-        <h1 className="text-3xl font-bold">
-          All Tickets
+      <div className="px-4 text-center py-6">
+        <h1 className="text-4xl font-bold">
+          All <span className="text-blue-500">Tickets</span>
         </h1>
 
-        <p className="text-default-500">
-          Browse all approved tickets.
+        <p className="text-gray-400">
+          Browse all available tickets for your next journey.
         </p>
       </div>
 
       {/* Search */}
 
-      <form className="grid md:grid-cols-5 gap-4">
+      <form className="grid md:grid-cols-5 gap-4 border dark:border-[#374151] rounded-xl px-2 py-2 mx-4 shadow-md">
 
         <input
           name="from"
           defaultValue={from}
           placeholder="From"
-          className="border p-2 rounded"
+          className="border dark:border-[#374151] p-2 rounded-xl"
         />
 
         <input
           name="to"
           defaultValue={to}
           placeholder="To"
-          className="border p-2 rounded"
+          className="border dark:border-[#374151] p-2 rounded-xl"
         />
 
         <select
           name="transportType"
           defaultValue={transportType}
-          className="border p-2 rounded"
+          className="border dark:border-[#374151] p-2 rounded-xl"
         >
-          <option value="">
+          <option value="" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             All Transport
           </option>
 
-          <option value="Bus">
+          <option value="Bus" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Bus
           </option>
 
-          <option value="Train">
+          <option value="Train" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Train
           </option>
 
-          <option value="Flight">
+          <option value="Flight" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Flight
           </option>
 
-          <option value="Launch">
+          <option value="Launch" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Launch
           </option>
         </select>
@@ -83,23 +83,23 @@ const AllTicketsPage = async ({ searchParams }) => {
         <select
           name="sort"
           defaultValue={sort}
-          className="border p-2 rounded"
+          className="border dark:border-[#374151] p-2 rounded-xl"
         >
-          <option value="">
+          <option value="" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Sort Price
           </option>
 
-          <option value="low">
+          <option value="low" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             Low → High
           </option>
 
-          <option value="high">
+          <option value="high" className="dark:bg-[#171717] dark:text-[#9CA3AF] rounded-xl">
             High → Low
           </option>
         </select>
 
         <button
-          className="bg-blue-600 text-white rounded"
+          className="bg-blue-600 text-white rounded-xl"
         >
           Search
         </button>
@@ -108,7 +108,7 @@ const AllTicketsPage = async ({ searchParams }) => {
 
       {/* Tickets */}
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
 
         {data?.tickets?.map((ticket) => (
           <AllTicketCard

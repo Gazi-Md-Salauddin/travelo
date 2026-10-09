@@ -1,4 +1,7 @@
-import { MapPin } from "@gravity-ui/icons";
+"use client"
+import { CircleDollar, MapPin } from "@gravity-ui/icons";
+import { Chip } from "@heroui/react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,7 +9,10 @@ import Link from "next/link";
 const AdvertisementSection = ({ tickets }) => {
   return (
     <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4">
+      <motion.div initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.3 }} className="max-w-7xl mx-auto px-4">
 
         <h2 className="text-4xl font-bold mb-8 text-center">
           Advertised Tickets
@@ -17,7 +23,7 @@ const AdvertisementSection = ({ tickets }) => {
           {tickets?.map((ticket) => (
             <div
               key={ticket._id}
-              className="border rounded-xl overflow-hidden shadow-sm"
+              className="border rounded-xl overflow-hidden shadow-sm dark:bg-[#1F2937] dark:border-[#374151]"
             >
               <Image
                 src={ticket.image}
@@ -42,19 +48,20 @@ const AdvertisementSection = ({ tickets }) => {
                   </span>
                 </div>
 
-                <div className="bg-gray-200 dark:bg-black/10 dark:text-white">
-                  <p className="text-md font-medium">Leaves</p>
-                  <h2 className="text-xl font-bold">{ticket.departureTime}</h2>
-                  <p>From {ticket.from}</p>
+                <div className="flex justify-between px-2 my-2 bg-blue-100/40 rounded-md dark:bg-gray-100/10 dark:text-white">
+                  <div >
+                    <p className="text-md font-medium">Leaves</p>
+                    <h2 className="text-xl font-bold">{ticket.departureTime}</h2>
+                    <p>From {ticket.from}</p>
+                  </div>
+
+                  <div className="text-center">
+                    <p className="font-medium">Available</p>
+                    <p className="text-2xl font-bold">{ticket.quantity}</p>
+                    <p className="font-medium">Tickets</p>
+                  </div>
+
                 </div>
-
-                <p className="mt-2">
-                  <strong>Price:</strong> {ticket.price}
-                </p>
-
-                <p>
-                  <strong>Available:</strong> {ticket.quantity}
-                </p>
 
                 <p>
                   <strong>Transport:</strong>{" "}
@@ -63,21 +70,33 @@ const AdvertisementSection = ({ tickets }) => {
 
                 <div className="flex flex-wrap gap-2 mt-3">
                   {ticket.perks?.map((perk) => (
-                    <span
+                    <Chip
                       key={perk}
-                      className="px-2 py-1 text-xs rounded-full bg-green-300/20 text-green-500"
+                      size="sm"
+                      color="accent"
+                      variant="soft"
+                      
                     >
                       {perk}
-                    </span>
+                    </Chip>
                   ))}
                 </div>
 
-                <Link
-                  href={`/all-tickets/${ticket._id}`}
-                  className="mt-5 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg"
-                >
-                  See Details
-                </Link>
+                <div className="flex justify-between">
+                  <div className="mt-2 text-center">
+                    <p className="text-md">Price (Per Ticket)</p>
+                    <p className="font-bold text-2xl">{ticket.price}</p>
+                  </div>
+
+                  <Link
+                    href={`/all-tickets/${ticket._id}`}
+                    className="mt-5 inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-500"
+                  >
+                    See Details
+                  </Link>
+
+                </div>
+
 
               </div>
             </div>
@@ -85,7 +104,7 @@ const AdvertisementSection = ({ tickets }) => {
 
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

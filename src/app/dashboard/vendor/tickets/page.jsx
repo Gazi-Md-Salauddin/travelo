@@ -18,7 +18,7 @@ const TicketsPage = async () => {
   };
 
 
-  
+
   return (
     <section className="space-y-8">
       <div className="text-center pt-6">
@@ -38,21 +38,21 @@ const TicketsPage = async () => {
           </h3>
 
           <p className="mt-2 text-default-500">
-            You haven't added any tickets yet.
+            You haven&apos;t added any tickets yet.
           </p>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
           {data?.tickets?.map((ticket) => {
-          const color = getStatusColor(ticket.status)
+            const color = getStatusColor(ticket.status)
 
             const isRejected =
               ticket.status === "rejected";
 
             return (
-               
-    <VendorAddedTicketCard key={ticket._id} ticket={ticket} color={color}/>
-              
+
+              <VendorAddedTicketCard key={ticket._id} ticket={ticket} color={color} />
+
             );
           })}
         </div>

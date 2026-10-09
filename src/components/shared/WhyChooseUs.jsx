@@ -101,7 +101,7 @@ const WhyChooseUs = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="rounded-2xl border bg-background p-8 shadow-sm hover:shadow-lg transition-all duration-300"
+              className="rounded-2xl border bg-background p-8 shadow-sm hover:shadow-lg transition-all duration-300 dark:bg-[#1F2937] dark:border-[#374151]"
             >
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
                 {feature.icon}

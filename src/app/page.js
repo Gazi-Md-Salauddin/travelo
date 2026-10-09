@@ -7,7 +7,7 @@ import WhyChooseUs from '@/components/shared/WhyChooseUs'
 export default async function Home() {
   const tickets = await getAdvertisements();
   return (
-    <div>
+    <div className="dark:bg-[#171717]">
       <HeroSection/>
       <AdvertisementSection tickets={tickets} />
       <WhyChooseUs/>

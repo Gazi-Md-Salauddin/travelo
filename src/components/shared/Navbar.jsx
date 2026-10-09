@@ -47,7 +47,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-full border-b border-default-200 bg-background/80 backdrop-blur-lg">
+    <nav className="w-full border-b border-default-200 bg-background/80 backdrop-blur-lg dark:bg-[#171717]">
       <header className="max-w-7xl mx-auto h-20 flex items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">

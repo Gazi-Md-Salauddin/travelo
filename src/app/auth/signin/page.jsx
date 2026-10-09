@@ -54,7 +54,7 @@ export default function SignInPage() {
       } else {
         toast.success("SignIn Successful")
         router.push("/");
-        router.reload();
+        router.refresh();
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
@@ -70,8 +70,8 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-8 py-6 sm:py-10 dark:bg-black">
-      <div className="w-full max-w-7xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-blue-300">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-8 py-6 sm:py-10 dark:bg-[#171717]">
+      <div className="w-full max-w-7xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-[#374151]">
         <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* Left Side */}
@@ -131,7 +131,7 @@ export default function SignInPage() {
                 <TextField className="w-full">
                   <Label>Email</Label>
 
-                  <InputGroup>
+                  <InputGroup className="border dark:border-[#374151]">
                     <InputGroup.Suffix>
                       <Envelope className="text-default-400 text-lg" />
                     </InputGroup.Suffix>
@@ -149,7 +149,7 @@ export default function SignInPage() {
                 <TextField className="w-full">
                   <Label>Password</Label>
 
-                  <InputGroup>
+                  <InputGroup className="border dark:border-[#374151]">
                     <InputGroup.Suffix>
                       <Lock className="text-default-400 text-lg" />
                     </InputGroup.Suffix>

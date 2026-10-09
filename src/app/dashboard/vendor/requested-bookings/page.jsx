@@ -24,7 +24,7 @@ const RequestedBookingsPage = async () => {
 
         <div className="overflow-x-auto rounded-xl border">
           <table className="w-full">
-            <thead>
+            <thead className="border border-gray-400 rounded-xl">
               <tr className="bg-default-100">
                 <th className="p-4 text-left">
                   User

@@ -23,13 +23,13 @@ const UserProfilePage = () => {
 
   console.log("User Image:", user?.image)
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-gray-50 px-4 py-10 sm:px-6 lg:px-8">
+    <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8 ">
       <div className="mx-auto max-w-3xl">
 
         {/* Page Header */}
         <div className="mb-8">
 
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
             My Profile
           </h1>
 
@@ -39,7 +39,7 @@ const UserProfilePage = () => {
         </div>
 
         {/* Profile Card */}
-        <Card className="overflow-hidden border border-gray-200 bg-white shadow-sm">
+        <Card className="overflow-hidden border border-gray-200 dark:bg-[#1F2937] dark:border-[#374151] shadow-sm">
 
           {/* Top Banner */}
           <div className="h-32 bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600" />
@@ -49,7 +49,7 @@ const UserProfilePage = () => {
 
             {/* Avatar */}
             <div className="-mt-14 mb-5 flex justify-center sm:justify-start">
-              <div className="rounded-full bg-white p-1.5 shadow-md">
+              <div className="rounded-full p-1.5 shadow-md">
                 <Avatar
                   aria-label="User profile picture"
                   className="size-24 rounded-full sm:size-28"
@@ -71,17 +71,17 @@ const UserProfilePage = () => {
 
               <div>
                 {/* Role */}
-                <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
+                <span className="inline-flex items-center rounded-full bg-blue-200/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
                   {user.role || "Vendor"}
                 </span>
 
                 {/* Name */}
-                <h2 className="mt-3 text-2xl font-bold tracking-tight text-gray-900">
+                <h2 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {user.name}
                 </h2>
 
                 {/* Email */}
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-gray-500 dark:text-white">
                   {user.email}
                 </p>
               </div>
@@ -93,58 +93,58 @@ const UserProfilePage = () => {
             </div>
 
             {/* Divider */}
-            <div className="my-7 h-px bg-gray-100" />
+            <div className="my-7 h-px bg-[#374151]" />
 
             {/* Account Information */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-900">
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
                 Account Information
               </h3>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
 
                 {/* Name */}
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <div className="rounded-xl border border-gray-200 bg-white! p-4 dark:bg-[#1F2937]! dark:border-[#374151]!">
                   <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                     Full Name
                   </p>
 
-                  <p className="mt-1 truncate text-sm font-medium text-gray-900">
+                  <p className="mt-1 truncate text-sm font-medium text-gray-900 dark:text-white">
                     {user.name}
                   </p>
                 </div>
 
                 {/* Email */}
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <div className="rounded-xl border border-gray-200 bg-white! p-4 dark:bg-[#1F2937]! dark:border-[#374151]!">
                   <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                     Email Address
                   </p>
 
-                  <p className="mt-1 truncate text-sm font-medium text-gray-900">
+                  <p className="mt-1 truncate text-sm font-medium text-gray-900 dark:text-white">
                     {user.email}
                   </p>
                 </div>
 
                 {/* Role */}
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                <div className="rounded-xl border border-gray-200 bg-white! p-4 dark:bg-[#1F2937]! dark:border-[#374151]!">
                   <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                     Account Role
                   </p>
 
-                  <p className="mt-1 text-sm font-medium capitalize text-gray-900">
+                  <p className="mt-1 text-sm font-medium capitalize text-gray-900 dark:text-white">
                     {user.role || "Vendor"}
                   </p>
                 </div>
 
                 {/* Account Status */}
-                <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                  <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
+                <div className="rounded-xl border border-gray-200 bg-white! p-4 dark:bg-[#1F2937]! dark:border-[#374151]!">
+                  <p className="text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-[#9CA3AF]">
                     Account Status
                   </p>
 
                   <div className="mt-1 flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-green-500" />
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                       Active
                     </p>
                   </div>

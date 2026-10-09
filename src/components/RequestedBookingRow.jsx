@@ -63,7 +63,7 @@ const RequestedBookingRow = ({
           </p>
 
           <p className="text-sm text-default-500">
-            {user?.email}
+            {booking.userEmail}
           </p>
         </div>
       </td>
@@ -77,7 +77,7 @@ const RequestedBookingRow = ({
       </td>
 
       <td className="p-4">
-        ৳{booking.totalPrice}
+        {booking.totalPrice}
       </td>
 
       <td className="p-4">

@@ -88,7 +88,7 @@ export default function SignupPage() {
    };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 sm:py-10 dark:bg-black">
+    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 sm:py-10 dark:bg-[#171717] border dark:border-[#374151]">
       <Card className="w-full max-w-7xl overflow-hidden rounded-2xl lg:rounded-3xl border border-default-200 shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* LEFT SIDE */}
@@ -170,7 +170,7 @@ export default function SignupPage() {
                 <TextField>
                   <Label>Full Name</Label>
 
-                  <InputGroup>
+                  <InputGroup className="border dark:border-[#374151]">
                     <InputGroup.Suffix>
                       <Person className="text-default-400" />
                     </InputGroup.Suffix>
@@ -186,7 +186,7 @@ export default function SignupPage() {
                 <TextField>
                   <Label>Email Address</Label>
 
-                  <InputGroup>
+                  <InputGroup className="border dark:border-[#374151]">
                     <InputGroup.Suffix>
                       <Envelope className="text-default-400" />
                     </InputGroup.Suffix>
@@ -203,7 +203,7 @@ export default function SignupPage() {
                 <TextField>
                   <Label>Password</Label>
 
-                  <InputGroup>
+                  <InputGroup className="border dark:border-[#374151]">
                     <InputGroup.Suffix>
                       <Lock className="text-default-400" />
                     </InputGroup.Suffix>

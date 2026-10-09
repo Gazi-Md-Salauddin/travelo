@@ -178,7 +178,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Ticket Title</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <Ticket className="size-4" />
             </InputGroup.Prefix>
@@ -200,7 +200,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Transport Type</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Input
               name="transportType"
               placeholder="Bus / Train / Flight / Launch"
@@ -218,7 +218,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>From Location</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <MapPin className="size-4" />
             </InputGroup.Prefix>
@@ -240,7 +240,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>To Location</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <MapPin className="size-4" />
             </InputGroup.Prefix>
@@ -262,7 +262,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Price Per Unit</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <CircleDollar className="size-4" />
             </InputGroup.Prefix>
@@ -285,7 +285,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Ticket Quantity</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Input
               type="number"
               name="quantity"
@@ -304,7 +304,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Departure Date</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <Calendar className="size-4" />
             </InputGroup.Prefix>
@@ -320,7 +320,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Departure Time</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <Clock className="size-4" />
             </InputGroup.Prefix>
@@ -336,7 +336,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Vendor Name</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <Person className="size-4" />
             </InputGroup.Prefix>
@@ -353,7 +353,7 @@ export default function AddTicketPage() {
         <TextField>
           <Label>Vendor Email</Label>
 
-          <InputGroup>
+          <InputGroup className="border dark:border-[#374151]">
             <InputGroup.Prefix>
               <Envelope className="size-4" />
             </InputGroup.Prefix>
@@ -432,7 +432,8 @@ export default function AddTicketPage() {
                 type="file"
                 accept="image/png, image/jpeg"
                 onChange={handleImageUpload}
-                className="hidden"
+                className="hidden border dark:border-[#374151]"
+                
               />
               {imageUrl ? (
                 <img src={imageUrl} alt="Image Preview" className="w-full h-full object-cover" />

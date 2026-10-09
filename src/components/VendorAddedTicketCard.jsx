@@ -27,7 +27,7 @@ const VendorAddedTicketCard = ({ ticket, color }) => {
   return (
     <Card
 
-      className="overflow-hidden"
+      className="overflow-hidden border dark:border-[#374151] dark:bg-[#1F2937]"
     >
       <Image
         src={
@@ -44,7 +44,7 @@ const VendorAddedTicketCard = ({ ticket, color }) => {
       <div className="space-y-4 p-5">
         {/* Title + Status */}
         <div className="flex items-start justify-between gap-3">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-2xl font-bold">
             {ticket.title}
           </h2>
 
@@ -66,40 +66,45 @@ const VendorAddedTicketCard = ({ ticket, color }) => {
         </div>
 
         {/* Ticket Details */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex justify-between">
           <div>
-            <p className="text-xs text-default-500">
+            <p className="text-md text-default-500">
               Transport
             </p>
 
-            <p className="font-medium">
+            <p className="text-2xl font-medium">
               {ticket.transportType}
             </p>
           </div>
 
-          <div>
-            <p className="text-xs text-default-500">
-              Price
-            </p>
+          
 
-            <p className="font-medium flex items-center gap-1">
-              <CircleDollar />{ticket.price}
-            </p>
-          </div>
+            <div className="text-center">
+              <p className="text-md text-default-500">
+                Quantity
+              </p>
 
-          <div>
-            <p className="text-xs text-default-500">
-              Quantity
-            </p>
+              <p className="text-2xl font-medium">
+                {ticket.quantity}
+              </p>
+            </div>
 
-            <p className="font-medium">
-              {ticket.quantity}
-            </p>
-          </div>
+            <div className="text-center">
+              <p className="text-md text-default-500">
+                Price
+              </p>
+
+              <p className="text-2xl font-medium flex items-center gap-1">
+                <CircleDollar />{ticket.price}
+              </p>
+            </div>
+
+          
+
         </div>
 
         {/* Departure */}
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-center gap-2 text-md">
           <Calendar className="size-4" />
 
           <span>

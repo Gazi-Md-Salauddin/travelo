@@ -2,7 +2,7 @@ import React from "react";
 
 const UserHomePage = () => {
   return (
-    <div className="flex items-center justify-center min-h-[80vh]">
+    <div className="flex items-center justify-center min-h-[80vh] dark:bg-[#171717]">
       <div className="text-center">
         <h1 className="text-4xl font-bold">
           Welcome to User Dashboard 👋

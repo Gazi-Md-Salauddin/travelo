@@ -82,7 +82,7 @@ const DashboardSideBarClient = ({ user }) => {
 
     return (
         <>
-            <aside className="hidden w-64 h-screen shrink-0 border-r border-default p-4 lg:block">
+            <aside className="hidden w-64 h-screen shrink-0 border-r border-default p-4 lg:block dark:bg-[#111827]">
                 {navContent}
             </aside>
             <Drawer>

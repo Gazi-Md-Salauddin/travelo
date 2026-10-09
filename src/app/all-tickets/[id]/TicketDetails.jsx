@@ -27,6 +27,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
+import { p } from "framer-motion/client";
 
 const TicketDetails = ({ ticket, user }) => {
 
@@ -73,7 +74,7 @@ const TicketDetails = ({ ticket, user }) => {
     if (!departureDateTime) return "No Date";
 
     const distance = departureDateTime.getTime() - now;
-    if (distance <= 0) return "Started";
+    if (distance <= 0) return "Journey Started";
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
@@ -208,7 +209,7 @@ const TicketDetails = ({ ticket, user }) => {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 lg:px-8 dark:bg-[#171717]">
       <div className="mx-auto max-w-7xl px-4">
 
         {/* Breadcrumb */}
@@ -216,7 +217,7 @@ const TicketDetails = ({ ticket, user }) => {
           <p className="text-sm text-gray-500">
             Tickets
             <span className="mx-2 text-gray-300">/</span>
-            <span className="font-medium text-gray-900">
+            <span className="font-medium text-gray-900 dark:text-[#9CA3AF]">
               {ticket.title}
             </span>
           </p>
@@ -226,7 +227,7 @@ const TicketDetails = ({ ticket, user }) => {
         <div className="grid gap-6 lg:grid-cols-2">
 
           {/* ================= IMAGE CARD ================= */}
-          <div className="h-90 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
+          <div className="h-90 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-[#374151]">
 
             <div className="relative h-90">
 
@@ -252,20 +253,20 @@ const TicketDetails = ({ ticket, user }) => {
 
 
           {/* ================= DETAILS CARD ================= */}
-          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10 dark:bg-[#1F2937] dark:border-[#374151]">
 
             {/* Header */}
             <div>
 
               <div className="mb-4 flex items-center justify-between gap-4">
 
-                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+                <span className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-600">
                   Travel Ticket
                 </span>
 
                 {/* status badge */}
                 {ticket.quantity > 0 ? (
-                  <span className="flex items-center gap-2 rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-700">
+                  <span className="flex items-center gap-2 rounded-full bg-green-300/20 px-3 py-1.5 text-xs font-semibold text-green-600">
                     <span className="h-2 w-2 rounded-full bg-green-500" />
                     Available
                   </span>
@@ -279,11 +280,11 @@ const TicketDetails = ({ ticket, user }) => {
                 }
               </div>
 
-              <h1 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl dark:text-[#F9FAFB]">
                 {ticket.title}
               </h1>
 
-              <div className="mt-4 flex items-center gap-2 text-gray-500">
+              <div className="mt-4 flex items-center gap-2 text-gray-500 dark:text-[#9CA3AF]">
                 <MapPin className="size-4 text-blue-600" />
 
                 <span className="text-sm font-medium">
@@ -450,14 +451,26 @@ const TicketDetails = ({ ticket, user }) => {
 
             {/* Booking */}
             <div className="mt-8 border-t border-gray-100 pt-6">
+              {isExpired ? (
+                <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-center">
+                  <p className="text-lg font-bold text-amber-700"> Journey Started </p>
+                <p className="mt-1 text-sm text-amber-600"> Booking is no longer available for this journey. </p>
+                </div>
+              ) : ticket.quantity <= 0 ? (
+                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-center">
+                  <p className="text-lg font-bold text-red-700"> Tickets Unavailable </p>
+                <p className="mt-1 text-sm text-red-600"> Sorry, all tickets have been booked. </p>
+                </div>
+              ) : (
+                <BookingModal
+                  ticket={ticket}
+                  handleBooking={handleBooking}
+                  increase={increase}
+                  decrease={decrease}
+                  quantity={quantity}
+                />
 
-              <BookingModal
-                ticket={ticket}
-                handleBooking={handleBooking}
-                increase={increase}
-                decrease={decrease}
-                quantity={quantity}
-              />
+              )}
 
             </div>
             {/* Bottom Note */}
