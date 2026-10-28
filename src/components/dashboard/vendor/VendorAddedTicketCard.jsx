@@ -2,8 +2,8 @@
 import React from 'react'
 import Link from "next/link";
 import { useRouter } from "next/navigation"
-import UpdateTicketModal from '@/components/UpdateTicketModal'
-import DeleteAlert from '@/components/DeleteAlert'
+import UpdateTicketModal from '@/components/dashboard/vendor/UpdateTicketModal'
+import DeleteAlert from '@/components/dashboard/vendor/DeleteAlert'
 
 import {
   Button,

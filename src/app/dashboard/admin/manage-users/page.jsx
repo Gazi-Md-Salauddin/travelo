@@ -1,5 +1,5 @@
 import { getUsers } from "@/lib/actions/users";
-import UserRow from "@/components/UserRow";
+import UserRow from "@/components/dashboard/user/UserRow";
 
 const ManageUsersPage = async () => {
 

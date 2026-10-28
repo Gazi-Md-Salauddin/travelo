@@ -1,5 +1,5 @@
 import { getTickets } from "@/lib/actions/tickets";
-import VendorAddedTicketCard from '@/components/VendorAddedTicketCard'
+import VendorAddedTicketCard from '@/components/dashboard/vendor/VendorAddedTicketCard'
 
 const TicketsPage = async () => {
   const data = await getTickets();

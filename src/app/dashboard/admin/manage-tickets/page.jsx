@@ -1,6 +1,6 @@
 
 import { getAdminTickets } from '@/lib/actions/tickets'
-import AdminManageTicket from '@/components/AdminManageTicket'
+import AdminManageTicket from '@/components/dashboard/admin/AdminManageTicket'
 
 const ManageTicketsPage = async () => {
   const data = await getAdminTickets();

@@ -1,6 +1,6 @@
 import { getVendorBookings } from "@/lib/actions/booking";
 
-import RequestedBookingRow from "@/components/RequestedBookingRow";
+import RequestedBookingRow from "@/components/dashboard/vendor/RequestedBookingRow";
 import { getUserSession } from '@/lib/core/session';
 
 

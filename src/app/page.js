@@ -1,8 +1,9 @@
 import Image from "next/image";
 import HeroSection from '@/components/shared/HeroSection'
 import { getAdvertisements } from "@/lib/actions/tickets";
-import AdvertisementSection from "@/components/AdvertisementSection";
+import AdvertisementSection from "@/components/dashboard/admin/AdvertisementSection";
 import WhyChooseUs from '@/components/shared/WhyChooseUs'
+import CustomerReviews from "@/components/shared/CustomerReviews";
 
 export default async function Home() {
   const tickets = await getAdvertisements();
@@ -11,6 +12,7 @@ export default async function Home() {
       <HeroSection/>
       <AdvertisementSection tickets={tickets} />
       <WhyChooseUs/>
+      <CustomerReviews/>
     </div>
   );
 }
