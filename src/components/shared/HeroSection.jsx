@@ -1,18 +1,9 @@
 "use client";
 
-import { Button, Calendar, Card, Input } from "@heroui/react";
-import {
-  ArrowRight,
-  Bus,
-  Plane,
-  Train,
-  ShieldCheck,
-  Ticket,
-  Magnifier,
-  Person,
-  Route,
-} from "@gravity-ui/icons";
+import { Button } from "@heroui/react";
+import { Plane } from "@gravity-ui/icons";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -52,13 +43,11 @@ export default function HeroSection() {
               Explore Tickets
             </Link>
 
-            <Button
-              variant="bordered"
-              size="lg"
-              className="border border-white text-white"
+            <Link href="/all-tickets"
+              className="text-blue-500 bg-transparent border border-blue-500 rounded-full font-bold py-2 px-4"
             >
               Explore Routes
-            </Button>
+            </Link>
           </div>
 
           {/* Stats */}
@@ -82,53 +71,62 @@ export default function HeroSection() {
 
         {/* Right Search Card */}
         <div className="relative w-full max-w-lg flex-1">
-          <Card className="border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-5 shadow-2xl backdrop-blur-xl">
 
-            {/* Header */}
-            <Card.Header>
-              <h2 className="text-3xl font-bold text-white">Find Your Ticket</h2>
-              <p className="text-md text-white/70">
-                Search and book tickets in seconds.
-              </p>
-            </Card.Header>
-
-            <Card.Content className="space-y-4 flex">
-              <Route className="text-white" />
-              <Input
-                label="From"
-                placeholder="Dhaka"
+            {/* Travel Image */}
+            <div className="relative h-70 overflow-hidden rounded-xl">
+              <Image
+                src="/image/hero-right.jpg"
+                alt="Beautiful travel destination"
+                fill
+                className="h-full w-full object-cover"
               />
 
-              <Route className="text-white" />
-              <Input
-                label="To"
-                placeholder="Chattogram"
-              />
+              {/* Image Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
-              <div className="grid grid-cols-1 gap-3">
-                <Calendar />
-                <Input
-                  label="Date"
-                  type="date"
-                />
-
-                <Person className="text-white" />
-                <Input
-                  label="Passengers"
-                  placeholder="1 Passenger"
-                />
+              {/* Top Badge */}
+              <div className="absolute left-4 top-4">
+                <span className="rounded-full border border-white/30 bg-white/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
+                  ✨ Explore the World
+                </span>
               </div>
 
-              <Button
-                color="primary"
-                fullWidth
-                size="lg"
-              >
-                <Magnifier />
-                Search Tickets
-              </Button>
-            </Card.Content>
-          </Card>
+              {/* Image Content */}
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="mb-2 text-sm font-medium text-white/80">
+                  YOUR NEXT ADVENTURE STARTS HERE
+                </p>
+
+                <h2 className="text-3xl font-bold leading-tight text-white">
+                  Discover Beautiful
+                  <br />
+                  Destinations
+                </h2>
+
+                <p className="mt-2 text-sm text-white/80">
+                  Every journey brings a new story.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Content */}
+            <div className="mt-5 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-white">
+                  Make Every Journey Special
+                </p>
+                <p className="mt-1 text-xs text-white/60">
+                  Travel more, explore more.
+                </p>
+              </div>
+
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10">
+                <Plane className="text-2xl text-white" />
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

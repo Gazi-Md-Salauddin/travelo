@@ -1,5 +1,5 @@
 "use client"
-import { CircleDollar, MapPin } from "@gravity-ui/icons";
+import { MapPin } from "@gravity-ui/icons";
 import { Chip } from "@heroui/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -14,9 +14,17 @@ const AdvertisementSection = ({ tickets }) => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true, amount: 0.3 }} className="max-w-7xl mx-auto px-4">
 
-        <h2 className="text-4xl font-bold mb-8 text-center">
-          Advertised Tickets
-        </h2>
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-500">
+            Featured Journeys
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            Advertised Tickets
+          </h2>
+          <p className="mt-4 text-sm leading-6 text-slate-700 sm:text-base dark:text-slate-400">
+            Explore handpicked travel deals and discover your next journey at the best value
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -75,7 +83,7 @@ const AdvertisementSection = ({ tickets }) => {
                       size="sm"
                       color="accent"
                       variant="soft"
-                      
+
                     >
                       {perk}
                     </Chip>

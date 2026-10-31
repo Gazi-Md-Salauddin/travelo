@@ -452,17 +452,17 @@ const TicketDetails = ({ ticket, user }) => {
 
             {/* Booking */}
             <div className="mt-8 border-t border-gray-100 pt-6">
-              {/* {isExpired ? (
+              {isExpired ? (
                 <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-center">
                   <p className="text-lg font-bold text-amber-700"> Journey Started </p>
-                <p className="mt-1 text-sm text-amber-600"> Booking is no longer available for this journey. </p>
+                  <p className="mt-1 text-sm text-amber-600"> Booking is no longer available for this journey. </p>
                 </div>
               ) : ticket.quantity <= 0 ? (
                 <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-center">
                   <p className="text-lg font-bold text-red-700"> Tickets Unavailable </p>
-                <p className="mt-1 text-sm text-red-600"> Sorry, all tickets have been booked. </p>
+                  <p className="mt-1 text-sm text-red-600"> Sorry, all tickets have been booked. </p>
                 </div>
-              ) : ( */}
+              ) : (
                 <BookingModal
                   ticket={ticket}
                   handleBooking={handleBooking}
@@ -471,7 +471,7 @@ const TicketDetails = ({ ticket, user }) => {
                   quantity={quantity}
                 />
 
-              {/* )} */}
+              )}
 
             </div>
             {/* Bottom Note */}

@@ -64,15 +64,15 @@ const DashboardSideBarClient = ({ user }) => {
                 <Link
                     key={item.label}
                     className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${pathname === item.href
-                            ? "bg-blue-600 text-white"
-                            : "text-foreground hover:bg-default"
+                        ? "bg-blue-600 text-white"
+                        : "text-foreground hover:bg-default"
                         }`}
                     type="button"
                     href={item.href}
                 >
                     <item.icon className={`size-5 text-muted ${pathname === item.href
-                            ? "text-white"
-                            : "text-foreground hover:bg-default"
+                        ? "text-white"
+                        : "text-foreground hover:bg-default"
                         }`} />
                     {item.label}
                 </Link>
@@ -82,26 +82,30 @@ const DashboardSideBarClient = ({ user }) => {
 
     return (
         <>
-            <aside className="hidden w-64 h-screen shrink-0 border-r border-default p-4 lg:block dark:bg-[#111827]">
+            <div className="hidden w-64 shrink-0 border-r border-default px-4 pt-24 lg:block dark:bg-[#111827]">
                 {navContent}
-            </aside>
-            <Drawer>
-                <Button className="lg:hidden" variant="secondary">
-                    <Bars />
-                    Menu
-                </Button>
-                <Drawer.Backdrop>
-                    <Drawer.Content placement="left">
-                        <Drawer.Dialog>
-                            <Drawer.CloseTrigger />
-                            <Drawer.Header>
-                                <Drawer.Heading>Dashboard</Drawer.Heading>
-                            </Drawer.Header>
-                            <Drawer.Body>{navContent}</Drawer.Body>
-                        </Drawer.Dialog>
-                    </Drawer.Content>
-                </Drawer.Backdrop>
-            </Drawer>
+            </div>
+
+            <div className="lg:hidden w-full px-4 py-3">
+                <Drawer>
+                    <Button className="lg:hidden" variant="secondary">
+                        <Bars />
+                        Menu
+                    </Button>
+                    <Drawer.Backdrop>
+                        <Drawer.Content placement="left">
+                            <Drawer.Dialog>
+                                <Drawer.CloseTrigger />
+                                <Drawer.Header>
+                                    <Drawer.Heading>Dashboard</Drawer.Heading>
+                                </Drawer.Header>
+                                <Drawer.Body>{navContent}</Drawer.Body>
+                            </Drawer.Dialog>
+                        </Drawer.Content>
+                    </Drawer.Backdrop>
+                </Drawer>
+            </div>
+
         </>
     );
 }

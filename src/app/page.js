@@ -1,7 +1,7 @@
 import Image from "next/image";
 import HeroSection from '@/components/shared/HeroSection'
 import { getAdvertisements } from "@/lib/actions/tickets";
-import AdvertisementSection from "@/components/dashboard/admin/AdvertisementSection";
+import AdvertisementSection from "@/components/shared/AdvertisementSection";
 import WhyChooseUs from '@/components/shared/WhyChooseUs'
 import CustomerReviews from "@/components/shared/CustomerReviews";
 

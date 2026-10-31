@@ -55,6 +55,7 @@ export default function SignInPage() {
         toast.success("SignIn Successful")
         router.push("/");
         router.refresh();
+        window.location.href = "/";
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
@@ -70,7 +71,7 @@ export default function SignInPage() {
     });
   };
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-8 py-6 sm:py-10 dark:bg-[#171717]">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-6 sm:py-10 dark:bg-[#171717]">
       <div className="w-full max-w-7xl mx-auto overflow-hidden rounded-2xl lg:rounded-3xl border border-slate-200 shadow-lg dark:border-[#374151]">
         <div className="grid grid-cols-1 md:grid-cols-2">
 
@@ -180,7 +181,7 @@ export default function SignInPage() {
                 {/* Forgot Password */}
                 <div className="flex justify-end">
                   <Link
-                    href="/forgot-password"
+                    href="#"
                     className="text-sm text-primary hover:underline"
                   >
                     Forgot Password?
