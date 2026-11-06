@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import { Star, ShieldCheck, QuoteOpen } from "@gravity-ui/icons";
+import { StarFill, ShieldCheck, QuoteOpen } from "@gravity-ui/icons";
 
 const reviews = [
   {
@@ -70,7 +70,7 @@ export default function CustomerReviews() {
             <div className="text-left">
               <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
+                  <StarFill
                     key={star}
                     size={16}
                     className="fill-amber-400 text-amber-400"
@@ -95,7 +95,7 @@ export default function CustomerReviews() {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star
+                    <StarFill
                       key={i}
                       size={16}
                       className="fill-amber-400 text-amber-400"

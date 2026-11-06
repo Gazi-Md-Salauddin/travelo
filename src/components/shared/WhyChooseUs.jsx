@@ -58,20 +58,20 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    x: -80,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-    },
-  },
-};
+// const cardVariants = {
+//   hidden: {
+//     opacity: 0,
+//     x: -80,
+//   },
+//   visible: {
+//     opacity: 1,
+//     x: 0,
+//     transition: {
+//       duration: 0.4,
+//       ease: "easeOut",
+//     },
+//   },
+// };
 
 const WhyChooseUs = () => {
   return (
@@ -100,7 +100,7 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
+              
               className="rounded-2xl border bg-background p-8 shadow-sm hover:shadow-lg transition-all duration-300 dark:bg-[#1F2937] dark:border-[#374151]"
             >
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">

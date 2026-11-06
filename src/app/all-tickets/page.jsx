@@ -1,10 +1,11 @@
 import Link from "next/link";
 import AllTicketCard from "@/components/AllTicketCard";
+import { IconSearch } from "@heroui/react";
 
 const AllTicketsPage = async ({ searchParams }) => {
 
   const params = await searchParams;
-  
+
   const page = Number(params.page) || 1;
 
   const from = params.from || "";
@@ -26,126 +27,156 @@ const AllTicketsPage = async ({ searchParams }) => {
   return (
     <section className="space-y-8 dark:bg-[#171717]">
 
-      <div className="px-4 text-center py-6">
-        <h1 className="text-4xl font-bold">
-          All <span className="text-blue-500">Tickets</span>
-        </h1>
+  {/* Header */}
+  <div className="px-4 py-6 text-center">
+    <h1 className="text-3xl font-bold sm:text-4xl">
+      All <span className="text-blue-500">Tickets</span>
+    </h1>
 
-        <p className="text-gray-400">
-          Browse all available tickets for your next journey.
+    <p className="mt-1 text-sm text-gray-400 sm:text-base">
+      Browse all available tickets for your next journey.
+    </p>
+  </div>
+
+  {/* Main Container */}
+  <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-6 px-4 sm:px-6 lg:grid-cols-[240px_minmax(0,1fr)]">
+
+    {/* Search Filter */}
+    <form className="flex h-fit w-full min-w-0 flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5 dark:border-[#374151] dark:bg-[#1F2937]">
+
+      {/* Header */}
+      <div>
+        <h3 className="text-lg font-bold text-[#071F3D] dark:text-white">
+          Find Your Ticket
+        </h3>
+        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Search and filter available journeys
         </p>
       </div>
 
-      {/* Search */}
-
-      <form className="grid md:grid-cols-5 gap-4 border dark:border-[#374151] rounded-xl px-2 py-2 mx-4 shadow-md">
-
+      {/* From */}
+      <div className="space-y-1.5">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          From
+        </label>
         <input
           name="from"
           defaultValue={from}
-          placeholder="From"
-          className="border dark:border-[#374151] p-2 rounded-xl"
+          placeholder="Departure city"
+          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-white dark:focus:border-blue-500 dark:focus:bg-[#111827]"
         />
+      </div>
 
+      {/* To */}
+      <div className="space-y-1.5">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          To
+        </label>
         <input
           name="to"
           defaultValue={to}
-          placeholder="To"
-          className="border dark:border-[#374151] p-2 rounded-xl"
+          placeholder="Destination city"
+          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-white dark:focus:border-blue-500 dark:focus:bg-[#111827]"
         />
+      </div>
 
+      {/* Transport Type */}
+      <div className="space-y-1.5">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          Transport Type
+        </label>
         <select
           name="transportType"
           defaultValue={transportType}
-          className="border dark:border-[#374151] p-2 rounded-xl"
+          className="w-full cursor-pointer appearance-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-gray-200"
         >
-          <option value="" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            All Transport
-          </option>
-
-          <option value="Bus" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Bus
-          </option>
-
-          <option value="Train" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Train
-          </option>
-
-          <option value="Flight" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Flight
-          </option>
-
-          <option value="Launch" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Launch
-          </option>
+          <option value="">All Transport</option>
+          <option value="Bus">Bus</option>
+          <option value="Train">Train</option>
+          <option value="Flight">Flight</option>
         </select>
+      </div>
 
+      {/* Sort Price */}
+      <div className="space-y-1.5">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          Sort By Price
+        </label>
         <select
           name="sort"
           defaultValue={sort}
-          className="border dark:border-[#374151] p-2 rounded-xl"
+          className="w-full cursor-pointer appearance-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-gray-200"
         >
-          <option value="" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Sort Price
-          </option>
-
-          <option value="low" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            Low → High
-          </option>
-
-          <option value="high" className="bg-white! dark:bg-[#171717]! dark:text-[#9CA3AF]! rounded-xl">
-            High → Low
-          </option>
+          <option value="">Default Price</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
         </select>
-
-        <button
-          className="bg-blue-600 text-white rounded-xl"
-        >
-          Search
-        </button>
-
-      </form>
-
-      {/* Tickets */}
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-4">
-
-        {data?.tickets?.map((ticket) => (
-          <AllTicketCard
-            key={ticket._id}
-            ticket={ticket}
-          />
-        ))}
-
       </div>
 
-      {/* Pagination */}
+      {/* Search Button */}
+      <button
+        type="submit"
+        className="mt-1 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/25 active:scale-[0.98]"
+      >
+        <IconSearch className="size-4" />
+        Search Tickets
+      </button>
 
-      <div className="flex justify-center gap-5">
+    </form>
 
-        {page > 1 && (
-          <Link
-            href={`?page=${page - 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
-          >
-            Previous
-          </Link>
-        )}
+    {/* Ticket List */}
+    <div className="flex min-w-0 flex-col gap-4">
 
-        <span>
-          {page} / {data.totalPages}
-        </span>
+      {data?.tickets?.map((ticket) => (
+        <AllTicketCard
+          key={ticket._id}
+          ticket={ticket}
+        />
+      ))}
 
-        {page < data.totalPages && (
-          <Link
-            href={`?page=${page + 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
-          >
-            Next
-          </Link>
-        )}
+      {data?.tickets?.length === 0 && (
+        <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center dark:border-[#374151] dark:bg-[#1F2937]">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            No Tickets Found
+          </h3>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            Try changing your search filters.
+          </p>
+        </div>
+      )}
 
-      </div>
+    </div>
 
-    </section>
+  </div>
+
+  {/* Pagination */}
+  <div className="flex flex-wrap items-center justify-center gap-4 px-4 pb-8">
+
+    {page > 1 && (
+      <Link
+        href={`?page=${page - 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
+        className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-blue-500 hover:text-blue-600 dark:border-gray-700 dark:text-gray-300"
+      >
+        Previous
+      </Link>
+    )}
+
+    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+      {page} / {data.totalPages}
+    </span>
+
+    {page < data.totalPages && (
+      <Link
+        href={`?page=${page + 1}&from=${from}&to=${to}&transportType=${transportType}&sort=${sort}`}
+        className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-blue-500 hover:text-blue-600 dark:border-gray-700 dark:text-gray-300"
+      >
+        Next
+      </Link>
+    )}
+
+  </div>
+
+</section>
   );
 };
 

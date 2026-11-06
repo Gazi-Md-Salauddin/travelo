@@ -7,13 +7,6 @@ const TicketDetailsPage = async ({ params }) => {
 
   const user = await getUserSession()
 
-  if(!user){
-    redirect("/auth/signin")
-  }
-
-  if(user?.role != "user"){
-    redirect("/")
-  }
   
   const data = await params
   const ticket = await getTicketById(data.id);

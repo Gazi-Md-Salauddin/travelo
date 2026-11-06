@@ -21,20 +21,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-      
-  return(
-  <html
+
+  return (
+    <html
       lang="en"
       className="h-full antialiased"
-    suppressHydrationWarning
+      suppressHydrationWarning
     >
       <body className="min-h-full">
-       <Providers> 
-      <Toaster/>
-        <Navbar/>     
-      {children}
-        <Footer/>
-       </Providers>
+        <Providers>
+          <Toaster />
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

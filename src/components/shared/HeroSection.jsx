@@ -78,6 +78,7 @@ export default function HeroSection() {
               <Image
                 src="/image/hero-right.jpg"
                 alt="Beautiful travel destination"
+                priority
                 fill
                 className="h-full w-full object-cover"
               />

@@ -4,9 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
-import { useSession, signOut } from '@/lib/auth-client'
-import { usePathname, useRouter } from "next/navigation";
+import { useSession } from '@/lib/auth-client'
+import { usePathname } from "next/navigation";
+import ProfileDropdown from "@/components/shared/ProfileDropdown";
 import ThemeToggle from "@/components/shared/ThemeToggle";
+import { div } from "framer-motion/client";
 
 export default function Navbar() {
 
@@ -17,38 +19,17 @@ export default function Navbar() {
 
   const user = session?.user
 
-  const router = useRouter()
-
-  const handleSignOut = async () => {
-    await signOut()
-    router.refresh()
-  }
 
   const navItems = [
     { label: "Home", href: "/" },
     { label: "All Tickets", href: "/all-tickets" },
-
+    { label: "About", href: "/about" },
   ];
 
 
-  const dashboardLinks = {
-    user: '/dashboard/user',
-    vendor: '/dashboard/vendor',
-    admin: '/dashboard/admin'
-  }
-
-  if (user?.email) {
-    navItems.push(
-      {
-        label: 'Dashboard',
-        href: dashboardLinks[user?.role || 'user']
-      }
-    )
-  }
-
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-default-200 bg-background/80 backdrop-blur-lg dark:bg-[#171717]">
-      <header className="max-w-7xl mx-auto h-20 flex items-center justify-between px-4">
+      <header className="max-w-7xl mx-auto h-20 flex items-center justify-between md:px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold border border-gray-400">
@@ -76,28 +57,21 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-4">
+
           <ThemeToggle />
           {user ? (
-            <div className="flex items-center gap-2">
-              <span>Hi, {user?.name}!</span>
-              <Button className="rounded-lg" color="danger" variant="danger" onClick={handleSignOut}>
-                Sign Out
-              </Button>
-            </div>
+            <ProfileDropdown />
           ) : (
             <div className="flex items-center gap-2">
               <Link
-
                 href="/auth/signin"
-
                 className="px-4 py-2 text-sm font-bold text-blue-800 border border-blue-800 rounded-xl hover:bg-blue-50 transition-colors"
               >
                 Sign In
               </Link>
 
               <Link
-
                 href="/auth/signup"
                 variant="primary"
                 className="px-4 py-2 text-sm font-bold text-white bg-blue-800 rounded-xl hover:bg-blue-900 transition-colors"
@@ -147,21 +121,15 @@ export default function Navbar() {
           </ul>
 
           {/* Mobile Theme */}
-          <div className="mt-5 flex justify-start">
-            <ThemeToggle />
-          </div>
 
           {user ? (
-            <>
-              Hi, {user?.name}!
-              <Button color="danger" variant="danger" onClick={handleSignOut}>
-                Sign Out
-              </Button>
-            </>
+            <div className="mt-6 flex justify-between items-center">
+              <ProfileDropdown />
+              <ThemeToggle />
+            </div>
           ) : (
             <div className="mt-6 flex gap-3">
               <Link
-
                 href="/auth/signin"
                 variant="flat"
                 className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"

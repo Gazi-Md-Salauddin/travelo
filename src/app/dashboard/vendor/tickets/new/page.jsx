@@ -159,7 +159,7 @@ export default function AddTicketPage() {
   };
 
   return (
-    <section className="mx-auto max-w-6xl">
+    <section className="w-full max-w-7xl">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">
           Add Ticket
@@ -333,7 +333,7 @@ export default function AddTicketPage() {
         </TextField>
 
         {/* Vendor Name */}
-        <TextField>
+        {/* <TextField>
           <Label>Vendor Name</Label>
 
           <InputGroup className="border dark:border-[#374151]">
@@ -347,10 +347,10 @@ export default function AddTicketPage() {
               readOnly
             />
           </InputGroup>
-        </TextField>
+        </TextField> */}
 
         {/* Vendor Email */}
-        <TextField>
+        {/* <TextField>
           <Label>Vendor Email</Label>
 
           <InputGroup className="border dark:border-[#374151]">
@@ -364,7 +364,7 @@ export default function AddTicketPage() {
               readOnly
             />
           </InputGroup>
-        </TextField>
+        </TextField> */}
 
         {/* Perks */}
         <div className="md:col-span-2">
