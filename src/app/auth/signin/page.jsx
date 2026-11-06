@@ -25,12 +25,12 @@ export default function SignInPage() {
 
 
   const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState("");
 
   const router = useRouter();
 
-  const toggleVisibility = () => setShowPassword(!showPassword);
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -129,53 +129,49 @@ export default function SignInPage() {
                 className="mt-8 flex flex-col gap-5"
               >
                 {/* Email */}
-                <TextField className="w-full">
-                  <Label>Email</Label>
+                <TextField>
+                  <Label className="mb-2 font-semibold text-slate-700 dark:text-slate-300">
+                    Email Address
+                  </Label>
 
-                  <InputGroup className="border dark:border-[#374151]">
-                    <InputGroup.Suffix>
-                      <Envelope className="text-default-400 text-lg" />
-                    </InputGroup.Suffix>
-
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      required
-                    />
-                  </InputGroup>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="h-12 w-full"
+                    
+                    required
+                  />
                 </TextField>
 
                 {/* Password */}
-                <TextField className="w-full">
-                  <Label>Password</Label>
+                <TextField>
+                  <Label className="mb-2 font-semibold text-slate-700 dark:text-slate-300">
+                    Password
+                  </Label>
 
-                  <InputGroup className="border dark:border-[#374151]">
-                    <InputGroup.Suffix>
-                      <Lock className="text-default-400 text-lg" />
-                    </InputGroup.Suffix>
-
+                  <div className="relative w-full">
                     <Input
-                      type={showPassword ? "text" : "password"}
                       name="password"
-                      placeholder="Enter your password"
+                      type={isVisible ? "text" : "password"}
+                      placeholder="Create a strong password"
                       required
+                      className="h-12 w-full"
                     />
 
-                    <InputGroup.Suffix>
-                      <button
-                        type="button"
-                        onClick={toggleVisibility}
-                        className="focus:outline-none flex items-center justify-center text-default-400 hover:text-default-600 transition"
-                      >
-                        {showPassword ? (
-                          <EyeSlash className="text-lg" />
-                        ) : (
-                          <Eye className="text-lg" />
-                        )}
-                      </button>
-                    </InputGroup.Suffix>
-                  </InputGroup>
+                    <button
+                      type="button"
+                      onClick={toggleVisibility}
+                      className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-default-400 transition-colors hover:text-blue-500"
+                      aria-label={isVisible ? "Hide password" : "Show password"}
+                    >
+                      {isVisible ? (
+                        <EyeSlash className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
                 </TextField>
 
                 {/* Forgot Password */}

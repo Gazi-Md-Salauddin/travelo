@@ -112,7 +112,7 @@ export default function Footer() {
                 <span className="text-sm font-medium">Stripe</span>
               </div>
 
-              
+
             </div>
           </div>
         </div>

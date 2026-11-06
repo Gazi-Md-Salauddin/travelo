@@ -34,7 +34,7 @@ export default function SignupPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("user");
-  
+
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -80,12 +80,12 @@ export default function SignupPage() {
     }
   };
 
-   const handleGoogleSignup = async () => {
-     await authClient.signIn.social({
-       provider: "google",
-       callbackURL: "/",
-     });
-   };
+  const handleGoogleSignup = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center px-2 sm:py-10 dark:bg-[#171717] border dark:border-[#374151]">
@@ -133,185 +133,244 @@ export default function SignupPage() {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="flex items-center justify-center p-4 lg:px-14 lg:py-6">
-            <div className="w-full max-w-md mx-auto">
+          <div className="flex items-center justify-center p-5 sm:p-8 lg:p-12">
+            <div className="mx-auto w-full max-w-lg">
+
+              {/* Back Navigation */}
               <Link
                 href="/"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-default-500 hover:text-primary"
+                className="mb-7 inline-flex items-center gap-2 text-sm font-medium text-default-500 transition-colors hover:text-primary"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Home
               </Link>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-                Create Account
-              </h2>
+              {/* Heading */}
+              <div className="mb-7">
 
-              <p className="mt-2 text-slate-500">
-                Join Travelo and start booking your next trip.
-              </p>
+                <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                  Create Account
+                </h2>
 
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  Join Travelo and start booking your next trip.
+                </p>
+              </div>
+
+              {/* Success Message */}
               {success && (
-                <div className="mt-5 rounded-xl bg-green-100 px-4 py-3 text-sm text-green-700">
+                <div className="mb-5 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
                   {success}
                 </div>
               )}
 
+              {/* Error Message */}
               {error && (
-                <div className="mt-5 rounded-xl bg-red-100 px-4 py-3 text-sm text-red-700">
+                <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                   {error}
                 </div>
               )}
 
-              <form
-                onSubmit={handleSignup}
-                className="mt-8 flex flex-col gap-5"
-              >
+              <form onSubmit={handleSignup} className="flex flex-col gap-5">
+
+                {/* Account Type */}
+                <div>
+                  <div className="mb-3 flex items-center justify-between">
+                    <Label className="font-semibold  dark:text-slate-200">
+                      Choose Account Type
+                    </Label>
+                    <span className="text-xs text-default-400">
+                      Required
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+
+                    {/* User Card */}
+                    <button
+                      type="button"
+                      onClick={() => setRole("user")}
+                      aria-pressed={role === "user"}
+                      className={`relative flex flex-col items-center rounded-2xl border-2 p-3 text-center transition-all duration-200 ${role === "user"
+                        ? "border-blue-500 bg-blue-50/80 shadow-md shadow-blue-500/10 dark:bg-blue-500/10"
+                        : "border-default-200 bg-white hover:border-blue-300 dark:bg-[#202020]"
+                        }`}
+                    >
+                      {role === "user" && (
+                        <span className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                          <CircleCheckFill className="h-3 w-3" />
+                        </span>
+                      )}
+
+                      <h3 className="font-bold text-slate-900 dark:text-white">
+                        Traveler
+                      </h3>
+
+                      <span className={`mt-2 rounded-full px-3 py-1 text-xs font-semibold ${role === "user"
+                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                        : "bg-default-100 text-default-500"
+                        }`}>
+                        User
+                      </span>
+                    </button>
+
+                    {/* Vendor Card */}
+                    <button
+                      type="button"
+                      onClick={() => setRole("vendor")}
+                      aria-pressed={role === "vendor"}
+                      className={`relative flex flex-col items-center rounded-2xl border-2 p-3 text-center transition-all duration-200 ${role === "vendor"
+                        ? "border-blue-500 bg-blue-50/80 shadow-md shadow-blue-500/10 dark:bg-blue-500/10"
+                        : "border-default-200 bg-white hover:border-blue-300 dark:bg-[#202020]"
+                        }`}
+                    >
+                      {role === "vendor" && (
+                        <span className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                          <CircleCheckFill className="h-3 w-3" />
+                        </span>
+                      )}
+
+
+                      <h3 className="font-bold text-slate-900 dark:text-white">
+                        Travel Partner
+                      </h3>
+
+                      <span className={`mt-2 rounded-full px-3 py-1 text-xs font-semibold ${role === "vendor"
+                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                        : "bg-default-100 text-default-500"
+                        }`}>
+                        Vendor
+                      </span>
+                    </button>
+
+                  </div>
+                </div>
+
+                {/* Full Name */}
                 <TextField>
-                  <Label>Full Name</Label>
+                  <Label className="mb-2 font-semibold text-slate-700 dark:text-slate-300">
+                    Full Name
+                  </Label>
 
-                  <InputGroup className="border dark:border-[#374151]">
-                    <InputGroup.Suffix>
-                      <Person className="text-default-400" />
-                    </InputGroup.Suffix>
-
-                    <Input
-                      name="name"
-                      placeholder="Enter your name"
-                      required
-                    />
-                  </InputGroup>
+                  <Input
+                    name="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    className="h-12 w-full"
+                    
+                    required
+                  />
                 </TextField>
 
+                {/* Email */}
                 <TextField>
-                  <Label>Email Address</Label>
+                  <Label className="mb-2 font-semibold text-slate-700 dark:text-slate-300">
+                    Email Address
+                  </Label>
 
-                  <InputGroup className="border dark:border-[#374151]">
-                    <InputGroup.Suffix>
-                      <Envelope className="text-default-400" />
-                    </InputGroup.Suffix>
-
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="travelo@gmail.com"
-                      required
-                    />
-                  </InputGroup>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="h-12 w-full"
+                    
+                    required
+                  />
                 </TextField>
 
+                {/* Password */}
                 <TextField>
-                  <Label>Password</Label>
+                  <Label className="mb-2 font-semibold text-slate-700 dark:text-slate-300">
+                    Password
+                  </Label>
 
-                  <InputGroup className="border dark:border-[#374151]">
-                    <InputGroup.Suffix>
-                      <Lock className="text-default-400" />
-                    </InputGroup.Suffix>
-
+                  <div className="relative w-full">
                     <Input
                       name="password"
                       type={isVisible ? "text" : "password"}
-                      placeholder="Create a password"
+                      placeholder="Create a strong password"
                       required
+                      className="h-12 w-full"
                     />
 
-                    <InputGroup.Suffix>
-                      <button
-                        type="button"
-                        onClick={toggleVisibility}
-                        className="text-default-400 hover:text-default-700"
-                      >
-                        {isVisible ? (
-                          <EyeSlash className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </button>
-                    </InputGroup.Suffix>
-                  </InputGroup>
+                    <button
+                      type="button"
+                      onClick={toggleVisibility}
+                      className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-default-400 transition-colors hover:text-blue-500"
+                      aria-label={isVisible ? "Hide password" : "Show password"}
+                    >
+                      {isVisible ? (
+                        <EyeSlash className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
                 </TextField>
-                
-                {/* Role Selection */}
-                    <div className="flex flex-col gap-4">
-                        <Label>Role</Label>
-                        <RadioGroup defaultValue="user" name="role" onChange ={setRole} orientation="horizontal">
-                            <Radio value="user">
-                                <Radio.Control>
-                                    <Radio.Indicator />
-                                </Radio.Control>
-                                <Radio.Content>
-                                    <Label>User</Label>
-                                </Radio.Content>
-                            </Radio>
-                            <Radio value="vendor">
-                                <Radio.Control>
-                                    <Radio.Indicator />
-                                </Radio.Control>
-                                <Radio.Content>
-                                    <Label>Vendor</Label>
-                                </Radio.Content>
-                            </Radio>
-                        </RadioGroup>
-                    </div>
 
-                <Checkbox required>
-                  I agree to the{" "}
-                  <Link
-                    href="/terms"
-                    className="font-medium text-sky-600"
-                  >
-                    Terms & Conditions
-                  </Link>{" "}and{" "}
-                  <Link
-                    href="/privacy"
-                    className="font-medium text-sky-600"
-                  >
-                    Privacy Policy
-                  </Link>
+                {/* Terms */}
+                <Checkbox
+                  required
+                  className="items-start"
+                >
+                  <span className="text-sm leading-relaxed text-default-500">
+                    I agree to the{" "}
+                    <Link href="/terms" className="font-semibold text-blue-600 hover:underline">
+                      Terms & Conditions
+                    </Link>{" "}
+                    and{" "}
+                    <Link href="/privacy" className="font-semibold text-blue-600 hover:underline">
+                      Privacy Policy
+                    </Link>
+                  </span>
                 </Checkbox>
-
+                {/* Create Account */}
                 <Button
                   type="submit"
                   color="primary"
                   radius="lg"
-                  className="w-full"
+                  className="h-12 w-full bg-blue-600 font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-700"
                   isLoading={loading}
                 >
-                  {loading
-                    ? "Creating Account..."
-                    : "Create Account"}
+                  {loading ? "Creating Account..." : "Create Account"}
                 </Button>
 
+                {/* Divider */}
                 <div className="flex items-center gap-4">
                   <div className="h-px flex-1 bg-default-200" />
-                  <span className="text-sm text-default-400">
-                    OR
+                  <span className="text-xs font-medium text-default-400">
+                    OR CONTINUE WITH
                   </span>
                   <div className="h-px flex-1 bg-default-200" />
                 </div>
 
+                {/* Google Signup */}
                 <Button
                   type="button"
                   variant="outline"
                   radius="lg"
-                  className="w-full"
+                  className="h-12 w-full border border-default-300 font-semibold hover:bg-default-100 dark:hover:bg-[#252525]"
                   onPress={handleGoogleSignup}
                 >
                   Continue with Google
                 </Button>
+
               </form>
 
-              <p className="mt-8 text-center text-sm text-slate-500">
+              {/* Sign In */}
+              <p className="mt-6 text-center text-sm text-default-500">
                 Already have an account?{" "}
                 <Link
                   href="/auth/signin"
-                  className="font-semibold text-sky-600 hover:text-sky-700"
+                  className="font-bold text-blue-600 transition-colors hover:text-blue-700"
                 >
                   Sign In
                 </Link>
               </p>
+
             </div>
           </div>
+
         </div>
       </Card>
     </main>

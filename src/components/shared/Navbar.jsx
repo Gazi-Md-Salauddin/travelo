@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
-import { Bars, Xmark } from "@gravity-ui/icons";
+import { Bars, Ticket, Xmark } from "@gravity-ui/icons";
 import { useSession } from '@/lib/auth-client'
 import { usePathname } from "next/navigation";
 import ProfileDropdown from "@/components/shared/ProfileDropdown";
@@ -32,8 +32,8 @@ export default function Navbar() {
       <header className="max-w-7xl mx-auto h-20 flex items-center justify-between md:px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold border border-gray-400">
-            <span className="h-16 w-16 flex items-center justify-center">🚍</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white font-bold border border-gray-400">
+            <span className="h-16 w-16 flex items-center justify-center"><Ticket className="h-5 w-5" /></span>
           </div>
 
           <h1 className="text-2xl font-bold">Travelo</h1>
@@ -66,7 +66,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/auth/signin"
-                className="px-4 py-2 text-sm font-bold text-blue-800 border border-blue-800 rounded-xl hover:bg-blue-50 transition-colors"
+                className="px-4 py-2 text-sm font-bold text-blue-600 border border-blue-800 rounded-xl hover:bg-blue-50 transition-colors"
               >
                 Sign In
               </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
               <Link
                 href="/auth/signup"
                 variant="primary"
-                className="px-4 py-2 text-sm font-bold text-white bg-blue-800 rounded-xl hover:bg-blue-900 transition-colors"
+                className="px-4 py-2 text-sm font-bold text-white bg-blue-600 rounded-xl hover:bg-blue-900 transition-colors"
               >
                 Sign Up
               </Link>
@@ -132,7 +132,7 @@ export default function Navbar() {
               <Link
                 href="/auth/signin"
                 variant="flat"
-                className="w-full text-blue-800 font-bold text-center p-2 border border-blue-800 rounded-full"
+                className="w-full text-blue-800 font-bold text-center p-2 border border-blue-600 rounded-full"
               >
                 Sign In
               </Link>
@@ -141,7 +141,7 @@ export default function Navbar() {
 
                 href="/auth/signup"
                 variant="primary"
-                className="w-full bg-blue-800 text-white font-bold text-center p-2 rounded-full"
+                className="w-full bg-blue-600 text-white font-bold text-center p-2 rounded-full"
               >
                 Sign Up
               </Link>

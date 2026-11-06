@@ -3,9 +3,16 @@
 import { Button } from "@heroui/react";
 import { Plane } from "@gravity-ui/icons";
 import Link from "next/link";
+import { preload } from "react-dom";
 import Image from "next/image";
 
 export default function HeroSection() {
+
+  preload("/image/hero.jpg", {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
@@ -78,7 +85,7 @@ export default function HeroSection() {
               <Image
                 src="/image/hero-right.jpg"
                 alt="Beautiful travel destination"
-                priority
+                preload
                 fill
                 className="h-full w-full object-cover"
               />
