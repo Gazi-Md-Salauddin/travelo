@@ -35,6 +35,7 @@ const DashboardSideBarClient = ({ user }) => {
     ];
 
     const userNavLinks = [
+        { icon: Person, href: "/dashboard/user", label: "Overview" },
         { icon: Person, href: "/dashboard/user/profile", label: "Profile" },
         { icon: Bookmark, href: "/dashboard/user/booked-tickets", label: "My Booked Tickets" },
         { icon: ClockArrowRotateLeft, href: "/dashboard/user/transaction-history", label: "Transaction History" },
