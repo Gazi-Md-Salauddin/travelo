@@ -521,7 +521,7 @@ const TicketDetails = ({ ticket, user }) => {
                 </div>
 
                 {/* Booking Action */}
-                {isExpired ? (
+                {/* {isExpired ? (
                   <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-center">
                     <p className="font-bold text-amber-700">
                       Journey Started
@@ -529,17 +529,18 @@ const TicketDetails = ({ ticket, user }) => {
                     <p className="mt-1 text-xs text-amber-600">
                       Booking is no longer available.
                     </p>
-                  </div>
-                ) : ticket.quantity <= 0 ? (
-                  <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-center">
+                  </div> */}
+                {/* ) : ticket.quantity <= 0 ? ( */}
+                  {/* <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-center">
                     <p className="font-bold text-red-700">
                       Sold Out
                     </p>
                     <p className="mt-1 text-xs text-red-600">
                       All tickets have been booked.
                     </p>
-                  </div>
-                ) : (
+                  </div> */}
+                {/* ) : ( */}
+                
                   <BookingModal
                     ticket={ticket}
                     handleBooking={handleBooking}
@@ -547,7 +548,7 @@ const TicketDetails = ({ ticket, user }) => {
                     decrease={decrease}
                     quantity={quantity}
                   />
-                )}
+                {/* )} */}
 
                 <div className="flex items-center justify-center gap-2 pt-2 text-xs text-gray-400">
                   <ShieldCheck className="size-4 text-green-600" />

@@ -91,7 +91,6 @@ const MyBookingsPage = async () => {
             </button>
             </Link>
             
-
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-default-400">
               <span className="flex items-center gap-1.5">
                 <svg className="h-4 w-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">

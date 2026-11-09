@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Card, Button, Chip, Calendar } from "@heroui/react";
 import Image from "next/image";
 import {
-  CircleDollar,
   Clock,
   MapPin
 } from "@gravity-ui/icons";
+import { ArrowRight, CalendarDays, CreditCard, DollarSignIcon, Ticket } from "lucide-react";
 
 const UserBookedTicketCard = ({ booking }) => {
   const [countdown, setCountdown] = useState("");
@@ -100,170 +100,186 @@ const UserBookedTicketCard = ({ booking }) => {
   };
 
   return (
-    <Card className="group overflow-hidden rounded-3xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-xl dark:bg-[#1F2937] dark:border-[#374151]">
+    <Card className="group relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl dark:border-gray-700 dark:bg-[#1B2432] dark:hover:border-blue-900">
 
-      <div className="relative overflow-hidden">
+  {/* Top Accent */}
+  <div className="h-1 w-full bg-blue-600" />
+
+  {/* ================= HEADER ================= */}
+  <div className="p-5 pb-4">
+
+    <div className="flex items-start gap-4">
+
+      {/* Image */}
+      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-800">
         <Image
           src={booking.ticketImage}
           alt={booking.ticketTitle}
-          width={600}
-          height={400}
-          className="h-75 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
+          width={120}
+          height={120}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
 
+      {/* Ticket Details */}
+      <div className="min-w-0 flex-1">
 
+        <div className="flex items-start justify-between gap-2">
 
-      {/* ================= CONTENT ================= */}
-      <div className="p-5 sm:p-6">
-
-        {/* Title */}
-        <div className="mb-5">
-          <h2 className="line-clamp-1 text-xl font-bold text-gray-950 dark:text-[#F9FAFB]">
+          <h2 className="line-clamp-2 text-lg font-bold leading-snug text-gray-900 dark:text-white">
             {booking.ticketTitle}
           </h2>
 
-          {/* Route */}
-          <div className="mt-2 flex items-center justify-between text-sm text-gray-500 dark:text-[#9CA3AF]">
-            <div className="flex items-center gap-1.5">
-              <MapPin className="size-4 shrink-0 text-blue-600" />
-
-              <span className="font-medium">
-                {booking.ticketFrom}
-              </span>
-
-              <span className="text-gray-300">→</span>
-
-              <span className="font-medium">
-                {booking.ticketTo}
-              </span>
-
-            </div>
-
-            {/* Status */}
-            <div>
-              <Chip
-                color={getStatusColor(booking.status)}
-                variant="soft"
-                colors="warning"
-                size="sm"
-                className="font-semibold capitalize"
-              >
-                {booking.status}
-              </Chip>
-
-            </div>
-
-          </div>
+          <Chip
+            color={getStatusColor(booking.status)}
+            variant="soft"
+            size="sm"
+            className="shrink-0 font-semibold capitalize"
+          >
+            {booking.status}
+          </Chip>
 
         </div>
 
-        {/* ================= JOURNEY INFO ================= */}
-        <div className="grid grid-cols-2 gap-3">
-
-          {/* Date */}
-          <div className="rounded-2xl border border-gray-100 bg-gray-50 p-3.5">
-            <div className="flex items-center gap-2 text-gray-400">
-
-              <span className="text-xs font-medium">
-                Journey Date
-              </span>
-            </div>
-
-            <p className="mt-1.5 text-sm font-semibold text-gray-900">
-              {booking.departureDate || "N/A"}
-            </p>
-          </div>
-
-          {/* Time */}
-          <div className="rounded-2xl border border-gray-100 bg-gray-50 p-3.5">
-            <div className="flex items-center gap-2 text-gray-400">
-              <Clock className="size-4 text-blue-500" />
-
-              <span className="text-xs font-medium">
-                Starting Time
-              </span>
-            </div>
-
-            <p className="mt-1.5 text-sm font-semibold text-gray-900">
-              {departureField
-                ? formatDepartureDate(departureField)
-                  .split(", ")
-                  .pop()
-                : "N/A"}
-            </p>
-          </div>
-
+        {/* Route */}
+        <div className="mt-2 flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <MapPin className="size-4 shrink-0 text-blue-600" />
+          <span className="truncate">{booking.ticketFrom}</span>
+          <ArrowRight className="size-3.5 shrink-0 text-gray-400" />
+          <span className="truncate">{booking.ticketTo}</span>
         </div>
 
-        {/* ================= PRICE / QUANTITY ================= */}
-        <div className="my-5 flex items-center justify-between border-y border-gray-100 py-4 dark:border-[#374151]">
-
-          <div>
-            <p className="text-xs text-gray-400 dark:text-[#9CA3AF]">
-              Quantity
-            </p>
-
-            <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-[#F9FAFB]">
-              {booking.bookingQuantity}{" "}
-              {booking.bookingQuantity > 1 ? "Tickets" : "Ticket"}
-            </p>
-          </div>
-
-          <div className="text-right">
-            <p className="text-xs text-gray-400">
-              Total Amount
-            </p>
-
-            <div className="mt-1 flex items-center justify-end gap-1">
-              <CircleDollar className="size-4 text-green-600" />
-
-              <span className="text-lg font-bold text-gray-950 dark:text-[#F9FAFB]">
-                {totalPrice}
-              </span>
-            </div>
-          </div>
-
+        {/* Price */}
+        <div className="mt-3 flex items-baseline gap-1">
+          
+          <span className="flex items-center text-2xl font-extrabold tracking-tight text-gray-950 dark:text-white">
+            <DollarSignIcon /> {totalPrice}
+          </span>
         </div>
-
-        {/* ================= COUNTDOWN ================= */}
-        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-4">
-
-          <div className="flex items-center justify-between gap-3">
-
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                Journey Starts In
-              </p>
-
-              <p className="mt-1 text-xs text-blue-500">
-                Time remaining before your journey
-              </p>
-            </div>
-
-            <div className="shrink-0 rounded-xl bg-white px-3 py-2 text-sm font-bold text-blue-700 shadow-sm">
-              {countdown || "Calculating..."}
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ================= PAYMENT ================= */}
-        {booking.status?.toLowerCase() === "accepted" &&
-          countdown !== "Departed" && (
-            <Button
-              onPress={handlePayment}
-              color="success"
-              className="mt-5 w-full rounded-xl font-semibold"
-              size="lg"
-            >
-              Pay Now
-            </Button>
-          )}
 
       </div>
-    </Card>
+    </div>
+
+  </div>
+
+  {/* ================= DIVIDER ================= */}
+  <div className="relative flex items-center px-5">
+    <div className="h-px flex-1 border-t border-dashed border-gray-300 dark:border-gray-600" />
+    
+  </div>
+
+  {/* ================= CONTENT ================= */}
+  <div className="p-5 pt-4">
+
+    {/* Journey Information */}
+    <div className="grid grid-cols-2 gap-3">
+
+      {/* Date */}
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/80 p-3.5 dark:border-gray-600 dark:bg-[#111827]/70">
+
+        <div className="flex items-center gap-2 text-gray-400">
+          <CalendarDays className="size-4 text-blue-600 dark:text-blue-400" />
+          <span className="text-xs font-medium">Journey Date</span>
+        </div>
+
+        <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">
+          {booking.departureDate || "N/A"}
+        </p>
+
+      </div>
+
+      {/* Time */}
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/80 p-3.5 dark:border-gray-600 dark:bg-[#111827]/70">
+
+        <div className="flex items-center gap-2 text-gray-400">
+          <Clock className="size-4 text-blue-600 dark:text-blue-400" />
+          <span className="text-xs font-medium">Departure Time</span>
+        </div>
+
+        <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">
+          {departureField
+            ? formatDepartureDate(departureField).split(", ").pop()
+            : "N/A"}
+        </p>
+
+      </div>
+
+    </div>
+
+    {/* ================= TICKET SUMMARY ================= */}
+    <div className="mt-4 flex items-center justify-between rounded-2xl border border-gray-200 px-4 py-3 dark:border-gray-600">
+
+      <div className="flex items-center gap-3">
+
+        <div className="flex size-10 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-500/10">
+          <Ticket className="size-5 text-blue-600 dark:text-blue-400" />
+        </div>
+
+        <div>
+          <p className="text-xs text-gray-400 dark:text-gray-500">
+            Booking Quantity
+          </p>
+          <p className="mt-1 text-sm font-bold text-gray-900 dark:text-white">
+            {booking.bookingQuantity}{" "}
+            {booking.bookingQuantity > 1 ? "Tickets" : "Ticket"}
+          </p>
+        </div>
+
+      </div>
+
+      <span className="text-xs font-medium text-gray-400">
+        Travelo Booking
+      </span>
+
+    </div>
+
+    {/* ================= COUNTDOWN ================= */}
+    <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50/70 p-4 dark:border-blue-900/50 dark:bg-blue-500/[0.07]">
+
+      <div className="flex items-center justify-between gap-3">
+
+        <div className="flex min-w-0 items-start gap-3">
+
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm dark:bg-[#263449]">
+            <Clock className="size-5 text-blue-600 dark:text-blue-400" />
+          </div>
+
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
+              Journey Starts In
+            </p>
+
+            <p className="mt-1 text-xs text-blue-600/70 dark:text-blue-300/70">
+              Time remaining before departure
+            </p>
+          </div>
+
+        </div>
+
+        <div className="shrink-0 rounded-xl border border-blue-100 bg-white px-3 py-2 text-sm font-bold text-blue-700 shadow-sm dark:border-blue-900 dark:bg-[#263449] dark:text-blue-400">
+          {countdown || "Calculating..."}
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* ================= PAYMENT ================= */}
+    {booking.status?.toLowerCase() === "accepted" &&
+      countdown !== "Departed" && (
+        <Button
+          onPress={handlePayment}
+          color="success"
+          size="lg"
+          className="mt-4 w-full rounded-xl font-bold shadow-sm transition-all hover:shadow-md"
+        >
+          <CreditCard className="size-4" />
+          Pay Now
+        </Button>
+      )}
+
+  </div>
+</Card>
   );
 };
 
