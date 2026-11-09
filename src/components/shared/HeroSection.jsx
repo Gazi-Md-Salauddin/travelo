@@ -51,7 +51,7 @@ export default function HeroSection() {
             </Link>
 
             <Link href="/all-tickets"
-              className="text-blue-500 bg-white border border-blue-500 rounded-full font-bold py-2 px-4"
+              className="text-blue-500 bg-white border rounded-full font-bold py-2 px-4"
             >
               Explore Routes
             </Link>

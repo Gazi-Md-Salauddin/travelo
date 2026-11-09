@@ -288,7 +288,7 @@ const TicketDetails = ({ ticket, user }) => {
                 className="object-cover"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#071F3D]/70 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#071F3D]/70 to-transparent" />
 
               <div className="absolute bottom-4 left-4">
                 <p className="text-xs text-blue-100/70">Travel Operator</p>
@@ -540,7 +540,7 @@ const TicketDetails = ({ ticket, user }) => {
                     </p>
                   </div> */}
                 {/* ) : ( */}
-                
+
                   <BookingModal
                     ticket={ticket}
                     handleBooking={handleBooking}
