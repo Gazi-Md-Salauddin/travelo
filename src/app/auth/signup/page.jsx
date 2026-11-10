@@ -19,12 +19,11 @@ import {
   Button,
   Card,
   Input,
-  InputGroup,
   TextField,
   Label,
   Checkbox,
 } from "@heroui/react";
-import { Description, Radio, RadioGroup } from "@heroui/react";
+import { FcGoogle } from "react-icons/fc";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -351,7 +350,7 @@ export default function SignupPage() {
                   radius="lg"
                   className="h-12 w-full border border-default-300 font-semibold hover:bg-default-100 dark:hover:bg-[#252525]"
                   onPress={handleGoogleSignup}
-                >
+                > <FcGoogle/>
                   Continue with Google
                 </Button>
 
