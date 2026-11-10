@@ -1,15 +1,12 @@
 "use client";
 
-import {Rocket} from "@gravity-ui/icons";
-import {Button, Modal} from "@heroui/react";
-import { useEffect, useState } from "react";
+import { Minus, Plus, Rocket } from "@gravity-ui/icons";
+import { Button, Modal } from "@heroui/react";
 
-const BookingModal = ({ticket, handleBooking, increase, decrease, quantity}) => {
+const BookingModal = ({ ticket, handleBooking, increase, decrease, quantity }) => {
 
   const totalPrice = quantity * ticket.price
 
-  
-  
   return (
     <Modal>
       <Button variant="primary" className="w-full">Book Now</Button>
@@ -25,18 +22,18 @@ const BookingModal = ({ticket, handleBooking, increase, decrease, quantity}) => 
             </Modal.Header>
             <Modal.Body>
               <div className="space-y-6">
-              <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   <span className="font-semibold text-lg">
                     Quantity:
                   </span>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex justify-center items-center gap-4">
                     <Button
                       isIconOnly
-                      variant="bordered"
                       onPress={decrease}
+                      className="bg-blue-600 text-xl text-white hover:bg-blue-700"
                     >
-                      -
+                      <Minus />
                     </Button>
 
                     <div className="w-20 h-12 border rounded-lg flex items-center justify-center text-xl font-bold">
@@ -45,21 +42,21 @@ const BookingModal = ({ticket, handleBooking, increase, decrease, quantity}) => 
 
                     <Button
                       isIconOnly
-                      variant="bordered"
                       onPress={increase}
+                      className="bg-blue-600 text-2xl text-white hover:bg-blue-700"
                     >
-                      +
+                      <Plus />
                     </Button>
                   </div>
                 </div>
 
                 {/* Price */}
                 <div>
-                  <h3 className="text-2xl font-bold">
-                    Total Price: ৳{totalPrice}
+                  <h3 className="text-2xl font-bold text-black">
+                    Total Price:{totalPrice}
                   </h3>
 
-                  <p className="text-default-500">
+                  <p className="text-gray-500">
                     Available: {ticket.quantity} tickets
                   </p>
                 </div>

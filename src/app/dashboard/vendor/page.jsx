@@ -1,18 +1,26 @@
-import React from "react";
+import React from 'react';
+import { getTickets } from "@/lib/actions/tickets";
+import { getUserSession } from "@/lib/core/session";
+import VendorDashboardClient from '@/components/dashboard/vendor/DashboardClient'
+import { getRevenueOverview, getVendorBookings } from '@/lib/actions/booking';
 
-const VendorPage = () => {
+const VendorHomePage = async () => {
+  const ticketData = await getTickets();
+  const tickets = ticketData.tickets || [];
+
+  const user = await getUserSession();
+
+  const bookings = await getVendorBookings(user.email);
+  const revenue = await getRevenueOverview(user.email);
+
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold">
-          Welcome to Vendor Dashboard 👋
-        </h1>
-        <p className="mt-3 text-default-500">
-          Select an option from the sidebar to get started.
-        </p>
-      </div>
-    </div>
+    <VendorDashboardClient
+      tickets={JSON.parse(JSON.stringify(tickets))}
+      user={user}
+      bookings={JSON.parse(JSON.stringify(bookings))}
+      revenue={JSON.parse(JSON.stringify(revenue))}
+    />
   );
 };
 
-export default VendorPage;
+export default VendorHomePage;

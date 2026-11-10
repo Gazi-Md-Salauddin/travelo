@@ -9,14 +9,14 @@ import {
 import {
   updateBookingStatus
 } from "@/lib/actions/booking";
-import {useSession} from '@/lib/auth-client'
+import { useSession } from '@/lib/auth-client'
 
 const RequestedBookingRow = ({
   booking
 }) => {
   const { data: session, isPending } = useSession();
 
-    const user = session?.user
+  const user = session?.user
   const router = useRouter();
 
   const handleAccept = async () => {
@@ -39,7 +39,7 @@ const RequestedBookingRow = ({
 
   const getStatusColor = (status) => {
     switch (
-      status?.toLowerCase()
+    status?.toLowerCase()
     ) {
       case "accepted":
         return "success";
@@ -56,7 +56,10 @@ const RequestedBookingRow = ({
 
   return (
     <tr className="border-b">
-      <td className="p-4">
+      <td className="flex gap-2 p-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-600">
+          {booking.userName?.charAt(0)?.toUpperCase() || "U"}
+        </div>
         <div>
           <p className="font-medium">
             {booking.userName}
@@ -68,19 +71,21 @@ const RequestedBookingRow = ({
         </div>
       </td>
 
-      <td className="p-4">
+      <td className="p-4 text-center">
         {booking.ticketTitle}
       </td>
 
-      <td className="p-4">
-        {booking.bookingQuantity}
+      <td className="p-4 text-center">
+        <span className="rounded-lg bg-gray-100 px-3 py-1.5 font-semibold text-gray-700">
+          {booking.bookingQuantity}
+        </span>
       </td>
 
-      <td className="p-4">
+      <td className="p-4 text-center">
         {booking.totalPrice}
       </td>
 
-      <td className="p-4">
+      <td className="p-4 text-center">
         <Chip
           color={getStatusColor(
             booking.status
@@ -91,8 +96,8 @@ const RequestedBookingRow = ({
         </Chip>
       </td>
 
-      <td className="p-4">
-        <div className="flex gap-2">
+      <td className="p-4 text-center">
+        <div className="flex gap-2 justify-center">
           <Button
             size="sm"
             color="success"
@@ -103,7 +108,7 @@ const RequestedBookingRow = ({
             isDisabled={
               booking.status ===
               "Accepted" || booking.status === "paid"
-              
+
             }
           >
             Accept
@@ -119,7 +124,7 @@ const RequestedBookingRow = ({
             isDisabled={
               booking.status ===
               "Rejected" || booking.status === "paid"
-              
+
             }
           >
             Reject

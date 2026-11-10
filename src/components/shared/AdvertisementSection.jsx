@@ -14,7 +14,7 @@ const AdvertisementSection = ({ tickets }) => {
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true, amount: 0.3 }}
-    className="mx-auto max-w-7xl px-4 sm:px-6"
+    className="mx-auto max-w-7xl px-2 sm:px-4"
   >
     {/* Header */}
     <div className="mx-auto mb-10 max-w-2xl text-center">

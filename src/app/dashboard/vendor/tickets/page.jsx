@@ -17,8 +17,6 @@ const TicketsPage = async () => {
     }
   };
 
-
-
   return (
     <section className="space-y-8">
       <div className="text-center pt-6">

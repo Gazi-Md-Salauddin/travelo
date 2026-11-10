@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import ProfileDropdown from "@/components/shared/ProfileDropdown";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import { div } from "framer-motion/client";
+import Image from "next/image";
 
 export default function Navbar() {
 
@@ -24,19 +25,20 @@ export default function Navbar() {
     { label: "Home", href: "/" },
     { label: "All Tickets", href: "/all-tickets" },
     { label: "About", href: "/about" },
+
   ];
+  if (user?.role === "user") {
+    navItems.push({ label: "My Bookings", href: "/dashboard/user/booked-tickets" });
+  }
 
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-default-200 bg-background/80 backdrop-blur-lg dark:bg-[#171717]">
       <header className="max-w-7xl mx-auto h-20 flex items-center justify-between md:px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white font-bold border border-gray-400">
-            <span className="h-16 w-16 flex items-center justify-center"><Ticket className="h-5 w-5" /></span>
-          </div>
-
-          <h1 className="text-2xl font-bold">Travelo</h1>
+        <Link href="/" className="flex items-center">
+          <Image src="/image/logo.png" alt="Travelo Logo" width={50} height={50} />
+          <h1 className="text-2xl font-bold text-blue-500">Travelo</h1>
         </Link>
 
         {/* Desktop Menu */}

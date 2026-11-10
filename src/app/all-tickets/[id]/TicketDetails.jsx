@@ -327,7 +327,7 @@ const TicketDetails = ({ ticket, user }) => {
               <div className="relative ml-2 space-y-10 border-l-2 border-dashed border-blue-200 pl-8 dark:border-gray-600">
 
                 <div className="relative">
-                  <span className="absolute -left-[41px] top-1 size-4 rounded-full border-[4px] border-blue-600 bg-white dark:bg-[#1F2937]" />
+                  <span className="absolute -left-10.25 top-1 size-4 rounded-full border-4 border-blue-600 bg-white dark:bg-[#1F2937]" />
 
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-400">
                     Departure Point
@@ -349,7 +349,7 @@ const TicketDetails = ({ ticket, user }) => {
                 </div>
 
                 <div className="relative">
-                  <span className="absolute -left-[41px] top-1 size-4 rounded-full bg-blue-600 ring-4 ring-blue-100 dark:ring-blue-900/40" />
+                  <span className="absolute -left-10.25 top-1 size-4 rounded-full bg-blue-600 ring-4 ring-blue-100 dark:ring-blue-900/40" />
 
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-400">
                     Destination
@@ -471,28 +471,28 @@ const TicketDetails = ({ ticket, user }) => {
                   <div className="space-y-4">
 
                     <div className="flex items-center justify-between gap-3 text-sm">
-                      <span className="text-gray-500">Operator</span>
+                      <span className="text-gray-400">Operator</span>
                       <span className="max-w-42.5 truncate font-semibold text-[#071F3D] dark:text-white">
                         {ticket.title}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between gap-3 text-sm">
-                      <span className="text-gray-500">Travel Date</span>
+                      <span className="text-gray-400">Travel Date</span>
                       <span className="font-semibold text-[#071F3D] dark:text-white">
                         {formatDate(ticket.departureDate)}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between gap-3 text-sm">
-                      <span className="text-gray-500">Departure</span>
+                      <span className="text-gray-400">Departure</span>
                       <span className="font-semibold text-[#071F3D] dark:text-white">
                         {formatTime(ticket.departureTime)}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between gap-3 text-sm">
-                      <span className="text-gray-500">Seats Available</span>
+                      <span className="text-gray-400">Seats Available</span>
                       <span className="font-bold text-green-600">
                         {ticket.quantity}
                       </span>
@@ -504,7 +504,7 @@ const TicketDetails = ({ ticket, user }) => {
                 <div className="border-t border-dashed border-gray-200 dark:border-gray-600" />
 
                 {/* Countdown */}
-                <div className="rounded-xl border border-blue-100 bg-blue-50 p-4 dark:border-blue-900/40">
+                <div className="rounded-xl border border-blue-100 p-4">
 
                   <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
                     <Clock className="size-4" />

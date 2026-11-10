@@ -5,9 +5,7 @@ import RevenueOverview from './RevenueOverview'
 const RevenueOverviewDashboardPage = async () => {
   const user = await getUserSession();
 
-  const revenueData =
-    await getRevenueOverview(user.email);
-
+  const revenueData = await getRevenueOverview(user.email);
 
   return (
     <RevenueOverview data={revenueData} />

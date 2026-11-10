@@ -8,19 +8,18 @@ import {
   CreditCard,
   Ticket,
 } from "@gravity-ui/icons";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="border-t border-default-200 bg-[#0B1B3A] text-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-2">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Column 1 */}
           <div>
             <Link href="/" className="mb-4 flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-850 text-white">
-                <Ticket className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-bold">Travelo</span>
+              <Image src="/image/logo.png" alt="Travelo Logo" width={50} height={50} />
+              <span className="text-xl font-bold text-blue-500">Travelo</span>
             </Link>
 
             <p className="text-sm text-default-600">
@@ -120,7 +119,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-default-200">
-        <div className="mx-auto max-w-7xl px-4 py-5 text-center text-sm text-default-500 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-5 text-center text-sm text-default-500 lg:px-4">
           © 2026 Travelo. All rights reserved.
         </div>
       </div>

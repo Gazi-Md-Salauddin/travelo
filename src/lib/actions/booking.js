@@ -20,13 +20,10 @@ export const createBooking = async (
 };
 
 
-
-
 export const getVendorBookings = async (
   email
 ) => {
   const headers = await authHeader();
-  console.log("headers:", headers)
   
   const res = await fetch(
     `${baseUrl}/api/bookings/vendor/${email}`,
@@ -35,10 +32,8 @@ export const getVendorBookings = async (
       headers,
     }
   );
-  console.log("Status:", res.status)
 
   const data = await res.json();
-  console.log("Data:", data)
   return data;
 };
 
@@ -78,7 +73,6 @@ export const updateBookingStatus = async (
 
 
 //vendor revenue overview
-
 
 export const getRevenueOverview = async (
   email
