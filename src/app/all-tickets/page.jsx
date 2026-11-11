@@ -1,7 +1,9 @@
 
 import Link from "next/link";
 import AllTicketCard from "@/components/AllTicketCard";
-import { IconSearch } from "@heroui/react";
+import { IconSearch, Input } from "@heroui/react";
+import TransportSelect from "@/components/TransportSelect";
+import TransportSort from "@/components/TransportSort";
 
 const AllTicketsPage = async ({ searchParams }) => {
 
@@ -13,6 +15,7 @@ const AllTicketsPage = async ({ searchParams }) => {
   const to = params.to || "";
   const transportType = params.transportType || "";
   const sort = params.sort || "";
+
 
   // Pagination URL
   const createPageUrl = (pageNumber) => {
@@ -27,6 +30,7 @@ const AllTicketsPage = async ({ searchParams }) => {
 
     return `?${query.toString()}`;
   };
+
 
   // Fetch Tickets
   const query = new URLSearchParams({
@@ -47,10 +51,6 @@ const AllTicketsPage = async ({ searchParams }) => {
   );
 
   const data = await res.json();
-
-  console.log("Pagination Data:", data);
-  console.log("Total Pages:", data.totalPages);
-  console.log("Current Page:", data.currentPage);
 
   const tickets = data?.tickets || [];
   const totalPages = Number(data?.totalPages) || 0;
@@ -90,12 +90,9 @@ const AllTicketsPage = async ({ searchParams }) => {
               From
             </label>
 
-            <input
-              name="from"
+            <Input aria-label="Name" className="w-full" name="from"
               defaultValue={from}
-              placeholder="Departure city"
-              className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-white"
-            />
+              placeholder="Departure city" />
           </div>
 
           {/* To */}
@@ -104,47 +101,19 @@ const AllTicketsPage = async ({ searchParams }) => {
               To
             </label>
 
-            <input
-              name="to"
+            <Input aria-label="Name" className="w-full" name="to"
               defaultValue={to}
-              placeholder="Destination city"
-              className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/10 dark:border-[#374151] dark:bg-[#111827] dark:text-white"
-            />
+              placeholder="Destination city" />
           </div>
 
           {/* Transport Type */}
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Transport Type
-            </label>
-
-            <select
-              name="transportType"
-              defaultValue={transportType}
-              className="w-full cursor-pointer appearance-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-blue-500 dark:border-[#374151] dark:bg-[#111827] dark:text-gray-200"
-            >
-              <option value="">All Transport</option>
-              <option value="Bus">Bus</option>
-              <option value="Train">Train</option>
-              <option value="Flight">Flight</option>
-            </select>
+            <TransportSelect transportType={transportType} />
           </div>
 
           {/* Sort Price */}
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Sort By Price
-            </label>
-
-            <select
-              name="sort"
-              defaultValue={sort}
-              className="w-full cursor-pointer appearance-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-blue-500 dark:border-[#374151] dark:bg-[#111827] dark:text-gray-200"
-            >
-              <option value="">Default Price</option>
-              <option value="low">Price: Low to High</option>
-              <option value="high">Price: High to Low</option>
-            </select>
+            <TransportSort sort={sort} />
           </div>
 
           {/* Search Button */}
@@ -184,46 +153,58 @@ const AllTicketsPage = async ({ searchParams }) => {
 
       </div>
 
+
       {/* Pagination */}
-      <div className="flex flex-wrap items-center justify-center gap-2 px-4 pb-10">
+      {tickets.length > 0 && totalPages > 1 && (
+        <div className="flex flex-wrap items-center justify-center gap-2 px-4 pb-10">
 
-        {/* Previous */}
-        <Link
-          href={createPageUrl(Math.max(1, page - 1))}
-          className={`rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${page <= 1
-              ? "pointer-events-none opacity-40"
-              : "border-gray-200 text-gray-700 hover:border-blue-500 hover:text-blue-600"
-            }`}
-        >
-          Previous
-        </Link>
-
-        {/* Page Numbers */}
-        {Array.from(
-          { length: Number(data?.totalPages) || 1 },
-          (_, i) => i + 1
-        ).map((pageNumber) => (
+          {/* Previous */}
           <Link
-            key={pageNumber}
-            href={createPageUrl(pageNumber)}
-            className={`flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-sm font-semibold transition ${page === pageNumber
-                ? "border-blue-600 bg-blue-600 text-white"
-                : "border-gray-200 bg-white text-gray-600 hover:border-blue-500 hover:text-blue-600"
+            href={createPageUrl(Math.max(1, page - 1))}
+            aria-disabled={page <= 1}
+            className={`rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${page <= 1
+                ? "pointer-events-none opacity-40"
+                : "border-gray-200 text-gray-700 hover:border-blue-500 hover:text-blue-600"
               }`}
           >
-            {pageNumber}
+            Previous
           </Link>
-        ))}
 
-        {/* Next */}
-        <Link
-          href={createPageUrl(Math.max(1, page + 1))}
-          className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:border-blue-500 hover:text-blue-600"
-        >
-          Next
-        </Link>
+          {/* Page Numbers */}
+          {Array.from(
+            { length: totalPages },
+            (_, i) => i + 1
+          ).map((pageNumber) => (
+            <Link
+              key={pageNumber}
+              href={createPageUrl(pageNumber)}
+              aria-current={page === pageNumber ? "page" : undefined}
+              className={`flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-sm font-semibold transition ${page === pageNumber
+                  ? "border-blue-600 bg-blue-600 text-white"
+                  : "border-gray-200 bg-white text-gray-600 hover:border-blue-500 hover:text-blue-600"
+                }`}
+            >
+              {pageNumber}
+            </Link>
+          ))}
 
-      </div>
+          {/* Next */}
+          <Link
+            href={createPageUrl(
+              page < totalPages ? page + 1 : page
+            )}
+            aria-disabled={page >= totalPages}
+            className={`rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${page >= totalPages
+                ? "pointer-events-none opacity-40"
+                : "border-gray-200 text-gray-700 hover:border-blue-500 hover:text-blue-600"
+              }`}
+          >
+            Next
+          </Link>
+
+        </div>
+      )}
+
 
     </section>
   );

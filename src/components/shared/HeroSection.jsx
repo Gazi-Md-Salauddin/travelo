@@ -1,10 +1,12 @@
 "use client";
 
-import { Button } from "@heroui/react";
 import { Plane } from "@gravity-ui/icons";
 import Link from "next/link";
 import { preload } from "react-dom";
 import Image from "next/image";
+import { HiTicket } from "react-icons/hi2";
+import { BsStars } from "react-icons/bs";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
 
@@ -26,8 +28,8 @@ export default function HeroSection() {
 
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
-          <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-md">
-            🎫 Fast & Secure Ticket Booking
+          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-md">
+          <HiTicket className="mr-2 text-yellow-300" /> Fast & Secure Ticket Booking
           </span>
 
           <h1 className="mt-6 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
@@ -87,6 +89,7 @@ export default function HeroSection() {
                 alt="Beautiful travel destination"
                 preload
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="h-full w-full object-cover"
               />
 
@@ -95,8 +98,8 @@ export default function HeroSection() {
 
               {/* Top Badge */}
               <div className="absolute left-4 top-4">
-                <span className="rounded-full border border-white/30 bg-white/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
-                  ✨ Explore the World
+                <span className="flex items-center rounded-full border border-white/30 bg-white/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
+                  <BsStars className="mr-2 text-yellow-400" /> Explore the World
                 </span>
               </div>
 
