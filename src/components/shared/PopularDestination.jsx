@@ -70,6 +70,7 @@ const PopularDestinations = () => {
                 <Image
                   src={destination.image}
                   alt={destination.name}
+                  priority
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"

@@ -25,6 +25,7 @@ export default function Navbar() {
     { label: "Home", href: "/" },
     { label: "All Tickets", href: "/all-tickets" },
     { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" }
 
   ];
   if (user?.role === "user") {

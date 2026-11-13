@@ -26,6 +26,8 @@ import {
 import { createTicket } from "@/lib/actions/tickets";
 import { useSession } from '@/lib/auth-client'
 import { CheckCircle2, ImageIcon, Route, Sparkles } from "lucide-react";
+import DateSelect from "@/components/dashboard/vendor/DateSelect";
+import TimeSelect from "@/components/dashboard/vendor/TimeSelect";
 
 export default function AddTicketPage() {
   const router = useRouter();
@@ -117,11 +119,13 @@ export default function AddTicketPage() {
     }
   };
 
+  const [departureTime, setDepartureTime] = useState("");
+
   // Auxiliary Upload States
   const [imageUrl, setImageUrl] = useState('');
   const [isUploading, setIsUploading] = useState(false);
 
-   const inputClass =
+  const inputClass =
     "border border-gray-200 dark:border-[#374151] rounded-xl focus-within:border-blue-500 transition-colors";
 
   const sectionClass =
@@ -133,14 +137,14 @@ export default function AddTicketPage() {
   const sectionDescription =
     "text-sm text-gray-500 dark:text-gray-400 mt-1";
 
-    const renderError = (field) =>
+  const renderError = (field) =>
     errors[field] && (
       <p className="mt-1.5 text-xs text-danger">
         {errors[field]}
       </p>
     );
 
-    const perks = [
+  const perks = [
     "Ac",
     "BreakFast",
     "WiFi",
@@ -187,7 +191,7 @@ export default function AddTicketPage() {
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto pb-10">
+    <section className="w-full px-8 py-10">
 
       {/* Header */}
       <div className="mb-8">
@@ -227,7 +231,7 @@ export default function AddTicketPage() {
 
           <div className="flex items-center gap-3 mb-6">
             <div className="size-10 rounded-xl bg-blue-50  flex items-center justify-center">
-              <Ticket className="size-5 text-blue-600 dark:text-blue-400" />
+              <Ticket className="size-5 text-blue-600 " />
             </div>
 
             <div>
@@ -424,26 +428,19 @@ export default function AddTicketPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
             <TextField>
-              <Label className="text-sm font-medium mb-2 block">
-                Departure Date
-              </Label>
 
-              <InputGroup className={inputClass}>
-                <InputGroup.Prefix>
-                  <Calendar className="size-4 text-gray-400" />
-                </InputGroup.Prefix>
-
-                <InputGroup.Input
-                  type="date"
-                  name="departureDate"
-                />
-              </InputGroup>
+              <DateSelect />
             </TextField>
 
             <TextField>
-              <Label className="text-sm font-medium mb-2 block">
+              <Label className="text-sm font-medium block">
                 Departure Time
               </Label>
+              <TimeSelect name="departureTime"
+                label="Departure Time"
+                value={departureTime}
+                onChange={setDepartureTime} />
+              {/* 
 
               <InputGroup className={inputClass}>
                 <InputGroup.Prefix>
@@ -454,7 +451,7 @@ export default function AddTicketPage() {
                   type="time"
                   name="departureTime"
                 />
-              </InputGroup>
+              </InputGroup> */}
             </TextField>
 
           </div>
@@ -487,11 +484,10 @@ export default function AddTicketPage() {
               return (
                 <label
                   key={perk}
-                  className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
-                    isSelected
-                      ? "border-blue-500 bg-blue-50 dark:bg-blue-500/10"
-                      : "border-gray-200 dark:border-[#374151] hover:border-blue-300 dark:hover:border-blue-500/50"
-                  }`}
+                  className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${isSelected
+                    ? "border-blue-500 bg-blue-50 dark:bg-blue-500/10"
+                    : "border-gray-200 dark:border-[#374151] hover:border-blue-300 dark:hover:border-blue-500/50"
+                    }`}
                 >
                   <input
                     type="checkbox"
